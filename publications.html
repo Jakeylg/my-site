@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Publications — Greenfield Group</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="section">
+    <div class="container">
+      <h1>Publications</h1>
+
+      <div class="controls">
+        <input type="search" id="pubSearch" placeholder="Filter by title or author…" oninput="filterPubs()">
+        <select id="yearFilter" onchange="filterPubs()">
+          <option value="">All years</option>
+        </select>
+      </div>
+
+      <!-- JSON/JS-driven list will render here -->
+      <div id="pubList" class="publist" aria-live="polite"></div>
+
+      <noscript>
+        <p><strong>Note:</strong> Enable JavaScript to view the publications list.</p>
+      </noscript>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <div>© <span id="year"></span> Greenfield Group</div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="nav.js"></script>
+  <script src="banner.js"></script>
+
+  <!-- Load data first: works offline (file://) -->
+  <script src="publications.data.js"></script>
+  <!-- Renderer -->
+  <script src="publications.js" defer></script>
+</body>
+</html>

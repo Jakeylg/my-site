@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>People — Greenfield Group</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+    </div>
+  </div>
+
+  <div id="site-header"></div>
+
+  <!-- PAGE CONTENT STARTS HERE -->
+  <main class="section">
+    <div class="container">
+      <h1>People</h1>
+
+      <figure style="margin:0 0 20px 0">
+        <div class="group-photo">
+          <img src="img/people/group.jpg" onerror="this.src='img/people/group.svg'" alt="Greenfield Group photo">
+        </div>
+        <figcaption class="muted">Replace with your real group photo at <code>img/people/group.jpg</code> (or .png).</figcaption>
+      </figure>
+
+      <div class="cards">
+        <!-- Jake -->
+        <article class="card text-center">
+          <div class="avatar-wrap">
+            <div class="avatar">
+              <img src="img/people/headshots/jake-greenfield.jpg"
+                   onerror="this.src='img/people/headshots/placeholder.svg'"
+                   alt="Headshot of Dr Jake L. Greenfield">
+            </div>
+            <div class="flag-badge"><img src="img/flags/gb.svg" alt="gb flag"></div>
+          </div>
+          <h3>Dr Jake L. Greenfield</h3>
+          <p class="muted">Group Leader</p>
+          <div class="chip-row">
+            <a class="chip-link" href="https://orcid.org/0000-0002-7650-5414" target="_blank" rel="noopener">
+              <img src="img/icons/orcid.png" alt=""> ORCID
+            </a>
+            <a class="chip-link" href="https://scholar.google.com/citations?hl=en&user=W8G7OPIAAAAJ" target="_blank" rel="noopener">
+              <img src="img/icons/scholar.png" alt=""> Google Scholar
+            </a>
+          </div>
+          <div class="meta-block">
+            <h4 style="margin:10px 0 6px 0;font-size:14px">Education</h4>
+            <ul class="edu-list">
+              <li>Imperial College London (MSci, 2015)</li>
+              <li>University of Cambridge (PhD, 2020)</li>
+            </ul>
+          </div>
+          <p><a href="mailto:Jake.Greenfield@uni-wuerzburg.de">Jake.Greenfield@uni-wuerzburg.de</a></p>
+        </article>
+
+        <!-- Jiarong -->
+        <article class="card text-center">
+          <div class="avatar-wrap">
+            <div class="avatar">
+              <img src="img/people/headshots/jiarong-wu.jpg"
+                   onerror="this.src='img/people/headshots/placeholder.svg'"
+                   alt="Headshot of Jiarong Wu">
+            </div>
+            <div class="flag-badge"><img src="img/flags/cn.svg" alt="cn flag" class="flag-left"></div>
+          </div>
+          <h3>Jiarong Wu (邬佳蓉)</h3>
+          <p class="muted">PhD Student</p>
+          <div class="chip-row">
+            <a class="chip-link" href="https://orcid.org/0000-0002-2701-6526" target="_blank" rel="noopener">
+              <img src="img/icons/orcid.png" alt=""> ORCID
+            </a>
+            <a class="chip-link" href="https://scholar.google.com/citations?user=T3-h6isAAAAJ&hl=en" target="_blank" rel="noopener">
+              <img src="img/icons/scholar.png" alt=""> Google Scholar
+            </a>
+          </div>
+          <div class="meta-block">
+            <h4 style="margin:10px 0 6px 0;font-size:14px">Education</h4>
+            <ul class="edu-list">
+              <li>Wuhan University (BSc, 2021)</li>
+              <li>Imperial College London (MRes, 2022)</li>
+            </ul>
+          </div>
+          <p><a href="mailto:Jiarong.Wu@uni-wuerzburg.de">Jiarong.Wu@uni-wuerzburg.de</a></p>
+        </article>
+
+        <!-- Deepu -->
+        <article class="card text-center">
+          <div class="avatar-wrap">
+            <div class="avatar">
+              <img src="img/people/headshots/deepu-george.jpg"
+                   onerror="this.src='img/people/headshots/placeholder.svg'"
+                   alt="Headshot of Deepu George">
+            </div>
+            <div class="flag-badge"><img src="img/flags/in.svg" alt="in flag"></div>
+          </div>
+          <h3>Deepu George</h3>
+          <p class="muted">PhD Student</p>
+           <div class="chip-row">
+            <a class="chip-link" href="https://orcid.org" target="_blank" rel="noopener">
+              <img src="img/icons/orcid.png" alt=""> ORCID
+            </a>
+            <a class="chip-link" href="https://scholar.google.com/citations?hl=en&user=t09Sv3cAAAAJ" target="_blank" rel="noopener">
+              <img src="img/icons/scholar.png" alt=""> Google Scholar
+            </a>
+          </div>
+          <div class="meta-block">
+            <h4 style="margin:10px 0 6px 0;font-size:14px">Education</h4>
+            <ul class="edu-list">
+              <li>IISER Thiruvananthapuram (BS)</li>
+              <li>IISER Thiruvananthapuram (MS)</li>
+            </ul>
+          </div>
+          <p><a href="mailto:Deepu.George@uni-wuerzburg.de">Deepu.George@uni-wuerzburg.de </a></p>
+        </article>
+      </div>
+
+
+  <!-- PAGE CONTENT ENDS HERE -->
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <div>© <span id="year"></span> Greenfield Group</div>
+      
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu(force){
+      const menu = document.getElementById('menu');
+      const btn = document.querySelector('.mobile-toggle');
+      const show = typeof force === 'boolean' ? force : !menu.classList.contains('show');
+      menu.classList.toggle('show', show);
+      btn.setAttribute('aria-expanded', show ? 'true' : 'false');
+      if(show){ menu.style.display='flex'; } else { menu.style.display='none'; }
+    }
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="nav.js"></script>
+  <script src="banner.js"></script>
+</body>
+</html>

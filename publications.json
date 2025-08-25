@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Example Paper Title",
+    "authors": [
+      "First Author",
+      "Second Author",
+      "Third Author"
+    ],
+    "journal": "Journal Name",
+    "year": 2025,
+    "volume": "12",
+    "issue": "3",
+    "pages": "123–130",
+    "date": "2025-06-01",
+    "doi": "10.1234/example.doi",
+    "publisherUrl": "https://doi.org/10.1234/example.doi",
+    "tocImage": "img/pubs/placeholder.svg",
+    "abstract": "Write a short abstract here. This will show when the card expands."
+  }
+]

@@ -1,0 +1,536 @@
+/* Greenfield Group – Minimal CSS (St Andrews palette) */
+:root{
+  --blue:#005EB8; --blue-dark:#0A3D7E; --red:#E03C31; --gold:#FFD700;
+  --text:#333; --muted:#6b7280; --bg:#fff; --gray:#f4f4f4; --soft:#F9FAFB; --border:#e5e7eb;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial,'Noto Sans',sans-serif;color:var(--text);background:var(--bg);line-height:1.6}
+img{max-width:100%;display:block;height:auto}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.container{max-width:1100px;margin:0 auto;padding:0 16px}
+.btn{display:inline-block;padding:10px 16px;border-radius:12px;font-weight:600}
+.btn-primary{background:#fff;color:var(--blue)}
+.btn-outline{color:#fff;border:1px solid rgba(255,255,255,.6);background:transparent}
+.btn-blue{background:var(--blue);color:#fff}
+.btn-red{background:var(--red);color:#fff}
+.btn-gray{background:transparent;border:1px solid #d1d5db;color:#333}
+.section{padding:48px 0}
+
+/* Cards grid: max 3 per row, responsive */
+.cards{display:grid;gap:20px;grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:980px){ .cards{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:640px){ .cards{grid-template-columns:1fr} }
+
+.card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.chip{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:#64748b;margin-bottom:6px}
+.muted{color:var(--muted)}
+
+/* Avatar + flag */
+.avatar-wrap{position:relative;width:160px;height:160px}
+.card.text-center .avatar-wrap{margin-left:auto;margin-right:auto}
+.avatar{width:100%;height:100%;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#e5e7eb;margin-bottom:10px}
+.avatar img{width:100%;height:100%;object-fit:cover;object-position:center}
+.flag-badge{position:absolute;right:-6px;bottom:-6px;width:28px;height:28px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 2px #fff}
+.flag-badge img{width:100%;height:100%;object-fit:cover}
+
+/* Person chips (ORCID / Scholar / etc.) */
+.card.text-center{text-align:center}
+.chip-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+.chip-link,
+.chip-disabled{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 10px;border:1px solid #e5e7eb;border-radius:999px;
+  background:#fff;color:#334155;font-size:14px;text-decoration:none
+}
+.chip-link:hover{background:#f8fafc;border-color:#dbe2ea;text-decoration:none}
+.chip-link img,.chip-disabled img{width:16px;height:16px;display:inline-block}
+
+/* Group photo */
+.group-photo{width:100%;max-height:400px;overflow:hidden;border-radius:16px;border:1px solid #e5e7eb}
+.group-photo img{width:100%;height:100%;object-fit:cover;object-position:center}
+
+/* Publications (unchanged from your file) */
+.pubitem{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--border)}
+.pubitem figure{margin:0;overflow:hidden;border-radius:10px}
+.pubitem img{width:110px;height:110px;object-fit:cover;object-position:center;border-radius:10px;border:1px solid var(--border);background:#f2f2f2;transition:transform .25s ease}
+.pubitem figure:hover img,.pubitem figure:focus-within img{transform:scale(1.04)}
+.pubitem h3{font-size:18px;margin:0 0 6px 0}
+.pubitem .meta{font-size:14px;color:var(--muted)}
+.pubnum{font-weight:700;color:var(--red);margin-right:8px}
+.badges{display:inline-flex;gap:8px;align-items:center;margin-left:8px}
+.badge{font-size:12px;background:#f1f5f9;border:1px solid #e2e8f0;color:#334155;border-radius:999px;padding:2px 8px}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 6px}
+select,input[type="search"]{padding:8px 10px;border-radius:10px;border:1px solid #d1d5db}
+@media (max-width:720px){ .pubitem{grid-template-columns:1fr} .pubitem img{width:110px;height:110px} }
+
+/* Footer & misc */
+.notice{background:var(--blue);color:#fff;font-size:14px}
+.notice a{color:#fff;text-decoration:underline;text-underline-offset:2px}
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(6px);border-bottom:1px solid #eee}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{height:36px;width:36px;border-radius:8px;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:700}
+nav a{margin-left:18px;color:#444} nav a:hover{color:var(--blue)}
+.nav-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+.mobile-toggle{display:none}
+.hero{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dark) 100%);color:#fff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 10%,rgba(255,255,255,.16),transparent 40%),radial-gradient(circle at 80% 20%,rgba(255,215,0,.16),transparent 40%);pointer-events:none}
+.hero h1{font-size:42px;line-height:1.15;margin:0 0 10px 0}
+.hero p{font-size:20px;opacity:.95;margin:0 0 20px 0}
+.underline-gold{text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:4px;text-underline-offset:6px}
+.bg-gray{background:var(--gray)} .bg-soft{background:var(--soft)}
+h2{position:relative;padding-bottom:6px;margin-top:0}
+h2::after{content:"";position:absolute;left:0;bottom:0;width:64px;height:3px;background:var(--red);border-radius:2px}
+footer{border-top:1px solid #eee;padding:20px 0;color:#666;font-size:14px}
+.dots{display:inline-flex;gap:12px;align-items:center}
+.dot{width:12px;height:12px;border-radius:999px;display:inline-block}
+@media (max-width:760px){
+  .hero h1{font-size:32px}
+  nav{display:none}
+  .mobile-toggle{display:inline-flex;align-items:center;gap:8px;border:1px solid #ddd;border-radius:8px;padding:6px 10px;background:#fff}
+  .mobile-menu{flex-direction:column;padding:8px 0}
+  .mobile-menu a{padding:8px 0;border-top:1px dashed #eee;color:#444}
+  .show{display:flex !important}
+}
+
+/* Keep each education entry on a single line */
+.edu-list{list-style:disc;margin:0 0 0 18px;padding:0;text-align:left;display:inline-block}
+.edu-list li{white-space:nowrap}
+
+/* Ensure flags with left-side symbols remain visible in round badges */
+.flag-left{object-position:15% center}
+
+
+/* --- Homepage media split (group photo + animation) --- */
+/* Keep the left (group photo) above any overlap */
+.group-photo{ position:relative; z-index:2; }
+
+/* Keep overlap, allow spillover, no masking */
+.gif-frame{
+  position:relative;
+  z-index:1;
+  border:none;
+  background:transparent;
+  border-radius:0;          /* no cropping corners */
+  overflow:visible;         /* allow the GIF to extend beyond */
+  height:clamp(360px, 50vw, 600px);
+  margin-top:-130px;        /* overlap the hero */
+}
+#news-animations{ padding-bottom:0px; }
+#news-animations { margin-bottom: -16px; }
+
+/* Make the surface larger than the frame and center it */
+.gif-surface{
+  position:absolute;
+  left:50%;
+  top:50%;
+  /* Bigger than the frame in BOTH directions */
+  width:260%;
+  height:140%;
+  transform:translate(-50%, -60%);
+
+  background-repeat:no-repeat;
+  /* Fit by height of the (larger) surface, no vertical crop */
+  background-size:auto 70%;
+  background-position:center;
+
+  -webkit-user-drag:none;
+  user-select:none;
+  pointer-events:none;
+}
+
+/* Mobile: dial it back so it doesn't overwhelm */
+@media (max-width:900px){
+  .gif-frame{
+    height:auto;
+    margin-top:0;
+  }
+  .gif-surface{
+    position:relative;
+    left:50%;
+    top:auto;
+    transform:translateX(-50%);
+    width:100%;
+    height:260px;           /* pick a sensible mobile height */
+    background-size:contain;/* keep full GIF visible on small screens */
+  }
+}
+
+/* Transparent overlay to intercept right-click and drags */
+.gif-veil{ position:absolute; inset:0; background:transparent; pointer-events:auto; }
+
+
+.media-split{display:grid;grid-template-columns:1fr 2fr;gap:2px;align-items:stretch}
+/* Mobile: no overlap for tighter stacks */
+@media (max-width:900px){
+  .gif-frame{
+    height:auto;          /* let it shrink on small screens */
+    margin-top:0;         /* remove overlap on mobile */
+    margin-left:0;
+  }
+  .gif-surface{ width:100%; }
+}
+/* The GIF is set as a CSS background so it's harder to "Save image as" */
+
+/* Transparent overlay to intercept right-click and drags */
+
+
+
+/* --- News components (updated) --- */
+.news-list{display:grid;grid-template-columns:1fr;gap:16px}
+
+/* Generic card layout */
+.news-card{
+  display:grid;
+  grid-template-columns:96px 1fr;
+  gap:14px;
+  align-items:start;          /* prevent overlap */
+  padding:14px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#fff;
+  cursor:pointer;
+}
+.news-card:hover{background:#f8fafc}
+
+/* Ensure the right-hand content can shrink and wrap properly */
+.news-card > :nth-child(2){min-width:0}
+
+/* Make the thumbnail box center its content (img or bg) */
+.news-thumb{
+  width:96px;
+  height:72px;
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  background:#fff;
+
+  /* if news.js uses background-image on .news-thumb */
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:contain;
+
+  display:flex;              /* center <img> without stretching */
+  align-items:center;
+  justify-content:center;
+}
+
+/* Home page smaller size */
+#home-news .news-thumb{ width:72px; height:56px; }
+
+/* If an <img> is used, keep it fully contained */
+.news-thumb img{
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+  object-fit:contain;         /* harmless with max- sizing */
+  display:block;
+}
+
+.news-meta{font-size:13px;color:var(--muted);margin:0}
+.news-title{font-size:18px;line-height:1.25;margin:2px 0 4px 0;font-weight:700;color:#111}
+.news-excerpt{margin:0;color:#374151}
+.news-body{display:none;margin:10px 0 4px 0;color:#333;line-height:1.6;word-wrap:break-word}
+
+/* Expanded state for full news page */
+.news-card.expanded{grid-template-columns:140px 1fr;align-items:start}
+.news-card.expanded .news-body{display:block}
+.news-card.expanded .news-thumb{height:100px}
+
+/* Home section container with header box */
+#home-news{}
+#home-news .news-hero{
+  border:1px solid var(--border);
+  background:#fff;
+  border-radius:14px;
+  padding:14px 16px;
+  margin:0 0 12px 0;
+}
+#home-news .news-hero h2{margin:0 0 4px 0}
+#home-news .news-hero p{margin:0;color:var(--muted)}
+
+#home-news .news-list{gap:12px}
+#home-news .news-card{
+  grid-template-columns:72px 1fr;
+  padding:10px;
+}
+#home-news .news-title{font-size:16px;margin:0}
+#home-news .news-excerpt{display:none} /* home: only date + title */
+#home-news .news-card .news-body{display:none}
+#home-news .news-thumb{width:72px;height:56px}
+
+/* Responsive */
+@media (max-width:900px){
+  .news-card{grid-template-columns:72px 1fr}
+  .news-card.expanded{grid-template-columns:1fr}
+  .news-thumb{width:72px;height:56px}
+}
+
+
+
+
+
+/* --- Publications JSON-driven cards --- */
+.publist{display:block}
+.pubcard{
+  display:grid;
+  grid-template-columns:140px 1fr;
+  gap:16px;
+  padding:16px 0;
+  border-bottom:1px solid var(--border);
+  cursor:pointer;
+}
+.pubcard figure{margin:0;overflow:hidden;border-radius:10px}
+.pubcard img{
+  width:140px;height:140px;object-fit:cover;object-position:center;
+  border-radius:10px;border:1px solid var(--border);background:#f2f2f2;
+  transition:transform .25s ease, width .25s ease, height .25s ease;
+}
+.pubcard:hover img{transform:scale(1.03)}
+.pubcard h3{font-size:18px;margin:0 0 6px 0}
+.pubcard .meta{font-size:14px;color:var(--muted)}
+.pubcard .links-row{margin-top:6px}
+.pubcard .abstract{margin-top:10px;line-height:1.6}
+.pubcard.expanded{
+  grid-template-columns:220px 1fr;
+}
+.pubcard.expanded img{
+  width:220px;height:220px;
+}
+@media (max-width:720px){
+  .pubcard{grid-template-columns:1fr}
+  .pubcard img{width:120px;height:120px}
+  .pubcard.expanded{grid-template-columns:1fr}
+  .pubcard.expanded img{width:100%;height:auto}
+}
+
+
+/* --- Publications: wide thumbs (~8.25cm x 4.45cm ≈ 1.85:1) --- */
+
+/* Let the first column size to the figure's width */
+.pubcard{
+  display:grid;
+  grid-template-columns:auto 1fr; /* was 140px 1fr */
+  gap:16px;
+  padding:16px 0;
+  border-bottom:1px solid var(--border);
+  cursor:pointer;
+}
+
+/* Fixed figure width; image fills it */
+.pubcard figure{margin:0; overflow:hidden; border-radius:10px; width:240px;}
+.pubcard img{
+  width:100%;
+  height:130px;              /* 240 / 1.85 ≈ 130 */
+  object-fit:contain;
+  object-position:center;
+  padding:5%;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:#fff;
+  transition:transform .25s ease;
+}
+.pubcard:hover img{ transform:scale(1.03) }
+.pubcard.expanded:hover img{ transform:none }
+
+/* Expanded state: wider image, same aspect ratio */
+.pubcard.expanded{ grid-template-columns:auto 1fr; }
+.pubcard.expanded figure{ width:360px; }
+.pubcard.expanded img{
+  width:100%;
+  height:194px;              /* 360 / 1.85 ≈ 194 */
+  object-fit:contain;
+  object-position:center;
+  padding:0;
+  background:#fff;
+}
+
+/* Mobile: single column, keep ratio via aspect-ratio */
+@media (max-width:720px){
+  .pubcard{ grid-template-columns:1fr; }
+  .pubcard figure{ width:100%; }
+  .pubcard img{
+    width:100%;
+    height:auto;
+    aspect-ratio:1.85 / 1;
+  }
+  .pubcard.expanded img{
+    width:100%;
+    height:auto;
+    aspect-ratio:1.85 / 1;
+  }
+}
+
+
+/* === Research cards adjustments === */
+
+/* Remove borders around images */
+.res-figure{margin:0;border-radius:12px;overflow:hidden}
+.res-figure img{display:block;width:100%;height:auto}
+
+/* Justify text globally */
+body, p {text-align: justify;}
+
+/* Red underline under each card title */
+.res-title{
+  position:relative;
+  padding-bottom:6px;
+}
+.res-title::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:60px;
+  height:3px;
+  background:var(--red);
+  border-radius:2px;
+}
+
+/* Research cards: collapsed by default */
+.res-card { cursor: pointer; }
+.res-card .res-long { display: none; }
+.res-card[aria-expanded="true"] .res-long,
+.res-card.expanded .res-long { display: block; }
+
+/* Research preview cards on the home page (anchor-based cards) */
+a.card{
+  display:flex;
+  flex-direction:column;
+  align-items:center;   /* center image + title horizontally */
+  text-align:center;    /* center the text */
+}
+
+/* Give every research image the same visual box and center its content */
+a.card .res-figure{
+  width:100%;
+  aspect-ratio:16 / 9;  /* consistent height so titles start at same Y */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;      /* optional: clean letterbox */
+}
+
+a.card .res-figure img{
+  width:100%;
+  height:100%;
+  object-fit:contain;   /* no cropping; center inside the box */
+  object-position:center;
+}
+
+/* Since titles are centered now, center the red underline too */
+.res-title{ text-align:center; }
+.res-title::after{
+  left:50%;
+  transform:translateX(-50%);
+}
+
+/* Center role labels and emails inside people cards */
+.card.text-center .muted,
+.card.text-center p a {
+  display: block;
+  text-align: center;
+  margin: 6px auto;
+}
+
+/* === Research cards: uniform figure sizing === */
+.res-card .res-figure {
+  width: 100%;
+  aspect-ratio: 16 / 9;   /* consistent desktop ratio */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.res-card .res-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* scale without cropping */
+  object-position: center;
+}
+
+/* Mobile: use a slightly taller ratio */
+@media (max-width: 720px) {
+  .res-card .res-figure {
+    aspect-ratio: 4 / 3;   /* taller images on phones */
+  }
+}
+/* === Research card titles: align underlines across cards === */
+
+/* Tune these if you change title size/line-height */
+:root{
+  --res-title-lines: 2;   /* reserve space for up to 2 lines on desktop */
+  --res-title-lh: 1.25;   /* line-height multiplier for the title */
+  --res-title-bottom-gap: 12px; /* space for the underline area */
+}
+
+/* Ensure consistent title sizing */
+.res-title{
+  font-size: 22px;
+  line-height: var(--res-title-lh);
+  margin: 0;
+  text-align: center;      /* keep your centered look */
+  position: relative;
+  padding-bottom: 6px;     /* existing underline gap */
+}
+
+/* Title container: fixed min-height, bottom-aligned content */
+.res-card .res-header{
+  display: flex;
+  align-items: flex-end;   /* push title to the bottom of the header box */
+  justify-content: center;
+  min-height: calc(var(--res-title-lines) * 1em * var(--res-title-lh) + var(--res-title-bottom-gap));
+}
+
+/* Make sure the cards don't force equal-height rows */
+.res-card{
+  display: block;          /* override any previous grid layout */
+}
+
+/* Figure stays horizontally centered and uniform (from earlier step) */
+.res-card .res-figure{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+.res-card .res-figure img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Short text always starts at the top under the figure */
+.res-card .res-short{ margin: 0; }
+
+/* Mobile: allow up to 3 title lines so it doesn't feel cramped */
+@media (max-width: 720px){
+  :root{ --res-title-lines: 3; }
+  .res-card .res-figure{ aspect-ratio: 4 / 3; }
+}
+/* Space between research title underline and figure */
+.res-card .res-header {
+  margin-bottom: 16px;  /* adjust as needed (12–20px usually looks good) */
+}
+
+/* === Research card refinements === */
+
+/* Title block: consistent height, center-align vertically */
+.res-card .res-header {
+  display: flex;
+  align-items: center;   /* center vertically within header box */
+  justify-content: center;
+  min-height: calc(var(--res-title-lines) * 1em * var(--res-title-lh) + var(--res-title-bottom-gap));
+  margin-bottom: 16px;   /* spacing below the underline */
+}
+
+/* Add spacing between figure and short description */
+.res-card .res-short {
+  margin-top: 12px;   /* gap above short text */
+  margin-bottom: 0;
+}

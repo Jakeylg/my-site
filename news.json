@@ -1,0 +1,23 @@
+[
+  {
+    "date": "2025-08-18",
+    "title": "Welcome Deepu to the Group",
+    "excerpt": "Deepu joins as a PhD student working on light-fueled dynamic covalent systems.",
+    "body": "We\u2019re delighted to welcome **Deepu George** to the Greenfield Group! Deepu will explore imine-based photoswitches and their integration into out\u2011of\u2011equilibrium networks. Expect updates from the lab as the project ramps up.",
+    "image": "img/news/deepu.jpg"
+  },
+  {
+    "date": "2025-07-30",
+    "title": "Paper Accepted in Angewandte",
+    "excerpt": "Our fourth paper establishes design rules for AIP photoswitches.",
+    "body": "Thrilled to share that our paper on **aryl\u2011iminopyrazole (AIP)** photoswitches was accepted as a full article. We report the first crystal structure of a metastable Z\u2011imine and propose general design principles.",
+    "image": "img/news/aip.jpg"
+  },
+  {
+    "date": "2025-06-16",
+    "title": "Lecturer Position at St Andrews",
+    "excerpt": "Jake will join the School of Chemistry as a permanent Lecturer in Oct 2025.",
+    "body": "Exciting news: **Jake L. Greenfield** will start as a permanent Lecturer at the University of St Andrews. We\u2019re grateful to collaborators and mentors who supported this journey.",
+    "image": "img/news/st-andrews.jpg"
+  }
+]

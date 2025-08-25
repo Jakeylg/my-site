@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Join Us — Greenfield Group</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+    </div>
+  </div>
+  <div id="site-header"></div>
+  <!-- PAGE CONTENT STARTS HERE -->
+
+  <main class="section">
+    <div class="container">
+      <h1>Join us</h1>
+      <p class="muted">We are always interested in engaging with scientists who share our passion for research. If you think that you can contribute to the team, we encourage you to get in contact after you have read the information below.</p>
+
+      <h2>Postdoctoral Positions</h2>
+      <p>Funding for specific projects, when available, will be advertised on the website. Exceptionally qualified applicants are invited to get in touch at any time. Include a CV and cover letter mentioning fellowship funding agencies you might apply to. Please also state the names of two or three referees who would be willing to provide a recommendation letter on your behalf.</p>
+      <p>It is possible to host <a href="https://www.humboldt-foundation.de">Humboldt Fellows</a> in our group.</p>
+
+      <h2>PhD Positions</h2>
+      <p>PhD positions are available each year. Get in touch as early as possible. An application should consist of your CV, a cover letter, and the names of two referees who will be able to provide a recommendation letter. You may wish to provide an outline as to how you believe you can contribute to the group and the area of our work that interests you the most.</p>
+
+      <h2>Masters Theses and Internships</h2>
+      <p>Projects are available for Masters-level students. Specific projects will be discussed in person to tailor goals to your interests.</p>
+
+      <h2>Bachelor / Visiting Students</h2>
+      <p>We can sometimes accommodate talented and motivated students for stays of at least four months. Prior substantial lab experience is required. Arrange well in advance. Provide a CV and the name of a referee who can provide a recommendation letter on your behalf. Funding is rarely available; students typically need to secure scholarships.</p>
+
+      <p style="margin-top:12px"><em>Mass mailings won't be acknowledged. To indicate you read this page, you may add the word “smorgasbord” to your email subject.</em></p>
+
+      <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn btn-red" href="contact.html">Contact</a>
+        <a class="btn btn-gray" href="publications.html">See our work</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- PAGE CONTENT ENDS HERE -->
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <div>© <span id="year"></span> Greenfield Group</div>
+      
+    </div>
+  </footer>
+  <script>
+    function toggleMenu(force){
+      const menu = document.getElementById('menu');
+      const btn = document.querySelector('.mobile-toggle');
+      const show = typeof force === 'boolean' ? force : !menu.classList.contains('show');
+      menu.classList.toggle('show', show);
+      btn.setAttribute('aria-expanded', show ? 'true' : 'false');
+      if(show){ menu.style.display='flex'; } else { menu.style.display='none'; }
+    }
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="nav.js"></script>
+  <script src="banner.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480">
+  <g fill-rule="evenodd">
+    <path fill="#f93" d="M0 0h640v160H0z"/>
+    <path fill="#fff" d="M0 160h640v160H0z"/>
+    <path fill="#128807" d="M0 320h640v160H0z"/>
+  </g>
+  <circle cx="320" cy="240" r="48" fill="none" stroke="#000080" stroke-width="3.2"/>
+  <circle cx="320" cy="240" r="3.2" fill="#000080"/>
+  <g stroke="#000080" stroke-width="3">
+    <path d="M320 192v96M272 240h96M293.9 212.1l52.2 55.8M293.9 267.9l52.2-55.8"/>
+    <path d="M303.4 205.9l33.2 68.2M336.6 205.9l-33.2 68.2M283.8 226.6l72.4 26.8M283.8 253.4l72.4-26.8"/>
+  </g>
+</svg>

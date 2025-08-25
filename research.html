@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Research — Greenfield Group</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <!-- PAGE CONTENT STARTS HERE -->
+  <main class="section">
+    <div class="container">
+      <h1>Research Areas</h1>
+      <p><strong>Frustrated Helical Architectures.</strong> Helical structures are increasingly becoming commonplace in the modern technological world, attributed to their chiroptical and mechanical properties as well as their compact structures. Like a spring, helices can be reversibly deformed mechanically, affording emergent properties in the metastable state.</p>
+      <p>In the Greenfield Group, we are interested in self-assembled helices that can alter their properties under applied stimuli with a general outlook towards optoelectronics and energy storage materials.</p>
+
+      <!-- === Research cards === -->
+      <div class="cards">
+        <!-- Card 1 -->
+        <article class="card res-card" tabindex="0" aria-expanded="false">
+          <header class="res-header">
+            <h3 class="res-title">Photoswitch Design</h3>
+          </header>
+          <figure class="res-figure">
+            <img src="img/res/switch-design.png" alt="Schematic for the design of imine-based photoswitches">
+          </figure>
+          <p class="res-short">
+            to change
+          </p>
+          <div class="res-long">
+            <p>
+              change me plz
+            </p>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="card res-card" tabindex="0" aria-expanded="false">
+          <header class="res-header">
+            <h3 class="res-title">Out-of-Equilibrium and Non-Equilibrium Steady States</h3>
+          </header>
+          <figure class="res-figure">
+            <img src="img/res/out-of-equilibrium.png" alt="Schematic of a NESSS achieved under constant irradiation">
+          </figure>
+          <p class="res-short">
+            change mee
+          </p>
+          <div class="res-long">
+            <p>
+              and meee
+            </p>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="card res-card" tabindex="0" aria-expanded="false">
+          <header class="res-header">
+            <h3 class="res-title">Controlled Assembly</h3>
+          </header>
+          <figure class="res-figure">
+            <img src="img/res/controlled-assembly.jpg" alt="Schematic illustrating controlled self-assembly">
+          </figure>
+          <p class="res-short">
+            New approaches to controllably assemble helices with tailored properties using stimuli-responsive monomers.
+          </p>
+          <div class="res-long">
+            <p>
+              Achieving long/polymeric helices with precise control over pitch, handedness, and defect density remains a key
+              challenge. We develop programmable monomer designs and dynamic-covalent strategies that translate molecular
+              level information into mesoscale order. Our platforms emphasize reversibility, error-correction, and
+              orthogonal stimuli to enable hierarchical assembly on demand.
+            </p>
+          </div>
+        </article>
+      </div>
+      <!-- === End research cards === -->
+    </div>
+  </main>
+
+  <!-- PAGE CONTENT ENDS HERE -->
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <div>© <span id="year"></span> Greenfield Group</div>
+    </div>
+  </footer>
+
+  <script>
+    // Year in footer
+    document.addEventListener('DOMContentLoaded', () => {
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    });
+
+    // Research card expand/collapse
+    function toggleCard(card){
+      const expanded = card.getAttribute('aria-expanded') === 'true';
+      card.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      card.classList.toggle('expanded', !expanded);
+    }
+
+    document.addEventListener('click', (e) => {
+      const card = e.target.closest('.res-card');
+      if (!card) return;
+      if (e.target.closest('a')) return; // don't toggle when clicking links
+      toggleCard(card);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      const card = e.target.closest && e.target.closest('.res-card');
+      if (!card) return;
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleCard(card);
+      }
+    });
+  </script>
+  <script src="nav.js"></script>
+  <script src="banner.js"></script>
+</body>
+</html>

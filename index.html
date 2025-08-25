@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Greenfield Group — University of St Andrews</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+    </div>
+  </div>
+  <div id="site-header"></div>
+  <!-- PAGE CONTENT STARTS HERE -->
+
+  <main id="home" class="hero section" role="main">
+    <div class="container">
+      <h1>Light, Dynamics, and <span class="underline-gold">Out‑of‑Equilibrium</span> Chemistry</h1>
+      <p>We design photoresponsive imines, molecular switches, and dynamic covalent networks to uncover principles of function beyond equilibrium.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn btn-primary" href="research.html">Learn about our research</a>
+        <a class="btn btn-outline" href="news.html">What’s new</a>
+      </div>
+    </div>
+  </main>
+
+  <section class="section" id="news-animations">
+  <div class="container">
+    <div class="media-split">
+      <div>
+        <h2>Latest News</h2>
+        <p class="muted">Stay up to date with our most recent updates</p>
+        <section id="home-news"></section>
+      </div>
+      <figure class="gif-frame" oncontextmenu="return false" draggable="false" aria-label="Looping animation">
+        <div class="gif-surface" style="background-image:url('img/animations/loop.gif');"></div>
+        <div class="gif-veil" title="© Copyright of Jiarong Wu"></div>
+        <noscript><p class="muted" style="margin:8px">Enable JavaScript to view the animation.</p></noscript>
+      </figure>
+    </div>
+
+  </div>
+</section>
+
+<section class="section bg-gray">
+  <div class="container">
+    <h2>Research</h2>
+    <div class="cards">
+      <!-- Research Preview Card 1 -->
+      <a href="research.html" class="card">
+        <figure class="res-figure" style="margin:0">
+          <img src="img/res/switch-design.png" alt="switch-design thumbnail">
+        </figure>
+        <h3 class="res-title">Photoswitch Design</h3>
+      </a>
+
+      <!-- Research Preview Card 2 -->
+      <a href="research.html" class="card">
+        <figure class="res-figure" style="margin:0">
+          <img src="img/res/out-of-equilibrium.png" alt="Out-of-Equilibrium thumbnail">
+        </figure>
+        <h3 class="res-title">Out-of-Equilibrium and Non-Equilibrium Steady States</h3>
+      </a>
+
+      <!-- Research Preview Card 3 -->
+      <a href="research.html" class="card">
+        <figure class="res-figure" style="margin:0">
+          <img src="img/res/controlled-assembly.jpg" alt="Controlled Assembly thumbnail">
+        </figure>
+        <h3 class="res-title">Controlled Assembly</h3>
+      </a>
+    </div>
+    <p style="margin-top:10px"><a href="research.html">Find out more about what we do →</a></p>                
+  </div>                  
+</section>                
+
+  <section class="section">
+  <div class="container">
+    <h2>People</h2>
+    <div class="cards">
+      <article class="card text-center">
+  <div class="avatar-wrap">
+    <div class="avatar"><img src="img/people/headshots/jake-greenfield.jpg" onerror="this.src='img/people/headshots/placeholder.svg'" alt="Headshot of Dr Jake L. Greenfield"></div>
+  </div>
+  <h3>Dr Jake L. Greenfield</h3>
+  <p class="muted">Group Leader</p>
+</article>
+      <article class="card text-center">
+  <div class="avatar-wrap">
+    <div class="avatar"><img src="img/people/headshots/jiarong-wu.jpg" onerror="this.src='img/people/headshots/placeholder.svg'" alt="Headshot of Jiarong Wu"></div>
+  </div>
+  <h3>Jiarong Wu (邬佳蓉)</h3>
+  <p class="muted">PhD Student</p>
+</article>
+
+      <article class="card text-center">
+  <div class="avatar-wrap">
+    <div class="avatar"><img src="img/people/headshots/deepu-george.jpg" onerror="this.src='img/people/headshots/placeholder.svg'" alt="Headshot of Deepu George"></div>
+  </div>
+  <h3>Deepu George</h3>
+  <p class="muted">PhD Student</p>
+</article>
+    </div>
+    <p style="margin-top:10px"><a href="people.html">Find out more about the team →</a></p>
+  </div>
+</section>
+
+  <section class="section bg-gray" id="join">
+    <div class="container">
+      <h2>Join Us</h2>
+      <p>We are always interested in hearing from talented and committed scientists. See details on PhD, postdoc, Masters, and visiting student opportunities.</p>
+      <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn btn-blue" href="join.html">How to apply</a>
+        <a class="btn btn-gray" href="contact.html">Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE CONTENT ENDS HERE -->
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <div>© <span id="year"></span> Greenfield Group</div>
+      
+    </div>
+  </footer>
+  <script>
+    function toggleMenu(force){
+      const menu = document.getElementById('menu');
+      const btn = document.querySelector('.mobile-toggle');
+      const show = typeof force === 'boolean' ? force : !menu.classList.contains('show');
+      menu.classList.toggle('show', show);
+      btn.setAttribute('aria-expanded', show ? 'true' : 'false');
+      if(show){ menu.style.display='flex'; } else { menu.style.display='none'; }
+    }
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <script src="nav.js"></script>
+  <script src="banner.js"></script>
+  <script src="news_data.js"></script>
+  <script src="news.js"></script>
+</body>
+</html>

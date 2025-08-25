@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Greenfield Group</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+    </div>
+  </div>
+  <div id="site-header"></div>
+  <!-- PAGE CONTENT STARTS HERE -->
+
+  <main class="section">
+    <div class="container">
+      <h1>Contact</h1>
+      <div class="cards">
+        <div class="card">
+          <h3>Email</h3>
+          <p>Feel free to contact me by email. Note that mass mailings will not be acknowledged. If you are interested in joining our team, please carefully read the <a href="join.html">Join us</a> page fully.</p>
+          <p><a href="mailto:Jake.Greenfield@uni-wuerzburg.de">Jake.Greenfield@uni-wuerzburg.de</a></p>
+        </div>
+        <div class="card">
+          <h3>🇩🇪 Current Address 🇩🇪</h3>
+          <p>Institute for Organic Chemsitry, University of Würzburg, Am Hubland, Würzburg, 97074, Germany</p>
+          <h3>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Address (from Oct 2025) 🏴󠁧󠁢󠁳󠁣󠁴󠁿</h3>
+          <p>School of Chemistry, University of St Andrews, North Haugh, St Andrews, KY16 9ST, UK</p>
+        </div>
+        <div class="card">
+          <h3>Social</h3>
+          <p><a href="https://mobile.twitter.com/JakeyLG">Twitter/X (@JakeyLG)</a>
+          <p><a href="https://bsky.app/profile/jakeylg.bsky.social">BlueSky (@JakeyLG)</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- PAGE CONTENT ENDS HERE -->
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <div>© <span id="year"></span> Greenfield Group</div>
+      
+    </div>
+  </footer>
+  <script>
+    function toggleMenu(force){
+      const menu = document.getElementById('menu');
+      const btn = document.querySelector('.mobile-toggle');
+      const show = typeof force === 'boolean' ? force : !menu.classList.contains('show');
+      menu.classList.toggle('show', show);
+      btn.setAttribute('aria-expanded', show ? 'true' : 'false');
+      if(show){ menu.style.display='flex'; } else { menu.style.display='none'; }
+    }
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="nav.js"></script>
+  <script src="banner.js"></script>
+</body>
+</html>
