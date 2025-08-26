@@ -1,13 +1,5 @@
-// Shared navigation/header for Greenfield Group + Dark Mode
+// Shared navigation/header for Greenfield Group
 (function () {
-  // --- EARLY THEME APPLY (prevents flash) ---
-  try {
-    const saved = localStorage.getItem('gg_theme');
-    const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = saved || (systemDark ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-theme', theme);
-  } catch (e) {}
-
   // Identify current page for "active" styling
   const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
   const isHome = path === '' || path === 'index.html' || path.startsWith('index');
@@ -24,14 +16,6 @@
     makeLink('contact.html', 'Contact', path === 'contact.html')
   ].join('');
 
-  // Theme toggle control (desktop + mobile)
-  const themeToggleBtn = `
-    <button class="theme-toggle" type="button" aria-pressed="false" title="Toggle dark mode">
-      <span class="theme-icon" aria-hidden="true">🌗</span>
-      <span class="theme-label">Dark: Off</span>
-    </button>
-  `;
-
   const headerHTML = `
   <header>
     <div class="container nav-row">
@@ -43,32 +27,26 @@
         </div>
       </div>
 
-      <!-- Desktop nav -->
+      <!-- Desktop nav (always visible on desktop by CSS) -->
       <nav class="desktop-nav" aria-label="Primary">
         ${linkHTML}
       </nav>
 
-      <!-- Right-side actions (desktop only) -->
-      <div class="nav-actions">
-        ${themeToggleBtn}
-      </div>
-
-      <!-- Mobile toggle -->
+      <!-- Mobile toggle (visible only on mobile by CSS) -->
       <button class="mobile-toggle" aria-controls="menu" aria-expanded="false" type="button">
         <span aria-hidden="true">☰</span>
         <span class="sr-only">Menu</span>
       </button>
     </div>
 
-    <!-- Mobile menu -->
+    <!-- Mobile menu container (hidden on desktop by CSS) -->
     <div id="menu" class="container mobile-menu" hidden>
       ${linkHTML}
-      <div class="mobile-theme">${themeToggleBtn}</div>
     </div>
   </header>
   `;
 
-  // Inject header
+  // Inject header at top of <body>
   document.addEventListener('DOMContentLoaded', () => {
     document.body.insertAdjacentHTML('afterbegin', headerHTML);
 
@@ -80,14 +58,16 @@
       toggle.setAttribute('aria-expanded', String(open));
       if (open) {
         menu.hidden = false;
-        menu.classList.add('show');
+        menu.classList.add('show');     // matches your CSS
       } else {
         menu.classList.remove('show');
+        // use hidden to prevent accidental focus on links when closed
         menu.hidden = true;
       }
     }
     window.toggleMenu = setMenu;
 
+    // Toggle button
     toggle.addEventListener('click', () => {
       const open = toggle.getAttribute('aria-expanded') !== 'true';
       setMenu(open);
@@ -97,47 +77,14 @@
       }
     });
 
+    // Close on Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') setMenu(false);
     });
 
+    // Close when clicking a mobile menu link
     menu.addEventListener('click', (e) => {
       if (e.target.closest('a')) setMenu(false);
     });
-
-    // --- THEME TOGGLING ---
-    const allToggleBtns = document.querySelectorAll('.theme-toggle');
-
-    function applyTheme(theme) {
-      document.documentElement.setAttribute('data-theme', theme);
-      try { localStorage.setItem('gg_theme', theme); } catch (e) {}
-      const darkOn = theme === 'dark';
-      allToggleBtns.forEach(btn => {
-        btn.setAttribute('aria-pressed', String(darkOn));
-        const lbl = btn.querySelector('.theme-label');
-        if (lbl) lbl.textContent = `Dark: ${darkOn ? 'On' : 'Off'}`;
-      });
-    }
-
-    // initialize button state from current attribute
-    (function initThemeButtons() {
-      const current = document.documentElement.getAttribute('data-theme') || 'light';
-      applyTheme(current);
-    })();
-
-    allToggleBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const now = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        applyTheme(now);
-      });
-    });
-
-    // Optional: react to system changes if user hasn't chosen manually yet
-    try {
-      if (!localStorage.getItem('gg_theme') && window.matchMedia) {
-        const mq = window.matchMedia('(prefers-color-scheme: dark)');
-        mq.addEventListener('change', e => applyTheme(e.matches ? 'dark' : 'light'));
-      }
-    } catch (e) {}
   });
 })();
