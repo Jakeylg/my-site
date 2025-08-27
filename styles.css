@@ -774,3 +774,14 @@ a.card .res-figure {
 :root[data-theme="dark"] a.card .res-figure {
   background:#ccc;            /* neutral dark grey */
 }
+
+
+/* Profile pages: no publication thumbnails */
+#profile-container .pubcard {
+  grid-template-columns: 1fr !important; /* collapse to single column when figure is hidden */
+  gap: 10px;
+}
+#profile-container .pubcard figure {
+  display: none !important;             /* hide thumbnail figure on profiles only */
+}
+
