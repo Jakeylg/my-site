@@ -16,12 +16,7 @@
     return n;
   };
 
-  const state = {
-    items: [],
-    filtered: [],
-    idxMap: [],   // maps filtered index -> items index (for lightbox)
-    activeIdx: 0
-  };
+  const state = { items: [], filtered: [], idxMap: [], activeIdx: 0 };
 
   const gallery = document.getElementById('covers-gallery');
   const typeSel = document.getElementById('filter-type');
@@ -32,7 +27,13 @@
   const lbCap = document.getElementById('lb-cap');
   const lbLinks = document.getElementById('lb-links');
 
-  // Load data
+  // --- dialog fallback (Safari, older browsers) ---
+  const HAS_SHOWMODAL = !!(window.HTMLDialogElement && HTMLDialogElement.prototype && 'showModal' in HTMLDialogElement.prototype);
+  if (!HAS_SHOWMODAL) {
+    dlg.showModal = function(){ this.setAttribute('open',''); document.documentElement.style.overflow = 'hidden'; };
+    dlg.close = function(){ this.removeAttribute('open'); document.documentElement.style.overflow = ''; };
+  }
+
   function init(){
     if(FALLBACK){ setData(FALLBACK); }
     else fetch(JSON_SRC).then(r=>r.json()).then(setData).catch(()=>{
@@ -42,7 +43,6 @@
   }
 
   function setData(items){
-    // Normalize & sort (newest first)
     state.items = (items||[]).map((d,i)=>({
       id: d.id || ('item-'+i),
       title: d.title || 'Untitled',
@@ -55,7 +55,6 @@
       links: Array.isArray(d.links) ? d.links : []
     })).sort((a,b)=> (b.year||0) - (a.year||0));
 
-    // Populate years
     const years = [...new Set(state.items.map(d=>d.year).filter(Boolean))].sort((a,b)=>b-a);
     yearSel.innerHTML = '<option value="">All years</option>' + years.map(y=>`<option>${y}</option>`).join('');
 
@@ -67,7 +66,7 @@
     yearSel.addEventListener('change', applyFilters);
     searchEl.addEventListener('input', applyFilters);
 
-    // Lightbox nav
+    // Lightbox nav + close
     dlg.querySelector('.prev').addEventListener('click', ()=> nav(-1));
     dlg.querySelector('.next').addEventListener('click', ()=> nav(1));
     dlg.addEventListener('keydown', (e)=>{
@@ -75,8 +74,8 @@
       if(e.key==='ArrowRight') nav(1);
       if(e.key==='Escape') dlg.close();
     });
+    // Click outside dialog to close (works for both native and fallback)
     dlg.addEventListener('click', (e)=>{
-      // click backdrop to close
       const r = dlg.getBoundingClientRect();
       if(e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom){
         dlg.close();
@@ -132,7 +131,7 @@
   function openLightbox(filteredIdx){
     state.activeIdx = filteredIdx;
     showActive();
-    dlg.showModal();
+    dlg.showModal(); // now safe even on older browsers (polyfilled above)
   }
 
   function nav(delta){
@@ -150,7 +149,7 @@
       ${d.type? `<span class="badge" style="margin-left:8px">${d.type}</span>`:''}
       ${d.credit? `<div class="muted" style="margin-top:6px">${d.credit}</div>`:''}
     `;
-    lbLinks.innerHTML = d.links.map(l=>`<a class="chip-link" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join('');
+    lbLinks.innerHTML = (d.links||[]).map(l=>`<a class="chip-link" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join('');
   }
 
   init();

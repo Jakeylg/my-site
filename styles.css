@@ -850,3 +850,6 @@ a.card .res-figure {
 :root[data-theme="dark"] .lightbox-nav{ background:var(--soft); color:var(--text); }
 .lightbox-links{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:8px; }
 
+/* ensure dialog shows in fallback */
+dialog[open] { display: block; }
+
