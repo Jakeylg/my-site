@@ -1,5 +1,5 @@
-window.NEWS_ITEMS = [
-    {
+[
+  {
     "date": "2025-05-15",
     "title": "Group's 6th Paper Out Now in JACS",
     "excerpt": "Our sixth paper reports enhanced photoswitching in N-alkyl imines, comparable to azobenzene.",
@@ -112,4 +112,3 @@ window.NEWS_ITEMS = [
     "image": ""
   }
 ]
-
