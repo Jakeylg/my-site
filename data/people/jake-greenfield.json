@@ -4,32 +4,34 @@
   "role": "Group Leader",
   "email": "Jake.Greenfield@uni-wuerzburg.de",
   "photo": "img/people/headshots/jake-greenfield.jpg",
-  "bio": "Jake leads the Greenfield Group working on light-responsive imine systems, molecular photoswitches, and out-of-equilibrium chemistry.",
+  "bio": "Jake grew up in Bristol (UK) and completed his MSci in Chemistry at Imperial College London. He earned his PhD at the University of Cambridge under the supervision of Prof. Jonathan Nitschke, where he worked on the self-assembly of helical metallopolymers. Jake then joined Prof. Matthew Fuchter’s group at Imperial College London as a postdoctoral researcher, working on molecular photoswitches. In 2022, he moved to Würzburg, Germany as a Humboldt Fellow with Prof. Frank Würthner. Since 2023, he has led the Greenfield Group as a Liebig Fellow, focusing on photoswitchable imines and light-driven out-of-equilibrium chemistry. In 2024 he was named an Emil-Fischer Fellow and in 2025 awarded an ERC Starting Grant (HeliOS). Beyond the science, Jake is passionate about mentoring young researchers, collaborative teamwork, and enjoys making chemistry a little brighter (sometimes literally).",
   "education": [
-    "Imperial College London (MSci, 2015)",
+    "Imperial College London (MSci, 2015, 1st Class Hons.)",
     "University of Cambridge (PhD, 2020)"
   ],
   "awards": [
-    "Example Prize A (2023)",
-    "Example Fellowship B (2021)"
+    "ERC Starting Grant (HeliOS), 2025",
+    "Chemiedozententagung Presentation Prize (Session A), 2025",
+    "Emil-Fischer Fellowship (Junior Professor status), 2024",
+    "Liebig Fellowship, Fonds der Chemischen Industrie, 2023",
+    "Alexander von Humboldt Fellowship, 2022",
+    "Evans Medal in Inorganic Chemistry (Imperial College London), 2015",
+    "DOW® Award for Best Final Year Presentation, 2015"
   ],
   "links": [
     {"label": "ORCID", "url": "https://orcid.org/0000-0002-7650-5414", "icon": "img/icons/orcid.png"},
-    {"label": "Google Scholar", "url": "https://scholar.google.com/citations?hl=en&user=W8G7OPIAAAAJ", "icon": "img/icons/scholar.png"}
+    {"label": "Google Scholar", "url": "https://scholar.google.com/citations?hl=en&user=W8G7OPIAAAAJ", "icon": "img/icons/scholar.png"},
+    {"label": "Group Publications", "url": "publications.html", "icon": "img/icons/link.png"}
   ],
   "publications": [
     {
-      "title": "Design rules for aryliminopyrazole photoswitches",
-      "authors": "J. L. Greenfield et al.",
-      "journal": "Angew. Chem. Int. Ed.",
-      "year": "2025",
-      "image": "img/pubs/aip-design-rules.png",
-      "abstract": "Establishes design rules and reports the first crystal structure of a metastable Z-imine.",
+      "title": "For a full list of publications, please see the group’s Publications page.",
+      "authors": "",
+      "journal": "",
+      "year": "",
       "links": [
-        {"label": "DOI", "url": "https://doi.org/placeholder"},
-        {"label": "PDF", "url": "files/papers/aip-design-rules.pdf"}
-      ],
-      "badges": ["Open Access"]
+        {"label": "Publications", "url": "publications.html"}
+      ]
     }
   ]
 }
