@@ -4,35 +4,35 @@
     "title": "Group's 6th Paper Out Now in JACS",
     "excerpt": "Our sixth paper reports enhanced photoswitching in N-alkyl imines, comparable to azobenzene.",
     "body": "N-alkyl imines are widespread in dynamic-covalent chemistry, but their E/Z photochromism is often overlooked. We showcase a simple strategy that boosts their photoswitching to wavelengths and PSS distributions comparable to azobenzene, including condensed-phase photoisomerization and isomer-dependent fluorescence.",
-    "image": ""
+    "image": "/img/news/jacs.jpg"
   },
   {
     "date": "2025-05-05",
     "title": "New Paper in Chem",
     "excerpt": "Light-fueled cascade drives a coupled, non-photoresponsive transimination out of equilibrium.",
     "body": "Using a network of four interconverting imines, photoirradiation drives a transimination into a NESS, shifting amine composition. That shift perturbs a second, non-photoresponsive transimination, amplifying the overall departure from equilibrium and providing a blueprint for light-driven reaction cascades.",
-    "image": ""
+    "image": "/img/news/chem.jpg"
   },
   {
     "date": "2024-10-16",
     "title": "A Huge Milestone: Our 4th Paper Published in Angewandte Chemie!",
     "excerpt": "First design rules for AIP photoswitches and the first crystal structure of a metastable Z-aldimine.",
     "body": "We establish design rules for aryliminopyrazole (AIP) photoswitches, show condensed-phase isomerization, and report what appears to be the first-ever crystal structure of a metastable Z-imine (aldimine). Open access link included on the original post.",
-    "image": ""
+    "image": "/img/news/angew.jpg"
   },
   {
     "date": "2024-07-15",
     "title": "New Paper Alert in Chem. Commun.",
     "excerpt": "Iminobispyrazole (IBP) photoswitches deliver strong performance without ortho-amination.",
     "body": "Based on Clara Li’s Bachelor’s thesis with contributions from Jiarong and Lasse, we show that IBPs can match or exceed AIP performance. Regiochemistry dictates λ_max, PSS, and Z-isomer half-life; two pyrazoles can be better than one.",
-    "image": ""
+    "image": "/img/news/chemcomm.jpg"
   },
   {
     "date": "2024-07-01",
     "title": "Big News: Our Second Paper Accepted in JACS!",
     "excerpt": "Photoswitchable imines autonomously drive a dynamic-covalent system to a light-driven NESS.",
     "body": "Coupling E→Z photoisomerization to transimination drives a nonequilibrium steady state under continuous light. Energy is stored both in the Z-imine and the nonequilibrium constitution, consistent with a light-driven information ratchet.",
-    "image": ""
+    "image": "/img/news/jacs.jpg"
   },
   {
     "date": "2024-02-25",
@@ -46,7 +46,7 @@
     "title": "First Paper Published in Chemical Science!",
     "excerpt": "Aryl-iminopyrazoles (AIPs) overcome classic imine-switch limits: visible-light switching, high PSS, long Z half-lives.",
     "body": "Our first paper (now in Chemical Science; originally on ChemRxiv) introduces AIP photoswitches that reach >95% Z at 470 nm, resist fatigue, and show T-type/negative photochromism—opening doors for photoresponsive dynamic-covalent materials.",
-    "image": ""
+    "image": "/img/news/chemsci.jpg"
   },
   {
     "date": "2024-09-27",
