@@ -114,7 +114,7 @@
     gallery.innerHTML = '';
     state.filtered.forEach((d, fi)=>{
       const fig = el('figure', {class:'gallery-card', tabindex:'0', role:'button',
-        onClick:()=>openLightbox(fi),
+        onclick:()=>openLightbox(fi),
         onkeypress:(e)=>{ if(e.key==='Enter' || e.key===' ') openLightbox(fi); }
       },[
         el('div', {class:'gallery-thumb'}, [
