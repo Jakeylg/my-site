@@ -19,23 +19,32 @@
   "publications": [
     {
       "title": "Charge Transport through Discrete Crystalline Architectures",
-      "authors": "Deepu George, et al.",
+      "authors": "Athira T. John, Deepu George, Mahesh Hariharan*",
       "journal": "J. Phys. Chem. C",
       "year": "2023",
+      "volume": "127",
+      "issue": "7",
+      "pages": "3389–3397",
       "links": [{"label": "DOI", "url": "https://doi.org/10.1021/acs.jpcc.2c08837"}]
     },
     {
       "title": "The effect of Single Atom Substitution on the Structure and Bandgap of Organic Semiconductors",
-      "authors": "Deepu George, et al.",
+      "authors": "Athira T. John, Akshaya Narayanasamy, Deepu George, Mahesh Hariharan*",
       "journal": "Cryst. Growth Des.",
       "year": "2022",
+      "volume": "22",
+      "issue": "2",
+      "pages": "1237–1243",
       "links": [{"label": "DOI", "url": "https://doi.org/10.1021/acs.cgd.1c01202"}]
     },
     {
       "title": "Atom Efficient Halogen-Halogen Interactions Assist One-, Two- and Three-Dimensional Molecular Zippers",
-      "authors": "Deepu George, et al.",
+      "authors": "Athira T. John, Akshaya Narayanasamy, Deepu George, Mahesh Hariharan*",
       "journal": "J. Phys. Chem. C",
       "year": "2021",
+      "volume": "125",
+      "issue": "19",
+      "pages": "10716–10722",
       "links": [{"label": "DOI", "url": "https://doi.org/10.1021/acs.jpcc.1c01724"}]
     }
   ]
