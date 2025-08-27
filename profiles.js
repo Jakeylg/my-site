@@ -125,29 +125,33 @@
   }
 
   // Publication list renderer
-  function renderPubList(pubs){
-    if(!pubs || !pubs.length) return el('p', {class:'muted'}, '—');
+function renderPubList(pubs){
+  if(!pubs || !pubs.length) return el('p', {class:'muted'}, '—');
 
-    const ListTag = pubs.length > 1 ? 'ol' : 'ul';
-    const list = el(ListTag, {class:'pub-list'});
+  const useOrdered = pubs.length > 1;
+  const listAttrs = {class:'pub-list'};
+  if (useOrdered) listAttrs.reversed = true;   // 🔽 descending numbers
 
-    pubs.forEach(pub=>{
-      const bits = [];
-      if(pub.title) bits.push(`<strong>${pub.title}</strong>`);
-      const meta = [pub.authors, pub.journal ? `<em>${pub.journal}</em>` : null, pub.year]
-        .filter(Boolean)
-        .join(', ');
-      if(meta) bits.push(meta);
-      if(pub.doi){
-        const doiUrl = pub.doi.startsWith('http') ? pub.doi : `https://doi.org/${pub.doi}`;
-        bits.push(`<a href="${doiUrl}" target="_blank" rel="noopener">DOI</a>`);
-      } else if (pub.url){
-        bits.push(`<a href="${pub.url}" target="_blank" rel="noopener">Link</a>`);
-      }
+  const list = el(useOrdered ? 'ol' : 'ul', listAttrs);
 
-      list.appendChild(el('li', {html: bits.join('. ') }));
-    });
+  // Reverse array so newest shows first
+  pubs.slice().reverse().forEach(pub=>{
+    const bits = [];
+    if(pub.title) bits.push(`<strong>${pub.title}</strong>`);
+    const meta = [pub.authors, pub.journal ? `<em>${pub.journal}</em>` : null, pub.year]
+      .filter(Boolean)
+      .join(', ');
+    if(meta) bits.push(meta);
+    if(pub.doi){
+      const doiUrl = pub.doi.startsWith('http') ? pub.doi : `https://doi.org/${pub.doi}`;
+      bits.push(`<a href="${doiUrl}" target="_blank" rel="noopener">DOI</a>`);
+    } else if (pub.url){
+      bits.push(`<a href="${pub.url}" target="_blank" rel="noopener">Link</a>`);
+    }
 
-    return list;
-  }
+    list.appendChild(el('li', {html: bits.join('. ') }));
+  });
+
+  return list;
+}
 })();
