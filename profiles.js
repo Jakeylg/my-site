@@ -128,28 +128,28 @@
 function renderPubList(pubs){
   if(!pubs || !pubs.length) return el('p', {class:'muted'}, '—');
 
-  const useOrdered = pubs.length > 1;
-  const listAttrs = {class:'pub-list'};
-  if (useOrdered) listAttrs.reversed = true;   // 🔽 descending numbers
+  // Use an ordered list that counts down from the total
+  const list = el('ol', {
+    class: 'pub-list',
+    reversed: '',               // boolean attribute => descending numbers
+    start: pubs.length,         // top number is the total count
+    style: 'list-style: decimal; padding-left:1.25rem; margin-left:0;' // ensure numbers visible even if global CSS resets lists
+  });
 
-  const list = el(useOrdered ? 'ol' : 'ul', listAttrs);
-
-  // Reverse array so newest shows first
-  pubs.slice().reverse().forEach(pub=>{
+  // Keep the array order exactly as provided in the JSON
+  pubs.forEach(pub=>{
     const bits = [];
     if(pub.title) bits.push(`<strong>${pub.title}</strong>`);
     const meta = [pub.authors, pub.journal ? `<em>${pub.journal}</em>` : null, pub.year]
-      .filter(Boolean)
-      .join(', ');
+      .filter(Boolean).join(', ');
     if(meta) bits.push(meta);
-    if(pub.doi){
+    if (pub.doi){
       const doiUrl = pub.doi.startsWith('http') ? pub.doi : `https://doi.org/${pub.doi}`;
       bits.push(`<a href="${doiUrl}" target="_blank" rel="noopener">DOI</a>`);
     } else if (pub.url){
       bits.push(`<a href="${pub.url}" target="_blank" rel="noopener">Link</a>`);
     }
-
-    list.appendChild(el('li', {html: bits.join('. ') }));
+    list.appendChild(el('li', { html: bits.join('. ') }));
   });
 
   return list;
