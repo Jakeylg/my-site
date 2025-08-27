@@ -1,0 +1,35 @@
+{
+  "slug": "jake-greenfield",
+  "name": "Dr Jake L. Greenfield",
+  "role": "Group Leader",
+  "email": "Jake.Greenfield@uni-wuerzburg.de",
+  "photo": "img/people/headshots/jake-greenfield.jpg",
+  "bio": "Jake leads the Greenfield Group working on light-responsive imine systems, molecular photoswitches, and out-of-equilibrium chemistry.",
+  "education": [
+    "Imperial College London (MSci, 2015)",
+    "University of Cambridge (PhD, 2020)"
+  ],
+  "awards": [
+    "Example Prize A (2023)",
+    "Example Fellowship B (2021)"
+  ],
+  "links": [
+    {"label": "ORCID", "url": "https://orcid.org/0000-0002-7650-5414", "icon": "img/icons/orcid.png"},
+    {"label": "Google Scholar", "url": "https://scholar.google.com/citations?hl=en&user=W8G7OPIAAAAJ", "icon": "img/icons/scholar.png"}
+  ],
+  "publications": [
+    {
+      "title": "Design rules for aryliminopyrazole photoswitches",
+      "authors": "J. L. Greenfield et al.",
+      "journal": "Angew. Chem. Int. Ed.",
+      "year": "2025",
+      "image": "img/pubs/aip-design-rules.png",
+      "abstract": "Establishes design rules and reports the first crystal structure of a metastable Z-imine.",
+      "links": [
+        {"label": "DOI", "url": "https://doi.org/placeholder"},
+        {"label": "PDF", "url": "files/papers/aip-design-rules.pdf"}
+      ],
+      "badges": ["Open Access"]
+    }
+  ]
+}
