@@ -84,7 +84,7 @@
 
     // Publications card (simple list; numbered if >1)
     const pubs = el('article', {class:'card'}, [
-      el('h2', {}, 'Selected Publications'),
+      el('h2', {}, 'Publications'),
       renderPubList(p.publications)
     ]);
 
