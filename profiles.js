@@ -1,4 +1,3 @@
-<script>
 (function(){
   const el = (tag, attrs={}, children=[]) => {
     const node = document.createElement(tag);
@@ -36,7 +35,7 @@
 
   fetch(jsonUrl, {cache:'no-store'})
     .then(r => {
-      if(!r.ok) throw new Error(\`HTTP \${r.status}\`);
+      if(!r.ok) throw new Error(`HTTP ${r.status}`);
       return r.json();
     })
     .then(data => renderProfile(data))
@@ -152,4 +151,3 @@
     return list;
   }
 })();
-</script>
