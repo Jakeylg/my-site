@@ -785,3 +785,68 @@ a.card .res-figure {
   display: none !important;             /* hide thumbnail figure on profiles only */
 }
 
+/* === Covers & Art gallery === */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:16px;
+}
+@media (max-width:980px){ .gallery-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); } }
+@media (max-width:640px){ .gallery-grid{ grid-template-columns:1fr; } }
+
+.gallery-card{
+  margin:0;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 1px 2px rgba(0,0,0,.04);
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+}
+:root[data-theme="dark"] .gallery-card{ background:var(--soft); border-color:var(--border); }
+
+.gallery-thumb{
+  aspect-ratio: 4 / 5;          /* tall default that flatters covers */
+  background:#fff;
+  display:flex; align-items:center; justify-content:center;
+}
+:root[data-theme="dark"] .gallery-thumb{ background:var(--soft); }
+.gallery-thumb img{
+  width:100%; height:100%;
+  object-fit:contain; object-position:center;
+}
+
+.gallery-cap{ padding:12px; }
+.gallery-title{ font-weight:700; line-height:1.25; margin:0 0 4px; }
+.gallery-meta{ font-size:13px; }
+
+/* Lightbox */
+.lightbox{
+  border:none; padding:0; width:min(1000px, 96vw);
+  background:var(--bg); color:var(--text);
+}
+.lightbox::backdrop{ background:rgba(0,0,0,.5); }
+.lightbox-close{
+  position:absolute; top:8px; right:8px;
+  border:1px solid var(--border); background:var(--soft); color:var(--text);
+  border-radius:999px; padding:6px 10px; cursor:pointer;
+}
+.lightbox-stage{
+  display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:8px;
+  padding:16px;
+}
+.lightbox-figure{ margin:0; text-align:center; }
+.lightbox-figure img{
+  max-width:80vw; max-height:70vh; width:auto; height:auto; margin:0 auto 10px;
+  display:block; border:1px solid var(--border); background:#fff; border-radius:10px; padding:8px;
+}
+:root[data-theme="dark"] .lightbox-figure img{ background:var(--soft); border-color:var(--border); }
+.lightbox-nav{
+  border:1px solid var(--border); background:#fff; color:#111;
+  border-radius:12px; padding:10px 14px; cursor:pointer; font-size:22px;
+}
+:root[data-theme="dark"] .lightbox-nav{ background:var(--soft); color:var(--text); }
+.lightbox-links{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:8px; }
+

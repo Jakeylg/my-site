@@ -1,0 +1,29 @@
+[
+  {
+    "id": "2025-angew-cover",
+    "title": "Switching Sides — Imines",
+    "journal": "Angewandte Chemie",
+    "type": "Journal Cover",
+    "year": 2025,
+    "thumb": "img/covers/2025-angew-thumb.jpg",
+    "image": "img/covers/2025-angew.jpg",
+    "credit": "Artwork: Jiarong Wu · Concept: Greenfield Group",
+    "links": [
+      {"label": "Journal page", "url": "https://…"},
+      {"label": "Hi-res image", "url": "img/covers/2025-angew.jpg"}
+    ]
+  },
+  {
+    "id": "2025-science-toc",
+    "title": "Artificial Phototransduction Cascade (TOC)",
+    "journal": "Science",
+    "type": "TOC Graphic",
+    "year": 2025,
+    "thumb": "img/covers/2025-science-toc-thumb.png",
+    "image": "img/covers/2025-science-toc.png",
+    "credit": "Artwork: J. Wu & J. L. Greenfield",
+    "links": [
+      {"label": "Preprint", "url": "https://…"}
+    ]
+  }
+]

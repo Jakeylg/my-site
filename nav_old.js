@@ -21,7 +21,6 @@
     makeLink('publications.html', 'Publications', path === 'publications.html'),
     makeLink('people.html', 'People', path === 'people.html'),
     makeLink('news.html', 'News', path === 'news.html'),
-    makeLink('covers.html', 'Covers & Art', path === 'covers.html'), // NEW LINK
     makeLink('contact.html', 'Contact', path === 'contact.html')
   ].join('');
 
