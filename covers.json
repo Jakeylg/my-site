@@ -1,29 +1,30 @@
 [
   {
-    "id": "2025-angew-cover",
-    "title": "Switching Sides — Imines",
-    "journal": "Angewandte Chemie",
+    "id": "chemcomm2024",
+    "title": "Iminobispyrazole (IBP) photoswitches: two pyrazole rings can be better than one",
+    "journal": "Chem. Commun.",
     "type": "Journal Cover",
-    "year": 2025,
-    "thumb": "img/covers/2025-angew-thumb.jpg",
-    "image": "img/covers/2025-angew.jpg",
-    "credit": "Artwork: Jiarong Wu · Concept: Greenfield Group",
+    "year": 2024,
+    "thumb": "img/covers/chemcomm2024.jpg",
+    "image": "img/covers/chemcomm2024.jpg",
+    "credit": "Artwork: Jiarong Wu",
     "links": [
-      {"label": "Journal page", "url": "https://…"},
-      {"label": "Hi-res image", "url": "img/covers/2025-angew.jpg"}
+      {"label": "Journal page", "url": "https://pubs.rsc.org/en/content/articlelanding/2024/cc/d4cc03517h"},
+      {"label": "Hi-res image", "url": "https://pubs.rsc.org/en/content/articlepdf/2024/cc/d4cc03517h"}
     ]
   },
   {
-    "id": "2025-science-toc",
-    "title": "Artificial Phototransduction Cascade (TOC)",
-    "journal": "Science",
-    "type": "TOC Graphic",
-    "year": 2025,
-    "thumb": "img/covers/2025-science-toc-thumb.png",
-    "image": "img/covers/2025-science-toc.png",
-    "credit": "Artwork: J. Wu & J. L. Greenfield",
+    "id": "chemsci2024",
+    "title": "Photoswitchable imines: aryliminopyrazoles quantitatively convert to long-lived Z-isomers with visible light",
+    "journal": "Chem. Sci.",
+    "type": "Journal Cover",
+    "year": 2024,
+    "thumb": "img/covers/chemsci2024.jpg",
+    "image": "img/covers/chemsci.jpg",
+    "credit": "Artwork: Philipp Kirchner",
     "links": [
-      {"label": "Preprint", "url": "https://…"}
+      {"label": "Journal page", "url": "https://pubs.rsc.org/en/content/articlelanding/2024/sc/d3sc05841g"},
+      {"label": "Hi-res image", "url": "https://pubs.rsc.org/en/content/articlepdf/2024/sc/d3sc05841g"}
     ]
   }
 ]
