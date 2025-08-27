@@ -82,12 +82,10 @@
         : el('p', {class:'muted'}, '—')
     ]);
 
-    // Publications card
+    // Publications card (simple list; numbered if >1)
     const pubs = el('article', {class:'card'}, [
       el('h2', {}, 'Selected Publications'),
-      (p.publications && p.publications.length)
-        ? el('div', {class:'publist'}, p.publications.map((pub, i) => pubItem(pub, i+1)))
-        : el('p', {class:'muted'}, '—')
+      renderPubList(p.publications)
     ]);
 
     // Back link
@@ -120,35 +118,14 @@
     return row;
   }
 
-  function pubItem(pub, n){
-    const left = el('figure', {}, [
-      el('img', {src: pub.image || 'img/pubs/placeholder.png', alt: pub.title || `Publication ${n}`})
-    ]);
+  // NEW: simple publication list renderer
+  function renderPubList(pubs){
+    if(!pubs || !pubs.length) return el('p', {class:'muted'}, '—');
 
-    const metaBits = [];
-    if(pub.authors) metaBits.push(pub.authors);
-    if(pub.journal) metaBits.push(pub.journal);
-    if(pub.year)    metaBits.push(pub.year);
+    const ListTag = pubs.length > 1 ? 'ol' : 'ul';
+    const list = el(ListTag);
 
-    const title = el('h3', {}, [
-      pub.title || `Publication ${n}`,
-      (pub.badges && pub.badges.length)
-        ? el('span', {class:'badges'}, pub.badges.map(b => el('span', {class:'badge'}, b)))
-        : null
-    ]);
-
-    const links = el('div', {class:'links-row'}, (pub.links||[]).map(L =>
-      el('a', {href:L.url, target:'_blank', rel:'noopener', class:'chip-link'}, L.label)
-    ));
-
-    const right = el('div', {}, [
-      title,
-      metaBits.length ? el('div', {class:'meta'}, metaBits.join(' · ')) : null,
-      pub.abstract ? el('p', {class:'abstract'}, pub.abstract) : null,
-      links
-    ]);
-
-    const card = el('div', {class:'pubcard'}, [left, right]);
-    return card;
-  }
-})();
+    pubs.forEach((pub, i)=>{
+      const bits = [];
+      if(pub.title)   bits.push(pub.title);
+      const meta = [pub.authors, pub.journal, pub.year]
