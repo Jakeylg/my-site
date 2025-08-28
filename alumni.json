@@ -1,0 +1,88 @@
+[
+{
+"name": "Simon Schuster",
+"role": "Bachelor",
+"period": "2025",
+"years": [2025],
+"project": "Working on imine-based photoswitches.",
+"now": "MSc student, University of Würzburg",
+"destination": "University of Würzburg"
+},
+{
+"name": "Adrian Reis",
+"role": "Intern",
+"period": "2025",
+"years": [2025],
+"project": "Working on imine-based photoswitches.",
+"now": "MSc student, University of Würzburg",
+"destination": "University of Würzburg",
+"slug": ""
+},
+{
+"name": "David Reinhart",
+"role": "Intern",
+"period": "2024",
+"years": [2024],
+"project": "Development of various photoswitches.",
+"now": "PhD student, Finze Group, University of Würzburg",
+"destination": "University of Würzburg",
+"slug": ""
+},
+{
+"name": "Clara Li",
+"role": "Bachelor",
+"period": "2024",
+"years": [2024],
+"project": "Development of iminobispyrazole (IBP) photoswitches.",
+"now": "MSc student, University of Würzburg",
+"destination": "University of Würzburg",
+"slug": ""
+},
+{
+"name": "Leo Greb",
+"role": "Bachelor",
+"period": "2023-2024",
+"years": [2023, 2024],
+"project": "Photoresponsive supramolecular polymers.",
+"now": "Teaching student, University of Würzburg",
+"destination": "University of Würzburg",
+"slug": ""
+},
+{
+"name": "Suyuan Kathryn Tao",
+"role": "Intern",
+"period": "2023-2024",
+"years": [2023, 2024],
+"project": "Metal-templated self-assembly and imine-based photoswitches",
+"now": "PhD Student at NYU",
+"destination": "NYU, USA",
+"slug": ""
+},
+{
+"name": "Lasse Kriemendahl",
+"role": "Intern",
+"period": "2023–2024",
+"years": [2023, 2024],
+"project": "Computational support for aryliminopyrazole (AIP) photoswitches and all other photoswitches.",
+"now": "PhD candidate, Mitric Group, University of Würzburg",
+"destination": "University of Würzburg"
+},
+{
+"name": "Anna Fleck",
+"role": "Bachelor",
+"period": "2023–2024",
+"years": [2023, 2024],
+"project": "Metal-templated assembly of macrocycles",
+"now": "MSc student, University of Würzburg",
+"destination": ""
+},
+{
+"name": "Marcel Hirsch",
+"role": "Master",
+"period": "2022–2023",
+"years": [2022, 2023],
+"project": "Light-responsive supramolecular polymers",
+"now": "Working in industry, Pharmpur GmbH",
+"destination": "Pharmpur GmbH"
+}
+]

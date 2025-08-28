@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alumni — Greenfield Group</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<main class="section">
+<div class="container">
+<h1 style="margin-bottom:8px">Alumni</h1>
+<p class="muted" style="margin-top:0">Former group members and where they are now.</p>
+
+<!-- Controls -->
+<div class="controls" id="alumni-controls" style="margin:16px 0 10px">
+<input type="search" id="alumni-search" placeholder="Search names, projects, destinations…" aria-label="Search alumni">
+<select id="alumni-role">
+<option value="">All roles</option>
+<option>Intern</option>
+<option>Bachelor</option>
+<option>Master</option>
+<option>PhD</option>
+<option>Postdoc</option>
+<option>Visitor</option>
+</select>
+<select id="alumni-year">
+<option value="">All years</option>
+<!-- filled by JS from data -->
+</select>
+<button class="btn btn-gray" id="alumni-clear" type="button">Reset</button>
+</div>
+
+<!-- List -->
+<div id="alumni-list" class="alumni-list" aria-live="polite"></div>
+<p id="alumni-empty" class="muted" style="display:none">No matches. Try clearing filters.</p>
+</div>
+</main>
+
+<footer>
+<div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+<div>© <span id="year"></span> Greenfield Group</div>
+</div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+<script src="nav.js"></script>
+<script src="banner.js"></script>
+<script src="alumni.js"></script>
+</body>
+</html>

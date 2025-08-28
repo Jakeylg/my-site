@@ -853,3 +853,10 @@ a.card .res-figure {
 /* ensure dialog shows in fallback */
 dialog[open] { display: block; }
 
+/* === Alumni directory tweaks === */
+.alumni-list{display:grid;grid-template-columns:1fr;gap:12px}
+.alumni-card{align-items:center}
+.alumni-icon{width:96px;height:72px;border:1px dashed var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;background:transparent}
+.alumni-row-1{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.alumni-name{font-size:18px}
+.alumni-now{margin:6px 0 0 0;color:var(--muted)}
