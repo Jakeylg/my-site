@@ -1,58 +1,69 @@
 /**
+* Alumni directory — JSON-driven, image-free cards.
+* - Uses window.ALUMNI_ITEMS if present (works from file://)
+* - Otherwise fetches alumni.json (works on a server)
+*/
+(function(){
+const JSON_SRC = 'alumni.json';
 
-function populateYearFilter(){
-const years = new Set();
-items.forEach(a=> (a.years||[]).forEach(y=> years.add(String(y))));
-const yearsSorted = Array.from(years).sort((a,b)=> Number(b)-Number(a));
-yearsSorted.forEach(y=> yearSel.appendChild(el('option', {value:y}, y)));
-}
+const el = (tag, attrs={}, children=[])=>{
+const n = document.createElement(tag);
+Object.entries(attrs).forEach(([k,v])=>{
+if(k==='class') n.className=v;
+else if(k==='html') n.innerHTML=v;
+else if(k.startsWith('on') && typeof v==='function') n[k]=v;
+else n.setAttribute(k, v);
+});
+(Array.isArray(children)?children:[children]).filter(Boolean).forEach(c=>{
+n.appendChild(typeof c==='string' ? document.createTextNode(c) : c);
+});
+return n;
+};
 
-function wire(){
-q.addEventListener('input', applyFilters);
-roleSel.addEventListener('change', applyFilters);
-yearSel.addEventListener('change', applyFilters);
-clearBtn.addEventListener('click', ()=>{
-q.value=''; roleSel.value=''; yearSel.value=''; applyFilters();
+const listEl = document.getElementById('alumni-list');
+const emptyEl = document.getElementById('alumni-empty');
+const q = document.getElementById('alumni-search');
+const roleSel = document.getElementById('alumni-role');
+const yearSel = document.getElementById('alumni-year');
+const clearBtn = document.getElementById('alumni-clear');
+
+let items = [];
+let filtered = [];
+
+const normalize = s => (s||'').toString().toLowerCase();
+
+function render(){
+listEl.innerHTML = '';
+if(filtered.length===0){ emptyEl.style.display='block'; return; }
+emptyEl.style.display='none';
+
+filtered.forEach(a=>{
+// Build the right-hand content using your existing news-card layout (no image)
+const head = el('div', {}, [
+el('div', {class:'alumni-row-1'}, [
+el('strong', {class:'alumni-name'}, a.name || 'Unknown'),
+a.role ? el('span', {class:'badge'}, a.role) : null,
+a.period ? el('span', {class:'badge'}, a.period) : null,
+]),
+a.project ? el('p', {class:'news-excerpt', html: escapeHTML(a.project)}) : null,
+a.now ? el('p', {class:'alumni-now'}, 'Now: ' + a.now) : null,
+// Optional link to current bio page
+a.slug ? el('div', {class:'links-row'}, [
+el('a', {class:'btn btn-gray', href:`profile.html?person=${encodeURIComponent(a.slug)}`}, 'View bio')
+]) : null
+]);
+
+const card = el('article', {class:'news-card alumni-card'} , [
+el('div', {class:'alumni-icon'}, [ el('span', {class:'dot', title:'Alumni'}, '') ]),
+head
+]);
+
+listEl.appendChild(card);
 });
 }
 
-function load(){
-if(Array.isArray(window.ALUMNI_ITEMS)){
-items = window.ALUMNI_ITEMS;
-afterLoad();
-return;
-}
-fetch(JSON_SRC).then(r=>{
-if(!r.ok) throw new Error('Failed to load alumni.json');
-return r.json();
-}).then(data=>{
-items = Array.isArray(data) ? data : (Array.isArray(data.items) ? data.items : []);
-afterLoad();
-}).catch(err=>{
-console.error(err);
-items = [];
-afterLoad();
-});
+function escapeHTML(s){
+return (s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));
 }
 
-function afterLoad(){
-// Defensive defaults
-items = items.map(a=>({
-name:a.name||'',
-role:a.role||'', // Intern | Bachelor | Master | PhD | Postdoc | Visitor
-period:a.period||'', // e.g., 2023–2024
-years:Array.isArray(a.years)?a.years:[], // e.g., [2023, 2024]
-project:a.project||'', // rough description
-now:a.now||'', // where/what now
-destination:a.destination||'',
-slug:a.slug||'' // optional link to profile.html?person=slug
-}));
-
-populateYearFilter();
-wire();
-filtered = items.slice();
-render();
-}
-
-load();
 })();
