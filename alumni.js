@@ -1,34 +1,39 @@
-/**
-* Alumni directory — JSON-driven, image-free cards.
-* - Uses window.ALUMNI_ITEMS if present (works from file://)
-* - Otherwise fetches alumni.json (works on a server)
-*/
+// alumni.js
 (function(){
-const JSON_SRC = 'alumni.json';
+  // Tell the script where to find your JSON
+  const JSON_SRC = 'alumni.json?v=1'; // add ?v=1 to bust cache on first deploy
 
-const el = (tag, attrs={}, children=[])=>{
-const n = document.createElement(tag);
-Object.entries(attrs).forEach(([k,v])=>{
-if(k==='class') n.className=v;
-else if(k==='html') n.innerHTML=v;
-else if(k.startsWith('on') && typeof v==='function') n[k]=v;
-else n.setAttribute(k, v);
-});
-(Array.isArray(children)?children:[children]).filter(Boolean).forEach(c=>{
-n.appendChild(typeof c==='string' ? document.createTextNode(c) : c);
-});
-return n;
-};
+  // Small helper to make elements
+  const el = (tag, attrs={}, children=[])=>{
+    const n = document.createElement(tag);
+    Object.entries(attrs).forEach(([k,v])=>{
+      if(k==='class') n.className=v;
+      else if(k==='html') n.innerHTML=v;
+      else if(k.startsWith('on') && typeof v==='function') n[k]=v;
+      else n.setAttribute(k, v);
+    });
+    (Array.isArray(children)?children:[children]).filter(Boolean).forEach(c=>{
+      n.appendChild(typeof c==='string' ? document.createTextNode(c) : c);
+    });
+    return n;
+  };
 
-const listEl = document.getElementById('alumni-list');
-const emptyEl = document.getElementById('alumni-empty');
-const q = document.getElementById('alumni-search');
-const roleSel = document.getElementById('alumni-role');
-const yearSel = document.getElementById('alumni-year');
-const clearBtn = document.getElementById('alumni-clear');
+  // Grab the page elements
+  const listEl  = document.getElementById('alumni-list');
+  const emptyEl = document.getElementById('alumni-empty');
+  const q       = document.getElementById('alumni-search');
+  const roleSel = document.getElementById('alumni-role');
+  const yearSel = document.getElementById('alumni-year');
+  const clearBtn= document.getElementById('alumni-clear');
 
-let items = [];
-let filtered = [];
+  // State
+  let items = [];
+  let filtered = [];
+
+  // Make escapeHTML available if your render uses it
+  const escapeHTML = s => (s||'').replace(/[&<>\"']/g, c => (
+    {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]
+  ));
 
 const normalize = s => (s||'').toString().toLowerCase();
 
