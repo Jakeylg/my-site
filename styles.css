@@ -860,3 +860,11 @@ dialog[open] { display: block; }
 .alumni-row-1{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .alumni-name{font-size:18px}
 .alumni-now{margin:6px 0 0 0;color:var(--muted)}
+
+
+/* Alumni: text-only cards (no thumbnail column) */
+.alumni-card { 
+  grid-template-columns: 1fr !important; /* if .news-card uses grid */
+  display: block;                         /* if .news-card uses flex, this is harmless */
+}
+.alumni-card .alumni-icon { display: none !important; } /* just in case any remain */

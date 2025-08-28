@@ -55,10 +55,7 @@
         ]) : null
       ]);
 
-      const card = el('article', {class:'news-card alumni-card'}, [
-        el('div', {class:'alumni-icon'}, [ el('span', {class:'dot', title:'Alumni'}, '') ]),
-        head
-      ]);
+      const card = el('article', {class:'news-card alumni-card'}, [ head ]);
 
       listEl.appendChild(card);
     });
