@@ -1,24 +1,22 @@
 [
   {
-    "title": "Biographical Sketch: Dr Jake L. Greenfield",
+    "title": "Introducing... Jake L. Greenfield",
     "authors": ["Jake L. Greenfield"],
-    "outlet": "Greenfield Group Website",
-    "year": 2025,
-    "date": "2025-08-01",
-    "publisherUrl": "https://imineswitch.com/people.html?person=jake-greenfield",
+    "outlet": "Angew. Chem. Int. Ed.",
+    "year": 2024,
+    "publisherUrl": "https://doi.org/10.1002/anie.202419308",
     "tocImage": "img/pubs/placeholder.svg",
-    "abstract": "A brief career overview and selected highlights.",
+    "abstract": "“I'm always in a good mood when one of my students proves me wrong on a hypothesis. This is where the fun starts and breakthroughs are made… My first experiment was making bathroom potions as a kid by mixing various soaps, lotions, cleaning products, and toothpaste. I'm still waiting for that call from Sweden…” Find out more about Jake Greenfield in his Introducing… Profile.",
     "type": "Biographical Sketch"
   },
   {
-    "title": "Shining a Light on Imine Photoswitches",
-    "authors": ["J. L. Greenfield"],
-    "outlet": "News & Views",
-    "year": 2025,
-    "date": "2025-07-10",
-    "publisherUrl": "https://example.com/news-and-views/imine-photoswitches",
+    "title": "MASC 2023: remembering the past, celebrating the present and looking to the future",
+    "authors": ["James E. M. Lewis, Timothy L. Easun, Timothy A. Barendt, Ben E. Barber, Jake L. Greenfield, Anna J. McConnell, Georgia R. F. Orton, Sophie C. Patrick, Connor Prior and Jiarong Wu"],
+    "outlet": "Supramolecular Chemistry",
+    "year": 2024,
+    "publisherUrl": "https://doi.org/10.1080/10610278.2024.2381542",
     "tocImage": "img/pubs/placeholder.svg",
-    "abstract": "Context and perspective on recent advances.",
+    "abstract": "Supramolecular chemistry encompasses critical aspects found throughout the chemical sciences. Despite its ubiquity, the concept of supramolecular chemistry as a defined field of research is relatively young, although its roots run deep. Moving from strength to strength, the Royal Society of Chemistry’s MASC meeting has grown from a local, UK-based conference to a truly international event. The 2023 edition of MASC was held at the University of Birmingham, where nearly 250 participants from across four continents were brought together by their mutual interest in scientific discovery. There are many challenges still facing our community, both scientific and societal. By building on the successes of the past, recognising fantastic achievements in the present, and always looking to what we might accomplish in the future, the global MASC community will continue to flourish for years to come.",
     "badge": "News & Views"
   }
 ]
