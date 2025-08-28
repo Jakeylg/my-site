@@ -1,190 +1,188 @@
+<script>
+/* Publications + Other Publications renderer
+   - Main list: uses window.PUBLICATIONS_ITEMS or publications.json
+   - Other list: uses window.OTHERPUBS_ITEMS or otherpubs.json
+   - Same card layout, separate sections
+*/
+
 (function(){
-  async function loadData(){
-    // Priority 1: JS data file (works over file://)
-    if (Array.isArray(window.PUBLICATIONS)) {
-      return window.PUBLICATIONS;
+  const FALLBACK_IMG = 'img/pubs/placeholder.svg';
+
+  // Utilities
+  const qs  = s => document.querySelector(s);
+  const qsa = s => Array.from(document.querySelectorAll(s));
+
+  const state = {
+    main: [],
+    mainFiltered: [],
+    other: []
+  };
+
+  // --- Card template (shared) ---
+  function cardHTML(item){
+    const {
+      title,
+      authors = [],
+      journal,
+      outlet,              // optional (for News & Views / biographical sketch)
+      year,
+      date,                // YYYY-MM-DD (optional, improves sorting)
+      volume, issue, pages,
+      doi,
+      publisherUrl,
+      pdfUrl,
+      tocImage = FALLBACK_IMG,
+      abstract,
+      badge,               // optional short tag, e.g. "News & Views"
+      type                 // optional, e.g. "Biographical Sketch"
+    } = item;
+
+    // Choose a label line: journal OR outlet
+    const where = outlet || journal || '';
+    const metaBits = [
+      where,
+      [volume, issue && `(${issue})`].filter(Boolean).join(''),
+      pages
+    ].filter(Boolean).join(' • ');
+
+    // Badges to the right of title
+    const badges = [];
+    if (badge) badges.push(badge);
+    if (type)  badges.push(type);
+
+    // Prefer publisherUrl > pdfUrl > doi link
+    const link = publisherUrl || pdfUrl || (doi ? `https://doi.org/${doi.replace(/^https?:\/\/(dx\.)?doi\.org\//i,'')}` : '');
+
+    return `
+      <article class="pubcard" tabindex="0" aria-expanded="false">
+        <figure>
+          <img src="${tocImage}" alt="" onerror="this.src='${FALLBACK_IMG}'">
+        </figure>
+        <div>
+          <h3>
+            ${title ? escapeHTML(title) : 'Untitled'}
+            ${badges.length ? `<span class="badges">${badges.map(b=>`<span class="badge">${escapeHTML(b)}</span>`).join('')}</span>` : ''}
+          </h3>
+          <div class="meta">
+            ${authors.join(', ')}${authors.length && (metaBits||date) ? ' — ' : ''}${metaBits}${date ? ` • ${date}` : ''}
+          </div>
+          ${link ? `<div class="links-row" style="margin-top:6px"><a href="${link}" target="_blank" rel="noopener">View</a>${doi && !/doi\.org/.test(link)? ` • <a href="https://doi.org/${encodeURIComponent(doi)}" target="_blank" rel="noopener">DOI</a>`:''}${pdfUrl && pdfUrl!==link? ` • <a href="${pdfUrl}" target="_blank" rel="noopener">PDF</a>`:''}</div>` : ''}
+          ${abstract ? `<div class="abstract" hidden>${escapeHTML(abstract)}</div>` : ''}
+        </div>
+      </article>
+    `;
+  }
+
+  // Toggle expand on click/Enter
+  function wireCardBehavior(container){
+    container.addEventListener('click', e=>{
+      const card = e.target.closest('.pubcard');
+      if(!card) return;
+      toggleCard(card);
+    });
+    container.addEventListener('keydown', e=>{
+      if(e.key === 'Enter' || e.key === ' '){
+        const card = e.target.closest('.pubcard');
+        if(!card) return;
+        e.preventDefault();
+        toggleCard(card);
+      }
+    });
+    function toggleCard(card){
+      const abs = card.querySelector('.abstract');
+      const expanded = card.getAttribute('aria-expanded') === 'true';
+      card.setAttribute('aria-expanded', String(!expanded));
+      card.classList.toggle('expanded', !expanded);
+      if(abs){
+        abs.hidden = expanded; // show when expanding
+      }
     }
-    // Priority 2: Fetch JSON (works when hosted over http/https)
-    try{
-      const resp = await fetch('publications.json', {cache:'no-store'});
-      if(!resp.ok) throw new Error('HTTP '+resp.status);
-      return await resp.json();
-    }catch(e){
-      const isFile = location.protocol === 'file:';
-      throw new Error(isFile
-        ? 'Running from file:// and no publications.data.js found. Edit publications.data.js or serve over http(s).'
-        : 'Could not load publications.json: ' + e.message);
-    }
   }
 
-  function fmtJournal(p){
-    const bits = [p.journal, p.year];
-    const vol = p.volume && String(p.volume).trim();
-    const issue = p.issue && String(p.issue).trim();
-    const pages = p.pages && String(p.pages).trim();
-    if(vol) bits.push(vol + (issue ? `(${issue})` : ''));
-    if(pages) bits.push(pages);
-    return bits.filter(Boolean).join(', ');
-  }
-  function doiUrl(doi){
-    if(!doi) return null;
-    const clean = String(doi).replace(/^https?:\/\/(dx\.)?doi\.org\//i,'').trim();
-    return 'https://doi.org/' + clean;
+  // Escape for text nodes placed into HTML strings
+  function escapeHTML(str){
+    return String(str).replace(/[&<>"']/g, s=>({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[s]));
   }
 
-  function render(listEl, pubs, searchEl, yearEl){
-    // Sort by manual number DESC if present; else by newest date/year
-    pubs.sort((a,b)=>{
-      const aHas = Number.isFinite(+a.number);
-      const bHas = Number.isFinite(+b.number);
-      const na = aHas ? +a.number : 0;
-      const nb = bHas ? +b.number : 0;
+  // --- MAIN LIST: load, render, filter ---
+  const pubListEl  = qs('#pubList');
+  const yearSel    = qs('#yearFilter');
+  const searchBox  = qs('#pubSearch');
 
-      if (aHas && bHas && nb !== na) return nb - na;
-      if (aHas && !bHas) return -1;
-      if (!aHas && bHas) return 1;
+  init();
 
-      const da = a.date ? new Date(a.date).getTime() : (a.year? new Date(a.year,0,1).getTime():0);
-      const db = b.date ? new Date(b.date).getTime() : (b.year? new Date(b.year,0,1).getTime():0);
-      return db - da;
+  async function init(){
+    // Load main items
+    state.main = await loadJSON(window.PUBLICATIONS_ITEMS, 'publications.json');
+    // Sort newest first (date then year)
+    state.main.sort((a,b)=>{
+      const da = a.date || `${a.year||0}-01-01`;
+      const db = b.date || `${b.year||0}-01-01`;
+      return db.localeCompare(da);
     });
 
     // Populate year filter
-    if(yearEl){
-      const years = [...new Set(pubs.map(p=>p.year))].filter(Boolean).sort((a,b)=>b-a);
-      yearEl.innerHTML = '<option value="">All years</option>' + years.map(y=>`<option>${y}</option>`).join('');
-    }
+    const years = Array.from(new Set(state.main.map(p=>p.year).filter(Boolean))).sort((a,b)=>b-a);
+    yearSel.innerHTML = `<option value="">All years</option>` + years.map(y=>`<option value="${y}">${y}</option>`).join('');
 
-    function draw(items){
-      listEl.innerHTML = '';
-      const startNum = items.length;
+    // Initial render
+    state.mainFiltered = state.main.slice();
+    renderList(state.mainFiltered, pubListEl);
+    wireCardBehavior(pubListEl);
 
-      // Helper: enforce single expansion
-      const collapseAll = () => {
-        listEl.querySelectorAll('.pubcard.expanded').forEach(c => {
-          c.classList.remove('expanded');
-          c.setAttribute('aria-expanded','false');
-          const btn = c.querySelector('.toggle-abs');
-          const abs = c.querySelector('.abstract');
-          if (btn) btn.setAttribute('aria-expanded','false');
-          if (btn) btn.textContent = 'Show abstract';
-          if (abs) abs.hidden = true;
-        });
-      };
-      const setExpanded = (card, expanded) => {
-        if (expanded) collapseAll();
-        card.classList.toggle('expanded', expanded);
-        card.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-        const btn = card.querySelector('.toggle-abs');
-        const abs = card.querySelector('.abstract');
-        if (btn) {
-          btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-          btn.textContent = expanded ? 'Hide abstract' : 'Show abstract';
-        }
-        if (abs) abs.hidden = !expanded;
-      };
-
-      items.forEach((p, idx)=>{
-        const dispNum = Number.isFinite(+p.number) ? +p.number : (startNum - idx);
-
-        const id = `pub_${idx}_${(p.doi||p.title||'').toString().replace(/[^a-z0-9]+/gi,'_')}`;
-        const doiLink = doiUrl(p.doi);
-        const publisherUrl = p.publisherUrl || doiLink || '#';
-        const hasAbstract = !!(p.abstract && String(p.abstract).trim());
-
-        const article = document.createElement('article');
-        article.className = 'pubcard';
-        article.setAttribute('data-year', p.year);
-        article.setAttribute('data-title', (p.title||'').toLowerCase());
-        article.setAttribute('data-authors', (Array.isArray(p.authors)?p.authors.join('; '):p.authors||'').toLowerCase());
-        article.id = id;
-        article.setAttribute('aria-expanded','false');
-
-        article.innerHTML = `
-          <figure>
-            <a href="${publisherUrl}" target="_blank" rel="noopener">
-              <img loading="lazy" src="${p.tocImage || 'img/pubs/placeholder.svg'}" alt="TOC: ${p.title||''}">
-            </a>
-          </figure>
-          <div class="pub-right">
-            <h3><span class="pubnum">${dispNum}.</span>${p.title||''}
-              <span class="badges"><span class="badge">${p.year || ''}</span></span>
-            </h3>
-            <div class="meta">${Array.isArray(p.authors)?p.authors.join('; '):p.authors||''}</div>
-            <div class="meta">${fmtJournal(p)}</div>
-            <div class="links-row">
-              ${doiLink ? `<a href="${doiLink}" target="_blank" rel="noopener">DOI</a>` : ''}
-              ${publisherUrl && publisherUrl !== doiLink ? ` · <a href="${publisherUrl}" target="_blank" rel="noopener">Publisher</a>` : ''}
-              ${hasAbstract ? ` · <button class="toggle-abs" aria-expanded="false" aria-controls="${id}_abs">Show abstract</button>` : ''}
-            </div>
-            ${hasAbstract ? `<div id="${id}_abs" class="abstract" hidden>${p.abstract}</div>` : ''}
-          </div>
-        `;
-
-        // Click anywhere on the card (except links) to toggle abstract
-        article.addEventListener('click', (e)=>{
-          // Ignore clicks on links/buttons inside the card that are not the toggle button
-          if (e.target.closest('a')) return;
-
-          if (hasAbstract) {
-            const isOpen = article.classList.contains('expanded');
-            setExpanded(article, !isOpen);
-          }
-        });
-
-        // Dedicated button toggler (prevents bubbling)
-        const btn = article.querySelector('.toggle-abs');
-        if(btn){
-          btn.addEventListener('click', (e)=>{
-            e.preventDefault();
-            e.stopPropagation();
-            const isOpen = article.classList.contains('expanded');
-            setExpanded(article, !isOpen);
-          });
-        }
-
-        listEl.appendChild(article);
+    // Load other section (no filtering tied to main)
+    const otherListEl = qs('#otherList');
+    if(otherListEl){
+      state.other = await loadJSON(window.OTHERPUBS_ITEMS, 'otherpubs.json');
+      // Sort newest first too
+      state.other.sort((a,b)=>{
+        const da = a.date || `${a.year||0}-01-01`;
+        const db = b.date || `${b.year||0}-01-01`;
+        return db.localeCompare(da);
       });
+      renderList(state.other, otherListEl);
+      wireCardBehavior(otherListEl);
     }
-
-    // First draw all
-    draw(pubs);
-
-    // Filtering (preserves the current sort order)
-    function runFilter(){
-      const q = (searchEl && searchEl.value || '').toLowerCase().trim();
-      const y = (yearEl && yearEl.value) || '';
-      const items = pubs.filter(p=>{
-        const text = (p.title + ' ' + (Array.isArray(p.authors)?p.authors.join(' '):p.authors)).toLowerCase();
-        const okQ = !q || text.includes(q);
-        const okY = !y || String(p.year) === y;
-        return okQ && okY;
-      });
-      draw(items);
-    }
-    window.filterPubs = runFilter;
   }
 
-  async function init(){
-    const listEl = document.getElementById('pubList');
-    const searchEl = document.getElementById('pubSearch');
-    const yearEl = document.getElementById('yearFilter');
-    if(!listEl){ return; }
+  function renderList(items, container){
+    container.innerHTML = items.map(cardHTML).join('');
+  }
 
-    let pubs = [];
+  // Shared filter (applies only to main list)
+  window.filterPubs = function(){
+    const q = (searchBox.value || '').toLowerCase().trim();
+    const y = yearSel.value;
+
+    state.mainFiltered = state.main.filter(p=>{
+      const matchYear = !y || String(p.year) === y;
+      if(!q) return matchYear;
+      const hay = [
+        p.title || '',
+        ...(p.authors || []),
+        p.journal || '',
+        p.outlet || '',
+        p.abstract || ''
+      ].join(' ').toLowerCase();
+      return matchYear && hay.includes(q);
+    });
+
+    renderList(state.mainFiltered, pubListEl);
+  };
+
+  // Data loader with graceful fallback
+  async function loadJSON(inlineArray, url){
+    if(Array.isArray(inlineArray)) return inlineArray;
     try{
-      pubs = await loadData();
-    }catch(err){
-      console.error('[publications.js]', err);
-      listEl.innerHTML = `<p style="color:#b91c1c">${err.message}</p>`;
-      return;
+      const res = await fetch(url, {cache:'no-store'});
+      if(!res.ok) throw new Error(res.statusText);
+      return await res.json();
+    }catch(e){
+      console.warn('Failed to load', url, e);
+      return [];
     }
-    render(listEl, pubs, searchEl, yearEl);
-  }
-
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', init);
-  }else{
-    init();
   }
 })();
+</script>

@@ -12,6 +12,10 @@
   <main class="section">
     <div class="container">
       <h1>Publications</h1>
+    <!-- NEW: top jump-link sentence -->
+    <p class="muted" style="margin-top:-6px">
+      For other publications and biographical sketches, <a href="#other-pubs">click here</a>.
+    </p>
 
       <div class="controls">
         <input type="search" id="pubSearch" placeholder="Filter by title or author…" oninput="filterPubs()">
@@ -28,6 +32,15 @@
       </noscript>
     </div>
   </main>
+
+<!-- NEW: OTHER PUBLICATIONS SECTION AT PAGE BOTTOM -->
+<section id="other-pubs" class="section bg-soft">
+  <div class="container">
+    <h2>Other publications &amp; biographical sketches</h2>
+    <p class="muted" style="margin:6px 0 16px">Biographical sketches, News &amp; Views, perspectives, and related items.</p>
+    <div id="otherList" class="publist" aria-live="polite"></div>
+  </div>
+</section>
 
   <footer>
     <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">

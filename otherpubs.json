@@ -1,0 +1,24 @@
+[
+  {
+    "title": "Biographical Sketch: Dr Jake L. Greenfield",
+    "authors": ["Jake L. Greenfield"],
+    "outlet": "Greenfield Group Website",
+    "year": 2025,
+    "date": "2025-08-01",
+    "publisherUrl": "https://imineswitch.com/people.html?person=jake-greenfield",
+    "tocImage": "img/pubs/placeholder.svg",
+    "abstract": "A brief career overview and selected highlights.",
+    "type": "Biographical Sketch"
+  },
+  {
+    "title": "Shining a Light on Imine Photoswitches",
+    "authors": ["J. L. Greenfield"],
+    "outlet": "News & Views",
+    "year": 2025,
+    "date": "2025-07-10",
+    "publisherUrl": "https://example.com/news-and-views/imine-photoswitches",
+    "tocImage": "img/pubs/placeholder.svg",
+    "abstract": "Context and perspective on recent advances.",
+    "badge": "News & Views"
+  }
+]
