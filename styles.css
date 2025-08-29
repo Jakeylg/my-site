@@ -868,3 +868,33 @@ dialog[open] { display: block; }
   display: block;                         /* if .news-card uses flex, this is harmless */
 }
 .alumni-card .alumni-icon { display: none !important; } /* just in case any remain */
+
+
+/* 1) Abstract visibility controlled by [hidden] */
+.abstract[hidden] { display: none; }
+
+/* 2) Expanded state driven by aria-expanded (not a .expanded class) */
+.pubcard[aria-expanded="true"] .abstract { display: block; }
+
+/* Map your old .pubcard.expanded layout to the aria state */
+.pubcard[aria-expanded="true"] { grid-template-columns: auto 1fr; }
+.pubcard[aria-expanded="true"] figure { width: 360px; }
+.pubcard[aria-expanded="true"] img {
+  width: 100%;
+  height: 194px;         /* 360 / 1.85 ≈ 194 */
+  object-fit: contain;
+  object-position: center;
+  padding: 0;
+  background: #fff;
+}
+
+/* Mobile keeps the single-column behavior */
+@media (max-width: 720px){
+  .pubcard[aria-expanded="true"] { grid-template-columns: 1fr; }
+  .pubcard[aria-expanded="true"] img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1.85 / 1;
+  }
+}
+
