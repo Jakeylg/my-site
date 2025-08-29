@@ -1,4 +1,3 @@
-<script>
 (function(){
   const FALLBACK_IMG = 'img/pubs/placeholder.svg';
   const pubListEl   = document.getElementById('pubList');
@@ -84,7 +83,6 @@
       container.innerHTML = `<p class="muted" style="padding:8px 0">No items to display.</p>`;
       return;
     }
-    // newest first by date/year/number
     list.sort((a,b)=>{
       const da = a.date ? Date.parse(a.date) : (a.year? Date.parse(`${a.year}-01-01`):0);
       const db = b.date ? Date.parse(b.date) : (b.year? Date.parse(`${b.year}-01-01`):0);
@@ -98,7 +96,6 @@
 
   function attachFilter(list){
     if(!searchEl || !yearEl) return;
-    // years
     const years = [...new Set(list.map(p=>p.year).filter(Boolean))].sort((a,b)=>b-a);
     yearEl.innerHTML = `<option value="">All years</option>` + years.map(y=>`<option>${y}</option>`).join('');
     window.filterPubs = function(){
@@ -145,4 +142,3 @@
     init();
   }
 })();
-</script>
