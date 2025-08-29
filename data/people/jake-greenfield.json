@@ -19,8 +19,7 @@
   ],
   "links": [
     {"label": "ORCID", "url": "https://orcid.org/0000-0002-7650-5414", "icon": "img/icons/orcid.png"},
-    {"label": "Google Scholar", "url": "https://scholar.google.com/citations?hl=en&user=W8G7OPIAAAAJ", "icon": "img/icons/scholar.png"},
-    {"label": "Group Publications", "url": "publications.html", "icon": "img/icons/link.png"}
+    {"label": "Google Scholar", "url": "https://scholar.google.com/citations?hl=en&user=W8G7OPIAAAAJ", "icon": "img/icons/scholar.png"}
   ],
   "publications": [
     {
