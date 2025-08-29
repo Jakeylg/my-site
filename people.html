@@ -18,11 +18,24 @@
     <div class="container">
       <h1>People</h1>
 
-      <figure style="margin:0 0 20px 0">
-        <div class="group-photo">
-          <img src="img/people/grpaug20252.png" onerror="this.src='img/people/group.svg'" alt="Greenfield Group photo">
-        </div>
-      </figure>
+<figure style="margin:0 0 20px 0">
+  <div class="group-photo">
+    <picture>
+      <!-- Fallback JPEG/PNG -->
+      <img
+        src="img/people/grpaug2025-1200.jpg"
+        srcset="
+          img/people/grpaug2025-800.jpg   800w,
+          img/people/grpaug2025-1200.jpg 1200w,
+          img/people/grpaug2025-2000.jpg 2000w"
+        sizes="(max-width: 768px) 100vw, 960px"
+        alt="Greenfield Group photo"
+        loading="lazy"
+        decoding="async"
+        width="1200" height="800">
+    </picture>
+  </div>
+</figure>
 
       <div class="cards">
         <!-- Jake -->
