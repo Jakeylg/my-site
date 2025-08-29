@@ -901,3 +901,13 @@ dialog[open] { display: block; }
 /* Publications: force abstract show/hide by the [hidden] attribute */
 .pubcard .abstract { display: none !important; }
 .pubcard .abstract:not([hidden]) { display: block !important; }
+
+
+.group-photo img {
+  max-width: 600px;       /* cap size */
+  width: 100%;            /* responsive */
+  margin: 20px auto;      /* center + spacing */
+  display: block;         /* ensure centering works */
+  border-radius: 16px;    /* round the corners */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15); /* soft shadow */
+}
