@@ -90,12 +90,14 @@ function wireCards(container){
       btn.setAttribute('aria-expanded','false');
       card.setAttribute('aria-expanded','false');
       abs.hidden = true;
+      abs.setAttribute('hidden', ''); // ensure attribute is present
     }else{
       // open this one, close others
       collapseAll(card);
       btn.setAttribute('aria-expanded','true');
       card.setAttribute('aria-expanded','true');
       abs.hidden = false;
+      abs.removeAttribute('hidden');   // ensure attribute is removed
     }
   });
 

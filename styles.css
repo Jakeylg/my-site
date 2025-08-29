@@ -898,3 +898,6 @@ dialog[open] { display: block; }
   }
 }
 
+/* Publications: force abstract show/hide by the [hidden] attribute */
+.pubcard .abstract { display: none !important; }
+.pubcard .abstract:not([hidden]) { display: block !important; }
