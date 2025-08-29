@@ -610,10 +610,10 @@ hr, .card, .bordered{ border-color:var(--border); }
 .mobile-theme{ padding:10px 0; }
 
 /* Prefer system scheme when no user choice saved (progressive enhancement) */
-@media (prefers-color-scheme: dark){
+/*@media (prefers-color-scheme: dark){
   :root:not([data-theme]){ 
     /* only applies if attribute is missing; our JS sets it early anyway */
-    --bg:#0e1116; --text:#e5e7eb; --muted:#9aa4b2; --gray:#121721; --soft:#0f141b; --border:#263041;
+    /*--bg:#0e1116; --text:#e5e7eb; --muted:#9aa4b2; --gray:#121721; --soft:#0f141b; --border:#263041;
     --blue:#8ab4ff; --blue-dark:#5a84d6; --red:#ff6b6b; --gold:#f6d97a;
   }
 }
