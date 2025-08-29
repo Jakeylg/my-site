@@ -63,20 +63,55 @@
     `;
   }
 
-  function wireCards(container){
-    container.addEventListener('click', e=>{
-      const card = e.target.closest('.pubcard');
-      if(!card) return;
-      if(e.target.closest('a')) return;
+function wireCards(container){
+  function collapseAll(except){
+    container.querySelectorAll('.pubcard').forEach(card=>{
+      if(card === except) return;
       const btn = card.querySelector('.toggle-abs');
-      if(!btn) return;
       const abs = card.querySelector('.abstract');
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!expanded));
-      card.setAttribute('aria-expanded', String(!expanded));
-      abs.hidden = expanded;
+      if(btn) btn.setAttribute('aria-expanded','false');
+      card.setAttribute('aria-expanded','false');
+      if(abs) abs.hidden = true;
     });
   }
+
+  // Click on card (but not on links) — accordion open/close
+  container.addEventListener('click', e=>{
+    const card = e.target.closest('.pubcard');
+    if(!card || e.target.closest('a')) return;
+
+    const btn = card.querySelector('.toggle-abs');
+    const abs = card.querySelector('.abstract');
+    if(!btn || !abs) return; // no abstract, nothing to do
+
+    const isOpen = card.getAttribute('aria-expanded') === 'true';
+    if(isOpen){
+      // close current
+      btn.setAttribute('aria-expanded','false');
+      card.setAttribute('aria-expanded','false');
+      abs.hidden = true;
+    }else{
+      // open this one, close others
+      collapseAll(card);
+      btn.setAttribute('aria-expanded','true');
+      card.setAttribute('aria-expanded','true');
+      abs.hidden = false;
+    }
+  });
+
+  // Keyboard support: Enter/Space toggles via the button
+  container.addEventListener('keydown', e=>{
+    if(e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+    const card = e.target.closest('.pubcard');
+    if(!card) return;
+    const btn = card.querySelector('.toggle-abs');
+    if(btn){
+      e.preventDefault();
+      btn.click(); // re-use click logic above (will accordion)
+    }
+  });
+}
+
 
   function render(list, container){
     if(!list || !list.length){
