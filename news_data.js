@@ -1,5 +1,12 @@
 window.NEWS_ITEMS = [
     {
+    "date": "2025-008-25",
+    "title": "Jiarong Wins the 2025 CGCA Prize",
+    "excerpt": "Jiarong wins the 2025 CGCA prize in a multistage competition.",
+    "body": "We are delighted to share that Jiarong has won the Chinese-German Chemical Association (CGCA) PhD Prize 2025. The competition involved several stages, including submission of a CV, publication list, and recommendation letters, as well as a recorded video presentation explaining the work of their PhD thesis. From these applications, three finalists were selected to present at the 37th CGCA meeting, held this year at FAU Berlin, where Jiarong was selected as the winner. Congratulations to Jiarong for this great achievement.",
+    "image": "img/news/JiarongCGCA.jpg"
+  },
+    {
     "date": "2025-05-15",
     "title": "Group's 6th Paper Out Now in JACS",
     "excerpt": "Our sixth paper reports enhanced photoswitching in N-alkyl imines, comparable to azobenzene.",
