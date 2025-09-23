@@ -1,0 +1,42 @@
+{
+  "slug": "sana-mendiratta",
+  "name": "Sana Mendiratta",
+  "role": "PhD Student",
+  "email": "TBD",
+  "photo": "img/people/headshots/sana-mendiratta.jpg",
+  "bio": "Sana Mendiratta completed her B.Sc. (Research) in Chemistry with a minor in Biotechnology at Shiv Nadar Institute of Eminence, New Delhi, and her M.Res. in Chemical Biology and Bioentrepreneurship at Imperial College London. During her bachelor’s, she focused on the synthesis of fluorescent molecular sensors, while her master’s research centred on the expression of fluorescent protein–α-synuclein fusion constructs and their characterisation using fluorescence lifetime imaging microscopy (FLIM). She has further broadened her expertise through independent research projects in polymer chemistry and physical organic chemistry, as well as an internship focused on advanced microscopic techniques.",
+  "education": [
+    "Shiv Nadar Institute of Eminence (BSc in Chemistry, 2024)",
+    "Imperial College London (MRes, 2025)"
+  ],
+  "awards": [
+    "Dean's List at Shiv Nadar Institute of Eminence",
+    "Award for Presentation at 8th OUR conference"
+  ],
+  "links": [
+    {"label": "ORCID", "url": "https://orcid.org/TBD", "icon": "img/icons/orcid.png"},
+    {"label": "Google Scholar", "url": "https://scholar.google.com/citations?user=QIYTK-oAAAAJ&hl=en", "icon": "img/icons/scholar.png"}
+  ],
+  "publications": [
+    {
+      "title": "Unravelling Ferroptosis Mechanisms: Tracking Cellular Viscosity with Small Molecular Fluorescent Probes",
+      "authors": "Niharika Pareek, Sana Mendiratta, Nripankar Kalita, Shreya Sivaramakrishnan, Rafique S. Khan, Animesh Samanta*",
+      "journal": "Chem. Asian J.",
+      "year": "2024",
+      "volume": "19",
+      "issue": "8",
+      "pages": "e202400056",
+      "links": [{"label": "DOI", "url": "https://doi.org/10.1002/asia.202400056"}]
+    },
+     {
+      "title": "Molecular Imaging of Nitric Oxide Surrogates with Organelle-Specific Fluorescent Probes",
+      "authors": "Rashmi Yadav, Rafique S. Khan, Nripankar Kalita, Sana Mendiratta, Shreya Sivaramakrishnan, Shreekanth Murugan, Animesh Samanta*",
+      "journal": "Chem. Asian J.",
+      "year": "2024",
+      "volume": "20",
+      "issue": "4",
+      "pages": "e202401237",
+      "links": [{"label": "DOI", "url": "https://doi.org/10.1002/asia.202401237"}]
+    }
+  ]
+}
