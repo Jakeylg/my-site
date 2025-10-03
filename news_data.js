@@ -1,5 +1,19 @@
 window.NEWS_ITEMS = [
   {
+    "date": "2025-09-01",
+    "title": "New Perspective Article in Chem. Sci.",
+    "excerpt": "Jiarong and Jake share their perspective on photoresponsive imine-containing systems",
+    "body": "This invited perspective, part of the 2025 Leading Investigators Collection, has now been published. Check it out if you are interested in photoresponsive imine-containing systems!",
+    "image": "img/news/chemsci.jpg"
+  },
+  {
+    "date": "2025-09-05",
+    "title": "ERC-StG Success!",
+    "excerpt": "An ERC-StG (€1.5M) has been awarded to work on project HeliOS",
+    "body": "Jake has been awarded an ERC Starting Grant (ERC-StG) – one of Europe’s most competitive and prestigious research awards – for his project HeliOS. The University of Würzburg’s official press release explains the vision behind the project in accessible terms: Nature provides striking examples of spring-like structures that store and release energy. Some seed pods, for instance, use this strategy to burst open and scatter their seeds far and wide. Inspired by this principle, Jake Greenfield will investigate how spiral-shaped molecules can be deformed in his ERC project HeliOS. To achieve this, the project will couple these molecular spirals with photoswitches – molecules that reversibly change their shape when exposed to light. Alongside established azo-based switches, HeliOS will also harness next-generation imine-based switches, developed by Greenfield’s team and colleagues at the Center for Nanosystems Chemistry (JMU). The ultimate goal is to create light-responsive spiral molecules whose properties can be precisely controlled with light pulses. This approach could open new avenues for energy storage and release strategies. PhD positions will be available from 2026. If you are interested and believe you would be a strong candidate, please get in touch.",
+    "image": "img/news/Greenfield_HeliOS.jpg"
+  },
+  {
     "date": "2025-08-25",
     "title": "Jiarong Wins the 2025 CGCA Prize",
     "excerpt": "Jiarong wins the 2025 CGCA prize in a multistage competition.",
