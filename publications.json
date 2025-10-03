@@ -1,5 +1,22 @@
 [
   {
+    "number": 39,
+    "title": "Light them up: photoresponsive imine-containing systems",
+    "authors": [
+      "Jiarong Wu",
+      "Jake L. Greenfield*"
+    ],
+    "journal": "Chem. Sci.",
+    "year": 2025,
+    "volume": "In Press",
+    "issue": "#",
+    "pages": "#",
+    "doi": "10.1039/D5SC05210F",
+    "publisherUrl": "https://doi.org/10.1039/D5SC05210F",
+    "tocImage": "img/pubs/pub39-toc.jpeg",
+    "abstract": "The reversible covalent bond formation that underpins dynamic covalent chemistry (DCC) enables the construction of stimuli-responsive systems and the efficient assembly of complex architectures. While most DCC studies have focused on systems at thermodynamic equilibrium, there is growing interest in systems that operate away from equilibrium—either by shifting to a new free-energy landscape in response to a stimulus, or by accessing an out-of-equilibrium state following an energy input. Imine-based systems are especially attractive due to the accessibility of their building blocks and their dynamic behavior in both condensation and transimination reactions. These equilibria can be perturbed by chemical stimuli or light. While many modular systems combining imines with separate photoswitches have been studied in the context of light-responsive DCC, only recently have imine-based photoswitches—where light responsiveness is built directly into the dynamic covalent bond—emerged as a distinct strategy. In this perspective, we compare representative examples of both approaches, outline their respective strengths, and discuss key challenges and opportunities for advancing light-driven, out-of-equilibrium imine systems."
+  },
+  {
     "number": 38,
     "title": "Harnessing light to drive a non-photoresponsive reaction out of equilibrium",
     "authors": [
