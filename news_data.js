@@ -1,5 +1,68 @@
 window.NEWS_ITEMS = [
   {
+  "date": "2025-12-04",
+  "title": "Jiarong Wu Defends PhD with Highest Distinction",
+  "excerpt": "Jiarong defended her PhD thesis in Würzburg, achieving grade 1.0 (Summa Cum Laude)",
+  "body": "On 4 December 2025, Jiarong Wu successfully defended her PhD thesis in Würzburg, receiving the highest distinction (grade 1.0, Summa Cum Laude). The examination panel consisted of Prof. Frank Würthner, Prof. Holger Helten, Prof. Lutz Nuhn, Jun. Prof. Gabriele Hierlmeier, and Jake. Jiarong delivered a clear and compelling overview of her doctoral research and becomes the first PhD graduate from the group. Congratulations, Dr. Wu.",
+  "image": "img/news/JW_Defence.jpg"
+},
+{
+  "date": "2025-12-15",
+  "title": "Jiarong Awarded 2025 RSC MASC PhD Thesis Prize",
+  "excerpt": "Royal Society of Chemistry Macrocyclic and Supramolecular (MASC) PhD Thesis Prize awarded to Dr Jiarong Wu",
+  "body": "On 15 December 2025, Dr Jiarong Wu was awarded the 2025 Macrocyclic and Supramolecular (MASC) PhD Thesis Prize by the Royal Society of Chemistry. This is the RSC’s most prestigious award for a PhD student working in supramolecular chemistry.\n\nEstablished in 2014, the prize is typically awarded to a leading PhD student based at a UK institution. In a rare and notable decision, this year’s award was presented to a PhD graduate based outside the UK.\n\nAlthough she completed her doctorate in Würzburg, Jiarong maintained strong links to the RSC MASC community, having previously received poster and talk prizes at MASC meetings in Birmingham and York. The thesis prize was presented following her award lecture at the annual MASC meeting.\n\nThis achievement reflects the quality and international impact of her doctoral work. Congratulations to Jiarong.",
+  "image": "img/news/MASC2025.jpg"
+},
+{
+  "date": "2025-10-01",
+  "title": "RSC Research Grant Awarded",
+  "excerpt": "£5,000 Research Grant from the Royal Society of Chemistry to support our new laboratory in St Andrews",
+  "body": "On 1 October 2025, the group was awarded a £5,000 Research Grant from the Royal Society of Chemistry. This funding supports the establishment of our laboratory at the University of St Andrews and will enable us to expand our work beyond small imine-based systems toward larger and more structurally complex targets.",
+  "image": "img/news/RSC_Logo.png"
+},
+{
+  "date": "2025-12-01",
+  "title": "Presentation at Joint St Andrews–Edinburgh–AstraZeneca Meeting",
+  "excerpt": "Jake presented the group’s work at a joint EaStChem meeting with AstraZeneca representatives",
+  "body": "On 1 December 2025, Jake presented the group’s research at a joint meeting between the University of St Andrews, the University of Edinburgh, and representatives from AstraZeneca. The event provided an opportunity to engage with colleagues across the EaStChem network and discuss potential areas of shared interest.",
+  "image": "img/news/eastchem.png"
+},
+{
+  "date": "2026-02-02",
+  "title": "Talk at Systems Chemistry Discussion Series",
+  "excerpt": "Group research presented at the Systems Chemistry Discussion Series",
+  "body": "On 2 February 2026, Jake delivered a talk at the Systems Chemistry Discussion Series. The meeting provided an excellent forum to present our work to experts in the field, stimulate discussion, and explore possible future directions. We thank the organisers for the invitation.",
+  "image": ""
+},
+{
+  "date": "2026-01-30",
+  "title": "Chemistry Europe Travel Grant Awarded",
+  "excerpt": "Daisy Pooler awarded a Chemistry Europe Travel Grant to visit St Andrews",
+  "body": "On 30 January 2026, Dr Daisy Pooler was awarded a Chemistry Europe Travel Grant, supported by Svenska Kemisamfundet following nomination by Ola Wendt. The grant will enable Daisy to travel to the School of Chemistry at the University of St Andrews to work with Jake's team on new light-responsive systems.\n\nThis represents Daisy’s first independent funding as an early-career researcher. We look forward to welcoming her to St Andrews later this year.",
+  "image": "img/news/Chemistry_Europe.png"
+},
+{
+  "date": "2026-02-01",
+  "title": "Francesco Ranieri Joins as Visiting PhD Student",
+  "excerpt": "Francesco Ranieri joins the group for a six-month research visit",
+  "body": "On 1 February 2026, Francesco Ranieri joined the group as a visiting PhD student for six months. Francesco comes from the group of Prof. Stefano Di Stefano at La Sapienza University of Rome. We are pleased to host him and look forward to exploring new chemistry and potential collaborative directions.",
+  "image": ""
+},
+{
+  "date": "2026-02-10",
+  "title": "EaStChem PhD Studentship Awarded",
+  "excerpt": "New collaborative PhD studentship with the University of Edinburgh",
+  "body": "On 10 February 2026, the group was awarded an EaStChem PhD studentship in collaboration with the group of Prof. Paul Lusby at the University of Edinburgh. This award strengthens links between St Andrews and Edinburgh and supports the development of new collaborative research directions.",
+  "image": "img/news/eastchem.png"
+},
+{
+  "date": "2026-02-23",
+  "title": "New PhD Opportunities – HeliOS Project",
+  "excerpt": "Further PhD positions becoming available in 2026 under the HeliOS programme",
+  "body": "On 23 February 2026, we announced that additional PhD positions will become available this year within the HeliOS project (Helical Out-of-Equilibrium Systems: Exploring Light-Induced Structural Distortions).\n\nDetails can be found at: https://www.findaphd.com/phds/project/helios-helical-out-of-equilibrium-systems-exploring-light-induced-structural-distortions/?p192115.\n\nDue to the volume of interest, mass-mail applications will not be acknowledged. Generic emails, including AI-generated messages, will not be considered. Applicants are encouraged to write a detailed and thoughtful email explaining how their specific interests align with the group’s research and outlining potential topics they would like to pursue.",
+  "image": ""
+},
+  {
     "date": "2025-09-01",
     "title": "New Perspective Article in Chem. Sci.",
     "excerpt": "Jiarong and Jake share their perspective on photoresponsive imine-containing systems",
