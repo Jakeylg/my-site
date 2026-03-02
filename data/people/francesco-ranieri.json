@@ -1,0 +1,54 @@
+{
+  "slug": "francesco-ranieri",
+  "name": "Francesco Ranieri",
+  "role": "Visiting PhD Student",
+  "email": "francesco.ranieri@uniroma1.it",
+  "photo": "img/people/headshots/francesco-ranieri.jpg",
+  "bio": "Francesco was born in Bari. He studied at the University of Rome (La Sapienza) and obtained the Bachelor's Degree in Chemistry in 2021 discussing a thesis concerning the Photodissociation of propyl radicals studied by Photofragment Translational Spectroscopy under the supervision of Prof. Domenico Stranges. Subsequently, in 2023, he completed the Master's Degree in Chemistry (with a study plan including both Physical-Chemistry and Organic Chemistry courses). His internship was carried out under Prof. Stefano Di Stefano applying Immine Dissipative Chemistry to two supramolecular systems: a Molecular Pump and a Supramolecular Aggregate. In 2023 he won the PhD scholarship in Chemical Sciences at the same University and currently carries out his research in the Department of Chemistry under the supervision of Prof. Stefano Di Stefano.",
+  "education": [
+    "PhD Student, University of Rome “La Sapienza” (Oct 2023 – ongoing)",
+    "University of Rome “La Sapienza” (MRes in Chemistry, 110/110 cum Laude, 2023)",
+    "University of Rome “La Sapienza” (BSc in Chemistry, 110/110 cum Laude, 2021)"
+  ],
+  "awards": [
+     "Selected Oral Presentation, ESOR 2025 (Padua, IT)",
+    "Best presentation award, SupraChem Days 2025 (Salerno, IT)",
+    "Selected Flash Talk, E-WISPOC 2025 (Bressanone, IT)"
+  ],
+  "links": [
+    {"label": "ORCID", "url": "https://orcid.org/0009-0008-9356-6949", "icon": "img/icons/orcid.png"},
+    {"label": "Google Scholar", "url": "https://scholar.google.com/citations?user=eBLATtkAAAAJ&hl=it&oi=ao", "icon": "img/icons/scholar.png"}
+  ],
+  "publications": [
+    {
+      "title": "Temporally controlled supramolecular catalysts with pH-dependent activity",
+      "authors": "Pucciarelli, Giulio; Ranieri, Francesco; Casnati, Alessandro; Di Stefano, Stefano; Volpi, Stefano; Salvio, Riccardo",
+      "journal": "ACS Omega",
+      "year": "2026",
+      "volume": "11",
+      "issue": "4",
+      "pages": "DOI:10.1016/j.chempr.2025.102579",
+      "links": [{"label": "DOI", "url": "https://doi.org/10.1021/acsomega.5c11122"}]
+    },
+    {
+      "title": "Transient Salt-Bridge-Based Supramolecular Polymers: Experiments and Theory",
+      "authors": " Melchiorre, Gabriele; Valentini, Matteo; Ranieri, Francesco; Cantiello, Davide; Cacciapaglia, Roberta; Baldini, Laura; Ercolani, Gianfranco; Di Stefano, Stefano",
+      "journal": "J. Am. Chem. Soc.",
+      "year": "2026",
+      "volume": "148",
+      "issue": "6",
+      "pages": "6638–6645",
+      "links": [{"label": "DOI", "url": "https://doi.org/10.1021/jacs.5c22087"}]
+    },
+    {
+      "title": "Transient Induction of Chirality from an Activated Carboxylic Acid to a Zinc Complex",
+      "authors": "De Angelis, Martina; Capocasa, Giorgio; Ranieri, Francesco; Mazzoccanti, Giulia; Frateloreto, Federico; Manetto, Simone; Fagnano, Alessandro; Massera, Chiara; Olivo, Giorgio; Ceccacci, Francesca; Ciogli, Alessia; Di Stefano, Stefano",
+      "journal": "Angew. Chem. Int. Ed.",
+      "year": "2025",
+      "volume": "64",
+      "issue": "46",
+      "pages": " e202513917",
+      "links": [{"label": "DOI", "url": "https://doi.org/10.1002/anie.202513917"}]
+    }
+  ]
+}
