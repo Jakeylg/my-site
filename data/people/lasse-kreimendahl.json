@@ -1,0 +1,83 @@
+{
+    "slug": "lasse-kreimendahl",
+    "name": "Lasse Kreimendahl",
+    "role": "Associate",
+    "email": "lasse.kreimendahl@uni-wuerzburg.de",
+    "photo": "img/people/headshots/lasse-kreimendahl.jpg",
+    "bio": "Lasse completed his B.Sc. in Chemistry at the University of Würzburg in 2022, specializing in computational chemistry in the group of Prof. Roland Mitrić. During his master's studies in Würzburg, he came into contact with the Greenfield group, where he provided theoretical support for the initial development of imine photoswitches and has remained closely involved ever since. In 2024, he began his PhD at the University of Würzburg under the supervision of Dr. Merle Röhr and Prof. Roland Mitrić, focusing on combining machine learning with computational and experimental approaches to advance photoresponsive materials.",
+    "education": [
+      "University of Würzburg (BSc, 2022)",
+      "University of Würzburg (MSc, 2024)"
+    ],
+    "awards": [
+      "Kekulé PhD Fellowship (2024-2027)",
+      "Poster Prize, APC 2025 (Kochi, IND)"
+    ],
+    "links": [
+      {"label": "ORCID", "url": "https://orcid.org/0009-0009-0020-6897", "icon": "img/icons/orcid.png"},
+      {"label": "GitHub", "url": "https://github.com/carlportz", "icon": "img/icons/github.png"}
+    ],
+    "publications": [
+      {
+        "title": "Diffusion Generative Models for Designing Efficient Singlet Fission Dimers",
+        "authors": "Lasse Kreimendahl, Mikhail Karnaukh, Merle I. S. Röhr",
+        "journal": "The Journal of Physical Chemistry A",
+        "year": "2025",
+        "volume": "129",
+        "issue": "1",
+        "pages": "407–414",
+        "links": [{"label": "DOI", "url": "https://doi.org/10.1021/acs.jpca.4c08170"}]
+      },
+      {
+        "title": "Enhancing the Photoswitching Properties of N-Alkyl Imines",
+        "authors": "Jiarong Wu, Lasse Kreimendahl, Jake L. Greenfield",
+        "journal": "Journal of the American Chemical Society",
+        "year": "2025",
+        "volume": "147",
+        "issue": "21",
+        "pages": "17549–17554",
+        "links": [{"label": "DOI", "url": "https://doi.org/10.1021/jacs.5c02404"}]
+      },
+      {
+        "title": "Switching Sides: Regiochemistry and Functionalization Dictate the Photoswitching Properties of Imines",
+        "authors": "Jiarong Wu, Lasse Kreimendahl, Jake L. Greenfield",
+        "journal": "Angewandte Chemie International Edition",
+        "year": "2025",
+        "volume": "64",
+        "issue": "3",
+        "pages": "e202415464",
+        "links": [{"label": "DOI", "url": "https://doi.org/10.1002/anie.202415464"}]
+      },
+      {
+        "title": "Iminobispyrazole (IBP) Photoswitches: Two Pyrazole Rings Can Be Better than One",
+        "authors": "Jiarong Wu, Clara Li, Lasse Kreimendahl, Jake L. Greenfield",
+        "journal": "Chemical Communications",
+        "year": "2024",
+        "volume": "60",
+        "issue": "85",
+        "pages": "12365–12368",
+        "links": [{"label": "DOI", "url": "https://doi.org/10.1039/D4CC03517H"}]
+      },
+      {
+        "title": "Photoswitchable Imines: Aryliminopyrazoles Quantitatively Convert to Long-Lived Z-isomers with Visible Light",
+        "authors": "Jiarong Wu, Lasse Kreimendahl, Suyuan Tao, Olga Anhalt, Jake L. Greenfield",
+        "journal": "Chemical Science",
+        "year": "2024",
+        "volume": "15",
+        "issue": "11",
+        "pages": "3872–3878",
+        "links": [{"label": "DOI", "url": "https://doi.org/10.1039/D3SC05841G"}]
+      },
+      {
+        "title": "Chiroptical Properties of Planar Benzobisthiazole-Bridged Squaraine Dimers",
+        "authors": "Emely Freytag, Lasse Kreimendahl, Marco Holzapfel, Jens Petersen, Heiko Lackinger, Matthias Stolte, Frank Würthner, Roland Mitrić, Christoph Lambert",
+        "journal": "The Journal of Organic Chemistry",
+        "year": "2023",
+        "volume": "88",
+        "issue": "15",
+        "pages": "10777–10788",
+        "links": [{"label": "DOI", "url": "https://doi.org/10.1021/acs.joc.3c00821"}]
+      }
+    ]
+  }
+  
