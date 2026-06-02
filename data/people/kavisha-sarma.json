@@ -3,38 +3,52 @@
   "name": "Kavisha Sarma",
   "role": "Visiting PhD Student",
   "email": "ks431@st-andrews.ac.uk",
-  "photo": "img/people/headshots/.jpg",
-  "bio": "Kavisha was born in Sydney, Australia. She completed a dual Bachelor of Commerce/ Bachelor of Advanced Science (Honours) at the University of New South Wales where she spent her Honours research focused on lanthanide single ion magnets under the supervision of Dr Scott Sulway. She is currently completing her PhD at the University of New South Wales under the supervision of Prof. Jon Beves focusing on light-controlled coordination compounds.",
+  "photo": "img/people/headshots/kavisha-sarma.jpg",
+  "bio": "Kavisha was born in Sydney, Australia. She completed a dual Bachelor of Commerce/Bachelor of Advanced Science (Honours) at the University of New South Wales, where her Honours research focused on lanthanide single-ion magnets under the supervision of Dr Scott Sulway. She is currently completing her PhD at the University of New South Wales under the supervision of Prof. Jon Beves, focusing on light-controlled coordination compounds.",
   "education": [
-    "PhD Student, University of New South Wales (2023 - present)",
-    "Bachelor of Commerce/ Bachelor of Advanced Science (Honours Class 1) University of New South Wales (2018-2022)",
+    "PhD Student, University of New South Wales (2023-present)",
+    "Bachelor of Commerce/Bachelor of Advanced Science (Honours Class 1), University of New South Wales (2018-2022)"
   ],
   "awards": [
-    "School of Chemistry Award for best third year PhD talk)",
+    "School of Chemistry Award for best third-year PhD talk"
   ],
   "links": [
-    {"label": "ORCID", "url": " https://orcid.org/0009-0000-7151-5560", "icon": "img/icons/orcid.png"},
+    {
+      "label": "ORCID",
+      "url": "https://orcid.org/0009-0000-7151-5560",
+      "icon": "img/icons/orcid.png"
+    }
   ],
   "publications": [
-        {
-      "title": " Ruthenium(ii) complexes with photoswitchable and photoejectable ligands",
-      "authors": " Kavisha A. Sarma, Isis A. Middleton, Man Him Chak, Jake P. Violi, Mohan Bhadbhade, William A. Donald, and Jonathon E. Beves",
+    {
+      "title": "Ruthenium(ii) complexes with photoswitchable and photoejectable ligands",
+      "authors": "Kavisha A. Sarma, Isis A. Middleton, Man Him Chak, Jake P. Violi, Mohan Bhadbhade, William A. Donald, and Jonathon E. Beves",
       "journal": "Dalton Transactions",
       "year": "2025",
       "volume": "54",
       "issue": "12",
       "pages": "4871-4875",
-      "links": [{"label": "DOI", "url": " https://doi.org/10.1039/D5DT00320B"}]
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1039/D5DT00320B"
+        }
+      ]
     },
     {
-      "title": " Structural comparison of [Ce(OtBu)Cl(THF)5](BPh4) to smaller rare earth analogues",
-      "authors": " Jarrod R. Thomas, Kavisha A. Sarma, Marcus J. Giansiracusa and Scott A. Sulway",
-      "journal": " Acta Crystallographica Section C.",
+      "title": "Structural comparison of [Ce(OtBu)Cl(THF)5](BPh4) to smaller rare earth analogues",
+      "authors": "Jarrod R. Thomas, Kavisha A. Sarma, Marcus J. Giansiracusa and Scott A. Sulway",
+      "journal": "Acta Crystallographica Section C",
       "year": "2024",
       "volume": "80",
       "issue": "11",
       "pages": "761-765",
-      "links": [{"label": "DOI", "url": " https://doi.org/10.1107/S2053229624009872"}]
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1107/S2053229624009872"
+        }
+      ]
     }
   ]
 }
