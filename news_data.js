@@ -17,7 +17,7 @@ window.NEWS_ITEMS = [
   "date": "2026-07-14",
   "title": "Group Research Presented at EuChemS 2026",
   "excerpt": "Jake presented the group's work at the 10th EuChemS Chemistry Congress in Antwerp.",
-  "body": "Jake presented the group's research at the 10th EuChemS Chemistry Congress in Antwerp. The meeting brought together chemists from across Europe and provided a great opportunity to share our latest work with a broad chemistry audience. Despite an exceptionally warm week, it was a very enjoyable meeting — and certainly the first conference we have attended with a zoo next door!",
+  "body": "Jake presented the group's research at the 10th EuChemS Chemistry Congress in Antwerp. The meeting brought together chemists from across Europe and provided a great opportunity to share our latest work with a broad chemistry audience. Despite an exceptionally warm week, it was a very enjoyable meeting — and certainly the first conference that Jake has attended with a zoo next door!",
   "image": ""
 },
 {
