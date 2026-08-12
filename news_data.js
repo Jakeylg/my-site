@@ -1,4 +1,53 @@
 window.NEWS_ITEMS = [
+{
+  "date": "2026-05-01",
+  "title": "Jake Named a 2026 Thieme Chemistry Journals Award Winner",
+  "excerpt": "Jake has been named a 2026 Thieme Chemistry Journals Award winner.",
+  "body": "Jake has been named among the winners of the 2026 Thieme Chemistry Journals Award. Presented annually, the award recognises up-and-coming researchers worldwide in the early stages of their independent academic careers, with recipients selected by the editorial boards of Thieme's chemistry journals. The award recognises researchers working across chemical synthesis, catalysis, and closely related areas of organic chemistry. Jake also took part in an interview with Thieme discussing his research, career so far, and future directions for the group. <a href=\"https://cdn0.scrvt.com/9ca5761af4a1cf7bf49dd51537e8f4d1/98e6e733e2c739d1/b90970f99655/2026_TCJA-Interview_Jake_Greenfield.pdf\" target=\"_blank\">Read the interview here.</a>",
+  "image": "img/news/Thieme.png"
+},
+{
+  "date": "2026-07-24",
+  "title": "Royal Society of Edinburgh Research Grant Awarded",
+  "excerpt": "New RSE funding will support our work on improving the stability of photoswitchable imines in water.",
+  "body": "The group has been awarded a Small Research Grant from the Royal Society of Edinburgh (RSE). The project will explore strategies to improve the stability of photoswitchable imines in water, helping us to expand this chemistry towards conditions relevant to a broader range of applications. We are very grateful to the RSE for supporting this new direction in the group's research. <a href=\"https://news.st-andrews.ac.uk/archive/st-andrews-researchers-secure-prestigious-rse-funding-awards/\" target=\"_blank\">Read the University of St Andrews announcement here.</a> <a href=\"https://rse.org.uk/rse-research-awards-strengthen-scotlands-research-future-with-661k-funding-boost/\" target=\"_blank\">Read more from the RSE here.</a>",
+  "image": "img/news/RSE.png"
+},
+{
+  "date": "2026-07-14",
+  "title": "Group Research Presented at EuChemS 2026",
+  "excerpt": "Jake presented the group's work at the 10th EuChemS Chemistry Congress in Antwerp.",
+  "body": "Jake presented the group's research at the 10th EuChemS Chemistry Congress in Antwerp. The meeting brought together chemists from across Europe and provided a great opportunity to share our latest work with a broad chemistry audience. Despite an exceptionally warm week, it was a very enjoyable meeting — and certainly the first conference we have attended with a zoo next door!",
+  "image": ""
+},
+{
+  "date": "2026-07-21",
+  "title": "Keynote Talk at ECECR 2026",
+  "excerpt": "Jake delivered a keynote talk at ECECR 2026 in Edinburgh and joined a panel discussion on research careers.",
+  "body": "Jake delivered a keynote talk at ECECR 2026 in Edinburgh, presenting the group's research spanning organic chemistry, photochemistry, and systems chemistry. The meeting brought together early-career researchers and speakers from academia, industry, and science-related careers. Jake also joined the other keynote speakers for a panel discussion covering career paths, challenges and opportunities across different sectors, and life as an early-career researcher.",
+  "image": ""
+},
+{
+  "date": "2026-07-11",
+  "title": "Jiarong Wins Würzburg Faculty Prize",
+  "excerpt": "Jiarong received the Faculty Prize for the best doctoral dissertation in Chemistry and Pharmacy at Würzburg in 2025.",
+  "body": "At the University of Würzburg graduation ceremony, Dr Jiarong Wu was awarded the Faculty Prize for the best doctoral dissertation in 2025. The award provides further recognition of the outstanding work carried out during her PhD and follows her 2025 RSC MASC PhD Thesis Prize. Congratulations again, Jiarong — the prize cabinet continues to fill up!",
+  "image": ""
+},
+{
+  "date": "2026-07-29",
+  "title": "Jake Joins Communications Chemistry as Guest Editor",
+  "excerpt": "Jake joins the Guest Editor team for a new collection on Programmable Chemical Systems.",
+  "body": "Jake has taken on a Guest Editor role at Springer Nature's Communications Chemistry for a new collection on 'Programmable Chemical Systems', alongside Fredrik Schaufelberger and Annette Taylor. The collection brings together research across molecular, supramolecular, and systems chemistry that shares a common goal: programming chemical systems to display complex behaviour and function. Topics range from oscillating reaction networks and molecular machines to compartmentalised and spatially organised systems. We hope the collection will bring together researchers from traditionally separate areas and help stimulate new ideas at their interfaces. <a href=\"https://communities.springernature.com/posts/call-for-papers-programmable-chemical-systems\" target=\"_blank\">Find out more about the collection here.</a>",
+  "image": ""
+},
+{
+  "date": "2026-08-10",
+  "title": "Jake Joins Chemical Science Advisory Board",
+  "excerpt": "Jake has joined the Advisory Board of the Royal Society of Chemistry's flagship journal, Chemical Science.",
+  "body": "Jake has joined the Advisory Board of Chemical Science, the flagship journal of the Royal Society of Chemistry, for an initial two-year term. Advisory Board members provide scientific input to the journal, support its editors, identify emerging research areas, and help shape its future direction. We are pleased to contribute to a journal that publishes research across the breadth of the chemical sciences.",
+  "image": "img/news/chemsci.png"
+},
   {
   "date": "2025-12-04",
   "title": "Jiarong Wu Defends PhD with Highest Distinction",
