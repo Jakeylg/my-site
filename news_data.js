@@ -46,7 +46,7 @@ window.NEWS_ITEMS = [
   "title": "Jake Joins Chemical Science Advisory Board",
   "excerpt": "Jake has joined the Advisory Board of the Royal Society of Chemistry's flagship journal, Chemical Science.",
   "body": "Jake has joined the Advisory Board of Chemical Science, the flagship journal of the Royal Society of Chemistry, for an initial two-year term. Advisory Board members provide scientific input to the journal, support its editors, identify emerging research areas, and help shape its future direction. We are pleased to contribute to a journal that publishes research across the breadth of the chemical sciences.",
-  "image": "img/news/chemsci.png"
+  "image": "img/news/chemsci.jpg"
 },
   {
   "date": "2025-12-04",
