@@ -25,7 +25,7 @@ window.NEWS_ITEMS = [
   "title": "Keynote Talk at ECECR 2026",
   "excerpt": "Jake delivered a keynote talk at ECECR 2026 in Edinburgh and joined a panel discussion on research careers.",
   "body": "Jake delivered a keynote talk at ECECR 2026 in Edinburgh, presenting the group's research spanning organic chemistry, photochemistry, and systems chemistry. The meeting brought together early-career researchers and speakers from academia, industry, and science-related careers. Jake also joined the other keynote speakers for a panel discussion covering career paths, challenges and opportunities across different sectors, and life as an early-career researcher.",
-  "image": ""
+  "image": "img/news/eastchem.png"
 },
 {
   "date": "2026-07-11",
