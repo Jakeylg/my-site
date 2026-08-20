@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Greenfield Group · Website Content Helper</title>
+  <style>
+    :root {
+      --ink: #14283a;
+      --muted: #5f6f7b;
+      --paper: #f7f5ef;
+      --white: #fffefa;
+      --line: #d7ddd9;
+      --blue: #0c5f73;
+      --blue-dark: #074452;
+      --aqua: #bde5df;
+      --amber: #f4bd62;
+      --danger: #a13a3a;
+      --shadow: 0 18px 50px rgba(20, 40, 58, .10);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 85% 0%, rgba(189,229,223,.65), transparent 28rem),
+        var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+
+    .shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+    .masthead { padding: 34px 0 22px; }
+    .brand { display: flex; align-items: center; gap: 13px; margin-bottom: 28px; }
+    .brand-logo {
+      width: 58px; height: 58px; object-fit: cover; border: 1px solid var(--line);
+      border-radius: 14px; background: white; box-shadow: 0 8px 24px rgba(20,40,58,.12);
+    }
+    .brand-name { font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: .78rem; }
+    .brand-sub { color: var(--muted); font-size: .78rem; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: end; }
+    h1 { margin: 0; max-width: 760px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.35rem, 6vw, 5.4rem); line-height: .94; letter-spacing: -.045em; font-weight: 500; }
+    .hero-copy { color: var(--muted); max-width: 390px; margin: 0 0 7px; font-size: 1rem; }
+
+    .tabs { display: flex; gap: 8px; margin: 36px 0 22px; padding: 6px; background: rgba(255,255,255,.72); border: 1px solid var(--line); border-radius: 999px; width: fit-content; }
+    .tab { border: 0; background: transparent; color: var(--muted); padding: 10px 17px; border-radius: 999px; font-weight: 750; }
+    .tab[aria-selected="true"] { background: var(--ink); color: white; box-shadow: 0 7px 20px rgba(20,40,58,.18); }
+
+    .workspace { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(350px, .92fr); gap: 20px; align-items: start; padding-bottom: 50px; }
+    .panel { background: rgba(255,254,250,.94); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    .panel-head { padding: 22px 24px 17px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; }
+    .eyebrow { margin: 0 0 4px; color: var(--blue); font-weight: 850; font-size: .72rem; letter-spacing: .09em; text-transform: uppercase; }
+    h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: 1.65rem; font-weight: 500; }
+    .small { margin: 4px 0 0; color: var(--muted); font-size: .85rem; }
+    .form-body { padding: 22px 24px 26px; }
+    .form-section + .form-section { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); }
+    .section-title { margin: 0 0 14px; font-size: .82rem; letter-spacing: .07em; text-transform: uppercase; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .field { display: grid; gap: 6px; }
+    .field.full { grid-column: 1 / -1; }
+    label { font-size: .82rem; font-weight: 750; }
+    .optional { color: var(--muted); font-weight: 500; }
+    input, textarea, select {
+      width: 100%; border: 1px solid #c9d1ce; background: white; color: var(--ink);
+      border-radius: 10px; padding: 10px 12px; outline: none; transition: border-color .15s, box-shadow .15s;
+    }
+    textarea { min-height: 104px; resize: vertical; }
+    input:focus, textarea:focus, select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(12,95,115,.13); }
+    .hint { margin: 0; color: var(--muted); font-size: .76rem; }
+    .repeat-list { display: grid; gap: 10px; }
+    .repeat-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) 38px; gap: 8px; align-items: end; }
+    .repeat-row.single { grid-template-columns: minmax(0, 1fr) 38px; }
+    .publication-row { border: 1px solid var(--line); border-radius: 12px; padding: 14px; background: #fbfaf6; position: relative; }
+    .publication-row .grid { padding-right: 35px; }
+    .remove { border: 1px solid var(--line); background: white; color: var(--muted); width: 38px; height: 42px; border-radius: 10px; font-size: 1.1rem; }
+    .publication-row > .remove { position: absolute; top: 12px; right: 12px; }
+    .remove:hover { color: var(--danger); border-color: #e3b5b5; }
+    .add { margin-top: 10px; border: 1px dashed #a9bab6; background: transparent; color: var(--blue); border-radius: 10px; padding: 9px 12px; font-weight: 750; }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 25px; }
+    .primary, .secondary, .quiet { border-radius: 10px; padding: 11px 15px; font-weight: 800; }
+    .primary { border: 1px solid var(--blue); background: var(--blue); color: white; }
+    .primary:hover { background: var(--blue-dark); }
+    .secondary { border: 1px solid var(--ink); background: var(--ink); color: white; }
+    .quiet { border: 1px solid var(--line); background: white; color: var(--muted); }
+
+    .output-panel { position: sticky; top: 16px; }
+    .status { border-radius: 999px; padding: 5px 9px; background: #e8f3ef; color: #23624f; font-size: .72rem; font-weight: 850; white-space: nowrap; }
+    .preview { margin: 18px 20px 0; border: 1px solid var(--line); border-radius: 13px; padding: 18px; background: linear-gradient(145deg, white, #f5f8f5); min-height: 142px; }
+    .preview-date { color: var(--blue); font-weight: 800; font-size: .74rem; text-transform: uppercase; letter-spacing: .06em; }
+    .preview h3 { margin: 6px 0 5px; font-family: Georgia, "Times New Roman", serif; font-size: 1.45rem; }
+    .preview p { margin: 0; color: var(--muted); }
+    .member-preview { display: flex; gap: 14px; align-items: center; }
+    .avatar-preview { width: 66px; height: 66px; border-radius: 50%; background: var(--aqua); color: var(--blue-dark); display: grid; place-items: center; font-family: Georgia, serif; font-size: 1.4rem; flex: none; }
+    .output-list { padding: 18px 20px 22px; display: grid; gap: 14px; }
+    .output-card { border: 1px solid var(--line); border-radius: 13px; overflow: hidden; background: white; }
+    .output-card-head { padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px; background: #f2f4f1; border-bottom: 1px solid var(--line); }
+    .output-name { font-size: .78rem; font-weight: 850; }
+    .output-destination { color: var(--muted); font-size: .7rem; }
+    .code { margin: 0; padding: 14px; max-height: 290px; overflow: auto; white-space: pre; color: #213d4d; font: 12px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .mini-actions { display: flex; gap: 6px; }
+    .mini { border: 1px solid #c7cfcc; background: white; color: var(--ink); border-radius: 8px; padding: 6px 8px; font-size: .72rem; font-weight: 800; }
+    .empty { padding: 42px 25px 46px; text-align: center; color: var(--muted); }
+    .empty-symbol { width: 54px; height: 54px; border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; margin: 0 auto 12px; font-size: 1.4rem; }
+    .note { margin: 0 20px 20px; padding: 12px 14px; background: #fff4df; border-left: 3px solid var(--amber); border-radius: 7px; color: #715526; font-size: .8rem; }
+    .slack-step { margin: 0 20px 22px; padding: 18px; border-radius: 14px; background: var(--ink); color: white; }
+    .slack-step .eyebrow { color: var(--aqua); }
+    .slack-step h3 { margin: 2px 0 9px; font-family: Georgia, "Times New Roman", serif; font-size: 1.35rem; font-weight: 500; line-height: 1.15; }
+    .slack-step ol { margin: 12px 0 16px; padding-left: 1.25rem; color: #dce5e9; font-size: .82rem; }
+    .slack-step li + li { margin-top: 7px; }
+    .slack-copy { width: 100%; border: 0; border-radius: 10px; padding: 11px 13px; background: var(--amber); color: var(--ink); font-weight: 850; }
+    .slack-copy:hover { background: #ffd17e; }
+    .slack-copy:disabled { cursor: not-allowed; background: #6f7e87; color: #d6dee2; }
+    .slack-small { margin: 9px 0 0; color: #afbec6; font-size: .72rem; }
+    .hidden { display: none !important; }
+    .toast { position: fixed; right: 18px; bottom: 18px; background: var(--ink); color: white; border-radius: 10px; padding: 11px 14px; box-shadow: var(--shadow); opacity: 0; transform: translateY(8px); pointer-events: none; transition: .2s; font-size: .84rem; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    footer { color: var(--muted); font-size: .77rem; padding: 0 0 34px; }
+
+    @media (max-width: 880px) {
+      .hero, .workspace { grid-template-columns: 1fr; }
+      .hero-copy { margin-top: 14px; }
+      .output-panel { position: static; }
+    }
+    @media (max-width: 600px) {
+      .shell { width: min(100% - 20px, 1180px); }
+      .grid, .repeat-row { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .repeat-row .remove { width: 100%; height: 36px; }
+      .tabs { width: 100%; overflow-x: auto; border-radius: 15px; }
+      .tab { flex: 1 0 auto; }
+      .panel-head, .form-body { padding-left: 17px; padding-right: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="shell">
+      <div class="brand">
+        <img class="brand-logo" src="data:image/png;base64,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" alt="Z-imine molecular structure">
+        <div><div class="brand-name">Greenfield Group</div><div class="brand-sub">Website content helper</div></div>
+      </div>
+      <div class="hero">
+        <h1>Write the update.<br>Skip the code.</h1>
+        <p class="hero-copy">Fill in a friendly form, check the preview, then copy or download exactly what the group website needs.</p>
+      </div>
+      <nav class="tabs" aria-label="Content type">
+        <button class="tab" type="button" data-tab="news" aria-selected="true">News story</button>
+        <button class="tab" type="button" data-tab="member" aria-selected="false">Group member</button>
+        <button class="tab" type="button" data-tab="alumni" aria-selected="false">Alumni entry</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell workspace">
+    <section class="panel">
+      <div class="panel-head">
+        <div><p class="eyebrow">Step 1 · Add the details</p><h2 id="form-title">Create a news story</h2><p class="small">Required fields are marked with an asterisk.</p></div>
+        <button class="quiet" type="button" id="reset">Reset</button>
+      </div>
+
+      <form class="form-body" id="news-form" data-form="news">
+        <div class="grid">
+          <div class="field"><label for="news-date">Date *</label><input id="news-date" name="date" type="date" required></div>
+          <div class="field"><label for="news-image">Image filename <span class="optional">(optional)</span></label><input id="news-image" name="image" placeholder="conference-photo.jpg"><p class="hint">The file should be placed in img/news/.</p></div>
+          <div class="field full"><label for="news-title">Headline *</label><input id="news-title" name="title" required placeholder="Group presents new work at…"></div>
+          <div class="field full"><label for="news-excerpt">One-sentence summary *</label><textarea id="news-excerpt" name="excerpt" required placeholder="A short summary shown before the story is expanded."></textarea></div>
+          <div class="field full"><label for="news-body">Full story *</label><textarea id="news-body" name="body" required placeholder="Write the full update here. Plain text is perfect."></textarea></div>
+        </div>
+        <div class="form-section">
+          <h3 class="section-title">Links in the full story</h3>
+          <div id="news-links" class="repeat-list"></div>
+          <button class="add" type="button" data-add="news-link">+ Add a link</button>
+        </div>
+        <div class="actions"><button class="primary" type="submit">Generate website text</button></div>
+      </form>
+
+      <form class="form-body hidden" id="member-form" data-form="member">
+        <div class="grid">
+          <div class="field"><label for="member-name">Full name *</label><input id="member-name" name="name" required placeholder="Dr Ada Lovelace"></div>
+          <div class="field"><label for="member-role">Role *</label><input id="member-role" name="role" required placeholder="PhD Student"></div>
+          <div class="field"><label for="member-email">Email *</label><input id="member-email" name="email" type="email" required placeholder="al123@st-andrews.ac.uk"></div>
+          <div class="field"><label for="member-country">Flag *</label><select id="member-country" name="country" required><option value="gb">United Kingdom</option><option value="in">India</option><option value="cn">China</option><option value="it">Italy</option><option value="de">Germany</option><option value="aus">Australia</option><option value="custom">Another country (type below)</option></select></div>
+          <div class="field"><label for="member-country-code">Custom flag filename <span class="optional">(optional)</span></label><input id="member-country-code" name="countryCode" placeholder="fr"><p class="hint">For example, fr means img/flags/fr.svg.</p></div>
+          <div class="field"><label for="member-slug">Profile filename *</label><input id="member-slug" name="slug" required placeholder="ada-lovelace"><p class="hint">Suggested automatically; use lowercase letters and hyphens.</p></div>
+          <div class="field"><label for="member-photo">Headshot filename *</label><input id="member-photo" name="photo" required placeholder="ada-lovelace.jpg"><p class="hint">Place the image in img/people/headshots/.</p></div>
+          <div class="field full"><label for="member-bio">Biography *</label><textarea id="member-bio" name="bio" required placeholder="A short biography written in the third person."></textarea></div>
+        </div>
+
+        <div class="form-section">
+          <h3 class="section-title">Profile links</h3>
+          <div id="member-links" class="repeat-list"></div>
+          <button class="add" type="button" data-add="member-link">+ Add a link</button>
+        </div>
+        <div class="form-section">
+          <h3 class="section-title">Education</h3>
+          <p class="hint" style="margin-bottom:10px">Put one qualification or position on each line. The first three are used on the People page card.</p>
+          <div class="field"><textarea id="member-education" name="education" placeholder="University of Somewhere (BSc, 2022)&#10;University of St Andrews (PhD, 2026–present)"></textarea></div>
+        </div>
+        <div class="form-section">
+          <h3 class="section-title">Awards & prizes</h3>
+          <p class="hint" style="margin-bottom:10px">One award per line.</p>
+          <div class="field"><textarea id="member-awards" name="awards" placeholder="Poster Prize, Conference Name, 2026"></textarea></div>
+        </div>
+        <div class="form-section">
+          <h3 class="section-title">Publications <span class="optional">(optional)</span></h3>
+          <div id="member-publications" class="repeat-list"></div>
+          <button class="add" type="button" data-add="publication">+ Add a publication</button>
+        </div>
+        <div class="actions"><button class="primary" type="submit">Generate member files</button></div>
+      </form>
+
+      <form class="form-body hidden" id="alumni-form" data-form="alumni">
+        <div class="grid">
+          <div class="field"><label for="alumni-name">Full name *</label><input id="alumni-name" name="name" required></div>
+          <div class="field"><label for="alumni-role">Role while in the group *</label><input id="alumni-role" name="role" required placeholder="Intern"></div>
+          <div class="field"><label for="alumni-period">Period *</label><input id="alumni-period" name="period" required placeholder="2025–2026"></div>
+          <div class="field"><label for="alumni-years">Years for filtering *</label><input id="alumni-years" name="years" required placeholder="2025, 2026"><p class="hint">Use four-digit years separated by commas.</p></div>
+          <div class="field full"><label for="alumni-project">Project *</label><textarea id="alumni-project" name="project" required></textarea></div>
+          <div class="field full"><label for="alumni-now">Where are they now? *</label><input id="alumni-now" name="now" required placeholder="PhD student, University of…"></div>
+          <div class="field"><label for="alumni-destination">Destination organisation <span class="optional">(optional)</span></label><input id="alumni-destination" name="destination"></div>
+          <div class="field"><label for="alumni-slug">Existing profile filename <span class="optional">(optional)</span></label><input id="alumni-slug" name="slug" placeholder="ada-lovelace"><p class="hint">Only use this if their profile JSON will remain on the site.</p></div>
+        </div>
+        <div class="actions"><button class="primary" type="submit">Generate alumni text</button></div>
+      </form>
+    </section>
+
+    <aside class="panel output-panel">
+      <div class="panel-head"><div><p class="eyebrow">Step 2 · Copy the result</p><h2>Your website-ready files</h2></div><span class="status">Private & offline</span></div>
+      <div id="preview" class="preview hidden"></div>
+      <div id="output-empty" class="empty"><div class="empty-symbol">{ }</div><strong>Nothing generated yet</strong><p>Complete the form and click the button. Your text will appear here.</p></div>
+      <div id="output-list" class="output-list hidden"></div>
+      <p id="output-note" class="note hidden"></p>
+      <section id="slack-step" class="slack-step">
+        <p class="eyebrow">Step 3 · Send it in Slack</p>
+        <h3>Post everything in the Website channel</h3>
+        <ol>
+          <li>Click <strong>Copy everything for Slack</strong> below.</li>
+          <li>Paste it into the <strong>Website</strong> channel.</li>
+          <li>In the same Slack post, attach any relevant figure, photo or headshot as a <strong>.jpg or .png</strong> file—ideally smaller than <strong>200 KB</strong>.</li>
+        </ol>
+        <button id="copy-slack" class="slack-copy" type="button" disabled>Copy everything for Slack</button>
+        <p class="slack-small">The website owner can then check and upload the update.</p>
+      </section>
+    </aside>
+  </main>
+
+  <footer class="shell">This page works entirely on your computer. It does not upload or send the information anywhere.</footer>
+  <div class="toast" id="toast" role="status" aria-live="polite">Copied</div>
+
+  <template id="link-row-template">
+    <div class="repeat-row">
+      <div class="field"><label>Label</label><input data-key="label" placeholder="ORCID"></div>
+      <div class="field"><label>Web address</label><input data-key="url" type="url" placeholder="https://…"></div>
+      <button type="button" class="remove" aria-label="Remove link">×</button>
+    </div>
+  </template>
+
+  <template id="publication-template">
+    <div class="publication-row">
+      <button type="button" class="remove" aria-label="Remove publication">×</button>
+      <div class="grid">
+        <div class="field full"><label>Title *</label><input data-key="title"></div>
+        <div class="field full"><label>Authors</label><input data-key="authors"></div>
+        <div class="field"><label>Journal</label><input data-key="journal"></div>
+        <div class="field"><label>Year</label><input data-key="year" inputmode="numeric"></div>
+        <div class="field"><label>Volume</label><input data-key="volume"></div>
+        <div class="field"><label>Issue</label><input data-key="issue"></div>
+        <div class="field"><label>Pages / article number</label><input data-key="pages"></div>
+        <div class="field"><label>DOI or web address</label><input data-key="doi" placeholder="10.1234/example or https://…"></div>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const $ = (selector, root = document) => root.querySelector(selector);
+      const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+      const forms = { news: $('#news-form'), member: $('#member-form'), alumni: $('#alumni-form') };
+      const titles = { news: 'Create a news story', member: 'Add a group member', alumni: 'Add an alumni entry' };
+      let activeTab = 'news';
+      let slugWasEdited = false;
+      let photoWasEdited = false;
+      let lastSlackText = '';
+
+      const today = new Date();
+      const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+      $('#news-date').value = localToday;
+
+      function slugify(value) {
+        return String(value || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+          .toLowerCase().replace(/\b(dr|prof|professor)\.?\s+/g, '')
+          .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      }
+
+      function lines(value) {
+        return String(value || '').split(/\r?\n/).map(item => item.trim()).filter(Boolean);
+      }
+
+      function escapeHtml(value) {
+        return String(value || '').replace(/[&<>'"]/g, char => ({
+          '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+        })[char]);
+      }
+
+      function escapeAttribute(value) { return escapeHtml(value); }
+
+      function imagePath(folder, filename) {
+        const clean = String(filename || '').trim().replace(/^.*[\\/]/, '');
+        return clean ? folder + clean : '';
+      }
+
+      function iconFor(label) {
+        const normalized = String(label || '').toLowerCase();
+        if (normalized.includes('orcid')) return 'img/icons/orcid.png';
+        if (normalized.includes('scholar')) return 'img/icons/scholar.png';
+        if (normalized.includes('github')) return 'img/icons/github.png';
+        return '';
+      }
+
+      function switchTab(tab) {
+        activeTab = tab;
+        $$('.tab').forEach(button => button.setAttribute('aria-selected', String(button.dataset.tab === tab)));
+        Object.entries(forms).forEach(([name, form]) => form.classList.toggle('hidden', name !== tab));
+        $('#form-title').textContent = titles[tab];
+        clearOutput();
+      }
+
+      $$('.tab').forEach(button => button.addEventListener('click', () => switchTab(button.dataset.tab)));
+
+      function addLink(container) {
+        const row = $('#link-row-template').content.firstElementChild.cloneNode(true);
+        $('.remove', row).addEventListener('click', () => row.remove());
+        container.appendChild(row);
+        return row;
+      }
+
+      function addPublication() {
+        const row = $('#publication-template').content.firstElementChild.cloneNode(true);
+        $('.remove', row).addEventListener('click', () => row.remove());
+        $('#member-publications').appendChild(row);
+        return row;
+      }
+
+      $$('[data-add]').forEach(button => button.addEventListener('click', () => {
+        if (button.dataset.add === 'news-link') addLink($('#news-links'));
+        if (button.dataset.add === 'member-link') addLink($('#member-links'));
+        if (button.dataset.add === 'publication') addPublication();
+      }));
+
+      addLink($('#member-links'));
+
+      $('#member-name').addEventListener('input', event => {
+        const suggestion = slugify(event.target.value);
+        if (!slugWasEdited) $('#member-slug').value = suggestion;
+        if (!photoWasEdited) $('#member-photo').value = suggestion ? suggestion + '.jpg' : '';
+      });
+      $('#member-slug').addEventListener('input', () => { slugWasEdited = true; });
+      $('#member-photo').addEventListener('input', () => { photoWasEdited = true; });
+
+      function linkValues(container) {
+        return $$('.repeat-row', container).map(row => ({
+          label: $('[data-key="label"]', row).value.trim(),
+          url: $('[data-key="url"]', row).value.trim()
+        })).filter(item => item.label || item.url);
+      }
+
+      function publicationValues() {
+        return $$('.publication-row', $('#member-publications')).map(row => {
+          const get = key => $('[data-key="' + key + '"]', row).value.trim();
+          const publication = {
+            title: get('title'), authors: get('authors'), journal: get('journal'), year: get('year'),
+            volume: get('volume'), issue: get('issue'), pages: get('pages'), links: []
+          };
+          const doi = get('doi');
+          if (doi) publication.links.push({ label: 'DOI', url: /^https?:\/\//i.test(doi) ? doi : 'https://doi.org/' + doi.replace(/^doi:\s*/i, '') });
+          Object.keys(publication).forEach(key => {
+            if (key !== 'links' && !publication[key]) delete publication[key];
+          });
+          if (!publication.links.length) delete publication.links;
+          return publication;
+        }).filter(item => item.title);
+      }
+
+      function collect(form) { return Object.fromEntries(new FormData(form).entries()); }
+
+      function outputCard(name, destination, content, filename = '') {
+        const card = document.createElement('section');
+        card.className = 'output-card';
+        card.dataset.outputName = name;
+        card.dataset.outputContent = content;
+        const head = document.createElement('div');
+        head.className = 'output-card-head';
+        const label = document.createElement('div');
+        label.innerHTML = '<div class="output-name">' + escapeHtml(name) + '</div><div class="output-destination">' + escapeHtml(destination) + '</div>';
+        const actions = document.createElement('div');
+        actions.className = 'mini-actions';
+        const copy = document.createElement('button');
+        copy.type = 'button'; copy.className = 'mini'; copy.textContent = 'Copy';
+        copy.addEventListener('click', () => copyText(content));
+        actions.appendChild(copy);
+        if (filename) {
+          const download = document.createElement('button');
+          download.type = 'button'; download.className = 'mini'; download.textContent = 'Download';
+          download.addEventListener('click', () => downloadText(filename, content));
+          actions.appendChild(download);
+        }
+        head.append(label, actions);
+        const code = document.createElement('pre');
+        code.className = 'code'; code.textContent = content;
+        card.append(head, code);
+        return card;
+      }
+
+      function showOutputs(cards, note, previewHtml) {
+        const list = $('#output-list');
+        list.innerHTML = '';
+        cards.forEach(card => list.appendChild(card));
+        const contentLabel = { news: 'News story', member: 'Group member', alumni: 'Alumni entry' }[activeTab];
+        lastSlackText = '*Website update: ' + contentLabel + '*\n' + cards.map(card =>
+          '\n*' + card.dataset.outputName + '*\n```\n' + card.dataset.outputContent + '\n```'
+        ).join('\n') + '\n\n_Image/figure attached to this message where relevant._';
+        $('#output-empty').classList.add('hidden');
+        list.classList.remove('hidden');
+        const noteEl = $('#output-note');
+        noteEl.textContent = note;
+        noteEl.classList.remove('hidden');
+        const preview = $('#preview');
+        preview.innerHTML = previewHtml;
+        preview.classList.remove('hidden');
+        $('#copy-slack').disabled = false;
+        if (window.innerWidth < 881) preview.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function clearOutput() {
+        $('#output-list').innerHTML = '';
+        $('#output-list').classList.add('hidden');
+        $('#output-empty').classList.remove('hidden');
+        $('#output-note').classList.add('hidden');
+        $('#preview').classList.add('hidden');
+        $('#copy-slack').disabled = true;
+        lastSlackText = '';
+      }
+
+      $('#copy-slack').addEventListener('click', () => {
+        if (lastSlackText) copyText(lastSlackText);
+      });
+
+      async function copyText(value) {
+        try {
+          await navigator.clipboard.writeText(value);
+        } catch (error) {
+          const area = document.createElement('textarea');
+          area.value = value; area.style.position = 'fixed'; area.style.opacity = '0';
+          document.body.appendChild(area); area.select(); document.execCommand('copy'); area.remove();
+        }
+        toast('Copied to clipboard');
+      }
+
+      function downloadText(filename, value) {
+        const blob = new Blob([value], { type: filename.endsWith('.json') ? 'application/json' : 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const anchor = document.createElement('a');
+        anchor.href = url; anchor.download = filename; anchor.click();
+        setTimeout(() => URL.revokeObjectURL(url), 500);
+        toast('Downloaded ' + filename);
+      }
+
+      let toastTimer;
+      function toast(message) {
+        const element = $('#toast');
+        element.textContent = message; element.classList.add('show');
+        clearTimeout(toastTimer); toastTimer = setTimeout(() => element.classList.remove('show'), 1800);
+      }
+
+      forms.news.addEventListener('submit', event => {
+        event.preventDefault();
+        if (!event.currentTarget.reportValidity()) return;
+        const data = collect(event.currentTarget);
+        const links = linkValues($('#news-links')).filter(link => link.url);
+        let body = escapeHtml(data.body.trim());
+        links.forEach(link => {
+          const label = link.label || 'Read more';
+          body += ' <a href="' + escapeAttribute(link.url) + '" target="_blank">' + escapeHtml(label) + '</a>';
+        });
+        const item = {
+          date: data.date,
+          title: data.title.trim(),
+          excerpt: data.excerpt.trim(),
+          body,
+          image: imagePath('img/news/', data.image)
+        };
+        const snippet = JSON.stringify(item, null, 2) + ',';
+        const prettyDate = new Date(data.date + 'T12:00:00').toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' });
+        showOutputs(
+          [outputCard('News entry', 'Paste immediately after the [ in news_data.js', snippet, 'news-entry.txt')],
+          data.image.trim() ? 'Remember to also add ' + data.image.trim() + ' to the img/news folder.' : 'No image is required; the website will use its placeholder image.',
+          '<div class="preview-date">' + escapeHtml(prettyDate) + '</div><h3>' + escapeHtml(item.title) + '</h3><p>' + escapeHtml(item.excerpt) + '</p>'
+        );
+      });
+
+      forms.member.addEventListener('submit', event => {
+        event.preventDefault();
+        if (!event.currentTarget.reportValidity()) return;
+        const data = collect(event.currentTarget);
+        const slug = slugify(data.slug);
+        if (!slug) { $('#member-slug').setCustomValidity('Please use at least one letter or number.'); event.currentTarget.reportValidity(); $('#member-slug').setCustomValidity(''); return; }
+        const education = lines(data.education);
+        const awards = lines(data.awards);
+        const links = linkValues($('#member-links')).filter(link => link.url).map(link => {
+          const result = { label: link.label || link.url, url: link.url };
+          const icon = iconFor(link.label);
+          if (icon) result.icon = icon;
+          return result;
+        });
+        const publications = publicationValues();
+        const photo = imagePath('img/people/headshots/', data.photo);
+        const flagCode = data.country === 'custom' ? slugify(data.countryCode) : data.country;
+        if (!flagCode) { $('#member-country-code').setCustomValidity('Enter the flag filename, for example fr.'); event.currentTarget.reportValidity(); $('#member-country-code').setCustomValidity(''); return; }
+        const profile = {
+          name: data.name.trim(), role: data.role.trim(), email: data.email.trim(), photo,
+          bio: data.bio.trim(), links, education, awards, publications
+        };
+        const profileJson = JSON.stringify(profile, null, 2) + '\n';
+
+        const chips = links.map(link => {
+          const icon = link.icon ? '<img src="' + escapeAttribute(link.icon) + '" alt=""> ' : '';
+          return '            <a class="chip-link" href="' + escapeAttribute(link.url) + '" target="_blank" rel="noopener">\n              ' + icon + escapeHtml(link.label) + '\n            </a>';
+        }).join('\n');
+        const educationItems = education.slice(0, 3).map(item => '              <li>' + escapeHtml(item) + '</li>').join('\n');
+        const card = `        <!-- ${escapeHtml(data.name.trim())} -->
+        <article class="card text-center">
+          <div class="avatar-wrap">
+            <div class="avatar">
+              <img src="${escapeAttribute(photo)}"
+                   onerror="this.src='img/people/headshots/placeholder.svg'"
+                   alt="Headshot of ${escapeAttribute(data.name.trim())}">
+            </div>
+            <div class="flag-badge"><img src="img/flags/${escapeAttribute(flagCode)}.svg" alt="${escapeAttribute(flagCode)} flag"></div>
+          </div>
+          <h3>${escapeHtml(data.name.trim())}</h3>
+          <p class="muted">${escapeHtml(data.role.trim())}</p>
+          <div class="chip-row">
+${chips || '            <!-- No profile links supplied -->'}
+          </div>
+          <div class="meta-block">
+            <h4 style="margin:10px 0 6px 0;font-size:14px">Education</h4>
+            <ul class="edu-list">
+${educationItems || '              <li>Education details to follow</li>'}
+            </ul>
+          </div>
+          <p><a href="mailto:${escapeAttribute(data.email.trim())}">${escapeHtml(data.email.trim())}</a></p>
+          <a class="btn btn-gray" href="profile.html?person=${escapeAttribute(slug)}">View more</a>
+        </article>`;
+
+        const homepageCard = `      <!-- ${escapeHtml(data.name.trim())} -->
+      <article class="card text-center">
+        <div class="avatar-wrap">
+          <div class="avatar"><img src="${escapeAttribute(photo)}" onerror="this.src='img/people/headshots/placeholder.svg'" alt="Headshot of ${escapeAttribute(data.name.trim())}"></div>
+        </div>
+        <h3>${escapeHtml(data.name.trim())}</h3>
+        <p class="muted">${escapeHtml(data.role.trim())}</p>
+      </article>`;
+
+        const initials = data.name.trim().split(/\s+/).map(part => part[0]).join('').slice(0, 2).toUpperCase();
+        showOutputs(
+          [
+            outputCard('People page card', 'Paste inside the <div class="cards"> in people.html', card, slug + '-people-card.txt'),
+            outputCard('Homepage card', 'Paste inside the People <div class="cards"> in index.html', homepageCard, slug + '-homepage-card.txt'),
+            outputCard(slug + '.json', 'Save in data/people/', profileJson, slug + '.json')
+          ],
+          'Also add the headshot to img/people/headshots/ as ' + data.photo.replace(/^.*[\\/]/, '') + (flagCode ? '. If the flag is new, add ' + flagCode + '.svg to img/flags/.' : '.'),
+          '<div class="member-preview"><div class="avatar-preview">' + escapeHtml(initials) + '</div><div><div class="preview-date">' + escapeHtml(data.role) + '</div><h3>' + escapeHtml(data.name) + '</h3><p>' + escapeHtml(data.email) + '</p></div></div>'
+        );
+      });
+
+      forms.alumni.addEventListener('submit', event => {
+        event.preventDefault();
+        if (!event.currentTarget.reportValidity()) return;
+        const data = collect(event.currentTarget);
+        const years = String(data.years).split(/[,\s]+/).map(value => Number(value)).filter(value => Number.isInteger(value) && value >= 1900 && value <= 2200);
+        if (!years.length) { $('#alumni-years').setCustomValidity('Enter at least one four-digit year, for example 2025.'); event.currentTarget.reportValidity(); $('#alumni-years').setCustomValidity(''); return; }
+        const item = {
+          name: data.name.trim(), role: data.role.trim(), period: data.period.trim(), years,
+          project: data.project.trim(), now: data.now.trim(), destination: data.destination.trim(), slug: slugify(data.slug)
+        };
+        const snippet = JSON.stringify(item, null, 2) + ',';
+        showOutputs(
+          [outputCard('Alumni entry', 'Paste immediately after the [ in alumni.json', snippet, 'alumni-entry.txt')],
+          'The trailing comma is included so this can be placed before the existing entries.',
+          '<div class="preview-date">' + escapeHtml(item.role + ' · ' + item.period) + '</div><h3>' + escapeHtml(item.name) + '</h3><p>' + escapeHtml(item.project) + '<br><strong>Now:</strong> ' + escapeHtml(item.now) + '</p>'
+        );
+      });
+
+      $('#reset').addEventListener('click', () => {
+        if (!window.confirm('Clear this form and start again?')) return;
+        const form = forms[activeTab];
+        form.reset();
+        if (activeTab === 'news') $('#news-date').value = localToday;
+        if (activeTab === 'member') {
+          $('#member-links').innerHTML = ''; $('#member-publications').innerHTML = ''; addLink($('#member-links'));
+          slugWasEdited = false; photoWasEdited = false;
+        }
+        if (activeTab === 'news') $('#news-links').innerHTML = '';
+        clearOutput();
+      });
+    })();
+  </script>
+</body>
+</html>
