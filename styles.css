@@ -576,16 +576,16 @@ html, body { max-width: 100%; overflow-x: hidden; }
 
 /* Dark theme overrides */
 :root[data-theme="dark"]{
-  --bg:#0e1116;
-  --text:#e5e7eb;
-  --muted:#9aa4b2;
-  --gray:#121721;
-  --soft:#0f141b;
-  --border:#263041;
-  --blue:#8ab4ff;
-  --blue-dark:#5a84d6;
-  --red:#ff6b6b;
-  --gold:#f6d97a;
+  --bg:#1b2430;
+  --text:#dce3ea;
+  --muted:#aab4c0;
+  --gray:#202b38;
+  --soft:#253140;
+  --border:#3a4858;
+  --blue:#82b4e8;
+  --blue-dark:#456f9e;
+  --red:#e87872;
+  --gold:#d9bf6c;
 }
 
 /* Apply tokens */
@@ -644,7 +644,7 @@ hr, .card, .bordered{ border-color:var(--border); }
   border-color:var(--border);
 }
 :root[data-theme="dark"] .news-card:hover{
-  background:#121721; /* slightly lifted over --soft for hover */
+  background:#2b3848; /* slightly lifted over --soft for hover */
 }
 :root[data-theme="dark"] .news-title{ color:var(--text); }
 :root[data-theme="dark"] .news-excerpt,
@@ -677,18 +677,18 @@ hr, .card, .bordered{ border-color:var(--border); }
 
 /* 5) Sticky header / banner / hero */
 :root[data-theme="dark"] header{
-  background:rgba(10,14,20,.82);        /* dark translucent */
+  background:rgba(27,36,48,.90);        /* softer slate translucency */
   border-bottom:1px solid var(--border);
 }
 :root[data-theme="dark"] .hero,
 :root[data-theme="dark"] .banner{
-  background:linear-gradient(135deg, var(--blue-dark) 0%, #0c2148 100%);
+  background:linear-gradient(135deg, #365f86 0%, #263b55 100%);
   color:var(--text);
 }
 :root[data-theme="dark"] .hero::after{
   /* tone down the glow */
-  background:radial-gradient(circle at 20% 10%, rgba(255,255,255,.06), transparent 40%),
-             radial-gradient(circle at 80% 20%, rgba(246,217,122,.08), transparent 40%);
+  background:radial-gradient(circle at 20% 10%, rgba(255,255,255,.10), transparent 40%),
+             radial-gradient(circle at 80% 20%, rgba(217,191,108,.09), transparent 40%);
 }
 
 /* 6) Buttons that referenced light colors */
@@ -726,13 +726,13 @@ hr, .card, .bordered{ border-color:var(--border); }
   border-color:var(--border);
 }
 :root[data-theme="dark"] .badge{
-  background:#1a2432;
+  background:#2b3848;
   border-color:var(--border);
   color:var(--text);
 }
 
 /* 10) Avatars & round image rims */
-:root[data-theme="dark"] .avatar{ background:#1f2937; }      /* replaces #e5e7eb */
+:root[data-theme="dark"] .avatar{ background:#2d3a49; }      /* replaces #e5e7eb */
 :root[data-theme="dark"] .flag-badge{ box-shadow:0 0 0 2px var(--bg); } /* replaces #fff rim */
 
 /* 11) Group photo frame */
@@ -743,7 +743,7 @@ hr, .card, .bordered{ border-color:var(--border); }
 :root[data-theme="dark"] .pubcard{ border-bottom-color:var(--border); }
 
 /* 13) Generic hovers that used light tints */
-:root[data-theme="dark"] .chip-link:hover{ background:#161c25; border-color:var(--border); }
+:root[data-theme="dark"] .chip-link:hover{ background:#2b3848; border-color:var(--border); }
 
 /* 14) Body copy colors inside cards */
 :root[data-theme="dark"] .news-card p,

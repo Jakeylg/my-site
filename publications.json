@@ -1,5 +1,29 @@
 [
-{
+  {
+    "number": 41,
+    "title": "Subcomponent Self-Assembly of Anion-Coordinated Quadruple Helicates With Light-Induced Guest Release",
+    "authors": [
+      "Leilei Xu",
+      "Wenhua Xiong",
+      "Lixia Chang",
+      "Mingli Lian",
+      "Ruying Lv",
+      "Jiawei Liu",
+      "Le Yu",
+      "Zhenyi Zhang",
+      "Jake L. Greenfield",
+      "Dong Yang*",
+      "Jie Zhao*"
+    ],
+    "journal": "Angew. Chem. Int. Ed.",
+    "year": 2026,
+    "pages": "e9038203",
+    "doi": "10.1002/anie.9038203",
+    "publisherUrl": "https://doi.org/10.1002/anie.9038203",
+    "tocImage": "img/pubs/pub41-toc.webp",
+    "abstract": "Developing new self-assembly strategies is important not only for constructing otherwise inaccessible materials, but also for understanding the principles that govern how molecules organize. Herein, we report the use of subcomponent self-assembly for the construction of anion-coordinated quadruple helicates with high to quantitative yields. These quadruple helicates were assembled in situ from simple subcomponents through the simultaneous formation of dynamic acylhydrazone bonds and hydrogen bonds. Among them, the A₂L₄ quadruple helicate featuring linkers of 4,4′-methylenebis(phenyl) (H¹) demonstrated the ability to encapsulate a range of cationic guests, such as TBA⁺ and TPA⁺. At the same time, the templating effect of the guests was able to drive the selective formation of H¹⊃TBA from a dynamic combinatorial library. Notably, the incorporated acylhydrazone units function as a photoresponsive motif, enabling light-induced release of encapsulated guests. By demonstrating subcomponent self-assembly for constructing photoresponsive anion-coordinated architectures, this work provides a robust strategy that paves the way for metal-free, high-nuclearity hydrogen-bonded assemblies and their advanced applications in smart materials for targeted molecular delivery and release."
+  },
+  {
   "number": 40,
   "title": "Exploring size-controlled exciton evolution using DNA libraries",
   "authors": [
