@@ -6,6 +6,7 @@
  */
 (function(){
   const PLACEHOLDER_SRC = 'img/news/placeholder.png';
+  const PAGE_SIZE = 12;
 
   const FALLBACK_DATAURI = 'data:image/svg+xml;utf8,' + encodeURIComponent(`
     <svg xmlns="http://www.w3.org/2000/svg" width="640" height="420">
@@ -144,6 +145,52 @@
     renderList(container, items.slice(0,3), 'home');
   }
 
+  function mountNewsArchive(container, items){
+    const yearFilter = document.getElementById('news-year-filter');
+    const resultsCount = document.getElementById('news-results-count');
+    const loadMore = document.getElementById('news-load-more');
+    let visibleCount = PAGE_SIZE;
+
+    if(yearFilter){
+      const years = [...new Set(items.map(item => item.date.slice(0,4)))];
+      yearFilter.innerHTML = '<option value="">All years</option>' +
+        years.map(year => `<option value="${year}">${year}</option>`).join('');
+    }
+
+    if(window.location.hash){
+      const targetId = window.location.hash.slice(1);
+      const targetIndex = items.findIndex(item => slugify(item.title) === targetId);
+      if(targetIndex >= visibleCount) visibleCount = targetIndex + 1;
+    }
+
+    function update(){
+      const selectedYear = yearFilter?.value || '';
+      const filtered = selectedYear
+        ? items.filter(item => item.date.startsWith(selectedYear + '-'))
+        : items;
+      const shown = filtered.slice(0, visibleCount);
+      renderList(container, shown, 'news');
+
+      if(resultsCount){
+        resultsCount.textContent = `Showing ${shown.length} of ${filtered.length} updates`;
+      }
+      if(loadMore){
+        loadMore.hidden = shown.length >= filtered.length;
+      }
+    }
+
+    yearFilter?.addEventListener('change', () => {
+      visibleCount = PAGE_SIZE;
+      update();
+    });
+    loadMore?.addEventListener('click', () => {
+      visibleCount += PAGE_SIZE;
+      update();
+    });
+
+    update();
+  }
+
   function start(items){
     // Normalize and sort
     items = (items||[]).map(it => {
@@ -155,7 +202,7 @@
     if(homeMount) mountHome(homeMount, items);
 
     const newsMount = document.getElementById('news-list');
-    if(newsMount) renderList(newsMount, items, 'news');
+    if(newsMount) mountNewsArchive(newsMount, items);
   }
 
   if(Array.isArray(window.NEWS_ITEMS)){

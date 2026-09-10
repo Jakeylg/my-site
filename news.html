@@ -6,9 +6,23 @@
   <title>News — Greenfield Group</title>
   <meta name="description" content="News, awards, publications, talks, and other updates from the Greenfield Group.">
   <link rel="canonical" href="https://imineswitch.com/news.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Greenfield Group">
+  <meta property="og:title" content="News — Greenfield Group">
+  <meta property="og:description" content="News, awards, publications, talks, and other updates from the Greenfield Group.">
+  <meta property="og:url" content="https://imineswitch.com/news.html">
+  <meta property="og:image" content="https://imineswitch.com/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Greenfield Group — Light, Dynamics, and Out-of-Equilibrium Chemistry">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="News — Greenfield Group">
+  <meta name="twitter:description" content="News, awards, publications, talks, and other updates from the Greenfield Group.">
+  <meta name="twitter:image" content="https://imineswitch.com/og.png">
+  <meta name="twitter:image:alt" content="Greenfield Group — Light, Dynamics, and Out-of-Equilibrium Chemistry">
   <link rel="icon" type="image/png" href="favicon.png?v=2">
   <script src="theme.js"></script>
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
   <div id="site-header"></div>
@@ -18,7 +32,17 @@
       <div class="news-header">
         <h1>News</h1>
       </div>
+      <div class="news-archive-controls">
+        <label for="news-year-filter">Filter by year</label>
+        <select id="news-year-filter">
+          <option value="">All years</option>
+        </select>
+      </div>
+      <p id="news-results-count" class="news-results-count" aria-live="polite"></p>
       <div id="news-list" aria-live="polite"></div>
+      <div class="news-load-more-wrap">
+        <button id="news-load-more" class="btn news-load-more" type="button">Show more news</button>
+      </div>
     </div>
   </main>
 
@@ -29,8 +53,8 @@
   </footer>
 
   <script src="nav.js?v=2"></script>
-  <script src="banner.js"></script>
+  <script src="banner.js?v=2"></script>
   <script src="news_data.js?v=3"></script>
-  <script src="news.js?v=2"></script>
+  <script src="news.js?v=3"></script>
 </body>
 </html>
