@@ -3,14 +3,14 @@ window.NEWS_ITEMS = [
   "date": "2026-05-01",
   "title": "Jake Named a 2026 Thieme Chemistry Journals Award Winner",
   "excerpt": "Jake has been named a 2026 Thieme Chemistry Journals Award winner.",
-  "body": "Jake has been named among the winners of the 2026 Thieme Chemistry Journals Award. Presented annually, the award recognises up-and-coming researchers worldwide in the early stages of their independent academic careers, with recipients selected by the editorial boards of Thieme's chemistry journals. The award recognises researchers working across chemical synthesis, catalysis, and closely related areas of organic chemistry. Jake also took part in an interview with Thieme discussing his research, career so far, and future directions for the group. <a href=\"https://cdn0.scrvt.com/9ca5761af4a1cf7bf49dd51537e8f4d1/98e6e733e2c739d1/b90970f99655/2026_TCJA-Interview_Jake_Greenfield.pdf\" target=\"_blank\">Read the interview here.</a>",
+  "body": "Jake has been named among the winners of the 2026 Thieme Chemistry Journals Award. Presented annually, the award recognises up-and-coming researchers worldwide in the early stages of their independent academic careers, with recipients selected by the editorial boards of Thieme's chemistry journals. The award recognises researchers working across chemical synthesis, catalysis, and closely related areas of organic chemistry. Jake also took part in an interview with Thieme discussing his research, career so far, and future directions for the group. <a href=\"https://cdn0.scrvt.com/9ca5761af4a1cf7bf49dd51537e8f4d1/98e6e733e2c739d1/b90970f99655/2026_TCJA-Interview_Jake_Greenfield.pdf\" target=\"_blank\" rel=\"noopener\">Read the interview here.</a>",
   "image": "img/news/Thieme.jpg"
 },
 {
   "date": "2026-07-24",
   "title": "Royal Society of Edinburgh Research Grant Awarded",
   "excerpt": "New RSE funding will support our work on improving the stability of photoswitchable imines in water.",
-  "body": "The group has been awarded a Small Research Grant from the Royal Society of Edinburgh (RSE). The project will explore strategies to improve the stability of photoswitchable imines in water, helping us to expand this chemistry towards conditions relevant to a broader range of applications. We are very grateful to the RSE for supporting this new direction in the group's research. <a href=\"https://news.st-andrews.ac.uk/archive/st-andrews-researchers-secure-prestigious-rse-funding-awards/\" target=\"_blank\">Read the University of St Andrews announcement here.</a> <a href=\"https://rse.org.uk/rse-research-awards-strengthen-scotlands-research-future-with-661k-funding-boost/\" target=\"_blank\">Read more from the RSE here.</a>",
+  "body": "The group has been awarded a Small Research Grant from the Royal Society of Edinburgh (RSE). The project will explore strategies to improve the stability of photoswitchable imines in water, helping us to expand this chemistry towards conditions relevant to a broader range of applications. We are very grateful to the RSE for supporting this new direction in the group's research. <a href=\"https://news.st-andrews.ac.uk/archive/st-andrews-researchers-secure-prestigious-rse-funding-awards/\" target=\"_blank\" rel=\"noopener\">Read the University of St Andrews announcement here.</a> <a href=\"https://rse.org.uk/rse-research-awards-strengthen-scotlands-research-future-with-661k-funding-boost/\" target=\"_blank\" rel=\"noopener\">Read more from the RSE here.</a>",
   "image": "img/news/RSE.jpeg"
 },
 {
@@ -38,7 +38,7 @@ window.NEWS_ITEMS = [
   "date": "2026-07-29",
   "title": "Jake Joins Communications Chemistry as Guest Editor",
   "excerpt": "Jake joins the Guest Editor team for a new collection on Programmable Chemical Systems.",
-  "body": "Jake has taken on a Guest Editor role at Springer Nature's Communications Chemistry for a new collection on 'Programmable Chemical Systems', alongside Fredrik Schaufelberger and Annette Taylor. The collection brings together research across molecular, supramolecular, and systems chemistry that shares a common goal: programming chemical systems to display complex behaviour and function. Topics range from oscillating reaction networks and molecular machines to compartmentalised and spatially organised systems. We hope the collection will bring together researchers from traditionally separate areas and help stimulate new ideas at their interfaces. <a href=\"https://communities.springernature.com/posts/call-for-papers-programmable-chemical-systems\" target=\"_blank\">Find out more about the collection here.</a>",
+  "body": "Jake has taken on a Guest Editor role at Springer Nature's Communications Chemistry for a new collection on 'Programmable Chemical Systems', alongside Fredrik Schaufelberger and Annette Taylor. The collection brings together research across molecular, supramolecular, and systems chemistry that shares a common goal: programming chemical systems to display complex behaviour and function. Topics range from oscillating reaction networks and molecular machines to compartmentalised and spatially organised systems. We hope the collection will bring together researchers from traditionally separate areas and help stimulate new ideas at their interfaces. <a href=\"https://communities.springernature.com/posts/call-for-papers-programmable-chemical-systems\" target=\"_blank\" rel=\"noopener\">Find out more about the collection here.</a>",
   "image": "img/news/GuestEdit.jpg"
 },
 {
@@ -123,14 +123,14 @@ window.NEWS_ITEMS = [
     "title": "ERC-StG Success!",
     "excerpt": "An ERC-StG (€1.5M) has been awarded to work on project HeliOS",
     "body": "Jake has been awarded an ERC Starting Grant (ERC-StG) – one of Europe’s most competitive and prestigious research awards – for his project HeliOS. The University of Würzburg’s official press release explains the vision behind the project in accessible terms: Nature provides striking examples of spring-like structures that store and release energy. Some seed pods, for instance, use this strategy to burst open and scatter their seeds far and wide. Inspired by this principle, Jake Greenfield will investigate how spiral-shaped molecules can be deformed in his ERC project HeliOS. To achieve this, the project will couple these molecular spirals with photoswitches – molecules that reversibly change their shape when exposed to light. Alongside established azo-based switches, HeliOS will also harness next-generation imine-based switches, developed by Greenfield’s team and colleagues at the Center for Nanosystems Chemistry (JMU). The ultimate goal is to create light-responsive spiral molecules whose properties can be precisely controlled with light pulses. This approach could open new avenues for energy storage and release strategies. PhD positions will be available from 2026. If you are interested and believe you would be a strong candidate, please get in touch.",
-    "image": "img/news/Greenfield_HeliOS.jpg"
+    "image": "img/news/Greenfield_HeliOS.webp"
   },
   {
     "date": "2025-08-25",
     "title": "Jiarong Wins the 2025 CGCA Prize",
     "excerpt": "Jiarong wins the 2025 CGCA prize in a multistage competition.",
     "body": "We are delighted to share that Jiarong has won the Chinese-German Chemical Association (CGCA) PhD Prize 2025. The competition involved several stages, including submission of a CV, publication list, and recommendation letters, as well as a recorded video presentation explaining the work of their PhD thesis. From these applications, three finalists were selected to present at the 37th CGCA meeting, held this year at FAU Berlin, where Jiarong was selected as the winner. Congratulations to Jiarong for this great achievement.",
-    "image": "img/news/JiarongCGCA.jpg"
+    "image": "img/news/JiarongCGCA.webp"
   },
   {
     "date": "2025-05-15",
@@ -158,7 +158,7 @@ window.NEWS_ITEMS = [
   "title": "DFG Project Grant Awarded",
   "excerpt": "Awarded a DFG Sachbeihilfe to expand our work on imine-based photoswitches.",
   "body": "We are delighted to announce that on 1 July 2025, our group received a DFG Sachbeihilfe (project grant) to advance our research on imine-based photoswitches. This funding will support a PhD position and cover consumable costs, enabling Deepu's PhD work—our heartfelt thanks to the DFG for this support.",
-  "image": "img/news/dfg.jpg"
+  "image": "img/news/dfg.webp"
 },
 {
   "date": "2025-05-30",
@@ -308,5 +308,4 @@ window.NEWS_ITEMS = [
     "image": ""
   }
 ]
-
 

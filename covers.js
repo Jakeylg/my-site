@@ -6,7 +6,6 @@
     const n = document.createElement(tag);
     Object.entries(attrs).forEach(([k,v])=>{
       if(k==='class') n.className=v;
-      else if(k==='html') n.innerHTML=v;
       else if(k.startsWith('on') && typeof v==='function') n[k]=v;
       else n.setAttribute(k, v);
     });
@@ -17,6 +16,15 @@
   };
 
   const state = { items: [], filtered: [], idxMap: [], activeIdx: 0 };
+
+  function safeUrl(value){
+    try{
+      const url = new URL(String(value || ''), location.href);
+      return ['http:', 'https:'].includes(url.protocol) ? url.href : '';
+    }catch(error){
+      return '';
+    }
+  }
 
   const gallery = document.getElementById('covers-gallery');
   const typeSel = document.getElementById('filter-type');
@@ -69,6 +77,7 @@
     // Lightbox nav + close
     dlg.querySelector('.prev').addEventListener('click', ()=> nav(-1));
     dlg.querySelector('.next').addEventListener('click', ()=> nav(1));
+    dlg.querySelector('.lightbox-close').addEventListener('click', ()=> dlg.close());
     dlg.addEventListener('keydown', (e)=>{
       if(e.key==='ArrowLeft') nav(-1);
       if(e.key==='ArrowRight') nav(1);
@@ -112,14 +121,13 @@
 
     gallery.innerHTML = '';
     state.filtered.forEach((d, fi)=>{
-      const fig = el('figure', {class:'gallery-card', tabindex:'0', role:'button',
-        onclick:()=>openLightbox(fi),
-        onkeypress:(e)=>{ if(e.key==='Enter' || e.key===' ') openLightbox(fi); }
+      const fig = el('button', {class:'gallery-card', type:'button',
+        onclick:()=>openLightbox(fi)
       },[
         el('div', {class:'gallery-thumb'}, [
-          el('img', {src:d.thumb, alt:`${d.title}${d.journal? ' — '+d.journal:''}`})
+          el('img', {src:d.thumb, alt:`${d.title}${d.journal? ' — '+d.journal:''}`, loading:'lazy', decoding:'async'})
         ]),
-        el('figcaption', {class:'gallery-cap'}, [
+        el('div', {class:'gallery-cap'}, [
           el('div', {class:'gallery-title'}, d.title),
           el('div', {class:'gallery-meta muted'}, `${d.journal || d.type}${d.year? ' · '+d.year:''}`)
         ])
@@ -144,12 +152,18 @@
     const d = state.filtered[state.activeIdx];
     lbImg.src = d.image;
     lbImg.alt = d.title + (d.journal? ' — '+d.journal : '');
-    lbCap.innerHTML = `
-      <strong>${d.title}</strong>${d.journal? ' · '+d.journal:''}${d.year? ' · '+d.year:''}
-      ${d.type? `<span class="badge" style="margin-left:8px">${d.type}</span>`:''}
-      ${d.credit? `<div class="muted" style="margin-top:6px">${d.credit}</div>`:''}
-    `;
-    lbLinks.innerHTML = (d.links||[]).map(l=>`<a class="chip-link" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join('');
+    const caption = [
+      el('strong', {}, d.title),
+      document.createTextNode(`${d.journal ? ' · ' + d.journal : ''}${d.year ? ' · ' + d.year : ''}`),
+      d.type ? el('span', {class:'badge', style:'margin-left:8px'}, d.type) : null,
+      d.credit ? el('div', {class:'muted', style:'margin-top:6px'}, d.credit) : null
+    ].filter(Boolean);
+    lbCap.replaceChildren(...caption);
+    const links = (d.links || []).map(link => {
+      const href = safeUrl(link.url);
+      return href ? el('a', {class:'chip-link', href, target:'_blank', rel:'noopener'}, link.label || 'View') : null;
+    }).filter(Boolean);
+    lbLinks.replaceChildren(...links);
   }
 
   init();

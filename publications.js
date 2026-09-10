@@ -5,16 +5,30 @@
   const searchEl    = document.getElementById('pubSearch');
   const yearEl      = document.getElementById('yearFilter');
 
+  const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+  })[char]);
+
+  function safeUrl(value){
+    if(!value) return '';
+    try{
+      const url = new URL(String(value), location.href);
+      return ['http:', 'https:'].includes(url.protocol) ? String(value) : '';
+    }catch(error){
+      return '';
+    }
+  }
+
   function showError(container, msg){
     container.innerHTML = `
       <div style="background:#fef2f2;border:1px solid #fecaca;color:#7f1d1d;padding:12px;border-radius:8px">
-        <strong>Couldn’t load data:</strong> ${msg}
+        <strong>Couldn’t load data:</strong> ${escapeHTML(msg)}
       </div>`;
   }
 
   async function getJSON(url){
     try{
-      const res = await fetch(url + (url.includes('?')?'':'?v=' + Date.now()), {cache:'no-store'});
+      const res = await fetch(url);
       if(!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
       return await res.json();
     }catch(e){
@@ -34,29 +48,33 @@
     return [where, volIssue, p.pages].filter(Boolean).join(', ');
   }
 
-  function cardHTML(p, idx){
-    const link = p.publisherUrl || doiUrl(p.doi) || p.pdfUrl || '';
+  function cardHTML(p, idx, idPrefix){
+    const link = safeUrl(p.publisherUrl || doiUrl(p.doi) || p.pdfUrl || '');
+    const pdfUrl = safeUrl(p.pdfUrl);
+    const doiLink = safeUrl(doiUrl(p.doi));
     const hasAbs = !!(p.abstract && String(p.abstract).trim());
     const num = Number.isFinite(+p.number) ? +p.number : '';
+    const authors = Array.isArray(p.authors) ? p.authors.join(', ') : String(p.authors || '');
+    const abstractId = `${idPrefix}-abstract-${idx}`;
     return `
       <article class="pubcard" aria-expanded="false">
         <figure>
-          <img src="${p.tocImage || FALLBACK_IMG}" alt="" onerror="this.src='${FALLBACK_IMG}'">
+          <img src="${escapeHTML(p.tocImage || FALLBACK_IMG)}" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${FALLBACK_IMG}'">
         </figure>
         <div>
           ${num ? `<div class="pubnum">#${num}</div>` : ''}
-          <h3>${p.title || 'Untitled'}</h3>
+          <h3>${escapeHTML(p.title || 'Untitled')}</h3>
           <div class="meta">
-            ${(p.authors||[]).join(', ')}${(p.authors||[]).length && (p.journal||p.outlet||p.year) ? ' — ' : ''}${metaLine(p)}${p.year? (metaLine(p)?', ':'') + p.year : ''}
+            ${escapeHTML(authors)}${authors && (p.journal||p.outlet||p.year) ? ' — ' : ''}${escapeHTML(metaLine(p))}${p.year? (metaLine(p)?', ':'') + escapeHTML(p.year) : ''}
           </div>
           <div class="links-row">
-            ${link ? `<a href="${link}" target="_blank" rel="noopener">View</a>` : ''}
-            ${p.doi ? ` • <a href="${doiUrl(p.doi)}" target="_blank" rel="noopener">DOI</a>` : ''}
-            ${p.pdfUrl && p.pdfUrl!==link ? ` • <a href="${p.pdfUrl}" target="_blank" rel="noopener">PDF</a>` : ''}
+            ${link ? `<a href="${escapeHTML(link)}" target="_blank" rel="noopener">${p.publisherUrl ? 'Publisher' : (p.doi ? 'DOI' : 'PDF')}</a>` : ''}
+            ${doiLink && doiLink!==link ? ` • <a href="${escapeHTML(doiLink)}" target="_blank" rel="noopener">DOI</a>` : ''}
+            ${pdfUrl && pdfUrl!==link ? ` • <a href="${escapeHTML(pdfUrl)}" target="_blank" rel="noopener">PDF</a>` : ''}
           </div>
           ${hasAbs ? `
-            <button class="toggle-abs" aria-expanded="false" aria-controls="abs_${idx}">Show abstract</button>
-            <div id="abs_${idx}" class="abstract" hidden>${String(p.abstract)}</div>
+            <button class="toggle-abs" type="button" aria-expanded="false" aria-controls="${abstractId}">Show abstract</button>
+            <div id="${abstractId}" class="abstract" hidden>${escapeHTML(p.abstract)}</div>
           ` : ''}
         </div>
       </article>
@@ -70,48 +88,37 @@ function wireCards(container){
       const btn = card.querySelector('.toggle-abs');
       const abs = card.querySelector('.abstract');
       if(btn) btn.setAttribute('aria-expanded','false');
+      if(btn) btn.textContent = 'Show abstract';
       card.setAttribute('aria-expanded','false');
       if(abs) abs.hidden = true;
     });
   }
 
-  // Click on card (but not on links) — accordion open/close
+  // Use the native button as the single accessible toggle target.
   container.addEventListener('click', e=>{
-    const card = e.target.closest('.pubcard');
-    if(!card || e.target.closest('a')) return;
-
-    const btn = card.querySelector('.toggle-abs');
+    const btn = e.target.closest('.toggle-abs');
+    if(!btn) return;
+    const card = btn.closest('.pubcard');
     const abs = card.querySelector('.abstract');
-    if(!btn || !abs) return; // no abstract, nothing to do
+    if(!abs) return;
 
     const isOpen = card.getAttribute('aria-expanded') === 'true';
     if(isOpen){
       // close current
       btn.setAttribute('aria-expanded','false');
+      btn.textContent = 'Show abstract';
       card.setAttribute('aria-expanded','false');
       abs.hidden = true;
-      abs.setAttribute('hidden', ''); // ensure attribute is present
     }else{
       // open this one, close others
       collapseAll(card);
       btn.setAttribute('aria-expanded','true');
+      btn.textContent = 'Hide abstract';
       card.setAttribute('aria-expanded','true');
       abs.hidden = false;
-      abs.removeAttribute('hidden');   // ensure attribute is removed
     }
   });
 
-  // Keyboard support: Enter/Space toggles via the button
-  container.addEventListener('keydown', e=>{
-    if(e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
-    const card = e.target.closest('.pubcard');
-    if(!card) return;
-    const btn = card.querySelector('.toggle-abs');
-    if(btn){
-      e.preventDefault();
-      btn.click(); // re-use click logic above (will accordion)
-    }
-  });
 }
 
 
@@ -120,22 +127,21 @@ function wireCards(container){
       container.innerHTML = `<p class="muted" style="padding:8px 0">No items to display.</p>`;
       return;
     }
-    list.sort((a,b)=>{
+    const sorted = [...list].sort((a,b)=>{
       const da = a.date ? Date.parse(a.date) : (a.year? Date.parse(`${a.year}-01-01`):0);
       const db = b.date ? Date.parse(b.date) : (b.year? Date.parse(`${b.year}-01-01`):0);
       if(db !== da) return db - da;
       const na = Number(a.number)||0, nb = Number(b.number)||0;
       return nb - na;
     });
-    container.innerHTML = list.map((p,i)=>cardHTML(p,i)).join('');
-    wireCards(container);
+    container.innerHTML = sorted.map((p,i)=>cardHTML(p,i,container.id || 'publications')).join('');
   }
 
   function attachFilter(list){
     if(!searchEl || !yearEl) return;
     const years = [...new Set(list.map(p=>p.year).filter(Boolean))].sort((a,b)=>b-a);
     yearEl.innerHTML = `<option value="">All years</option>` + years.map(y=>`<option>${y}</option>`).join('');
-    window.filterPubs = function(){
+    const filterPubs = function(){
       const q = (searchEl.value||'').toLowerCase().trim();
       const y = (yearEl.value||'').trim();
       const filtered = list.filter(p=>{
@@ -152,9 +158,13 @@ function wireCards(container){
       });
       render(filtered, pubListEl);
     };
+    searchEl.addEventListener('input', filterPubs);
+    yearEl.addEventListener('change', filterPubs);
   }
 
   async function init(){
+    wireCards(pubListEl);
+    if(otherListEl) wireCards(otherListEl);
     try{
       const pubs = await getJSON('publications.json');
       render(pubs, pubListEl);

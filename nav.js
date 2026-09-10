@@ -1,28 +1,20 @@
 // Shared navigation/header for Greenfield Group + Dark Mode
 (function () {
-  // --- EARLY THEME APPLY (prevents flash) ---
-  try {
-    const saved = localStorage.getItem('gg_theme');
-    const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = saved || (systemDark ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-theme', theme);
-  } catch (e) {}
-
   // Identify current page for "active" styling
   const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
   const isHome = path === '' || path === 'index.html' || path.startsWith('index');
 
   const makeLink = (href, label, current) =>
-    `<a href="${href}"${current ? ' style="font-weight:700"' : ''}>${label}</a>`;
+    `<a href="${href}" class="nav-link${current ? ' nav-link-active' : ''}"${current ? ' aria-current="page"' : ''}>${label}</a>`;
 
   const linkHTML = [
-    makeLink('index.html#home', 'Home', isHome),
-    makeLink('research.html', 'Research', path === 'research.html'),
-    makeLink('publications.html', 'Publications', path === 'publications.html'),
-    makeLink('people.html', 'People', path === 'people.html'),
-    makeLink('news.html', 'News', path === 'news.html'),
-    makeLink('covers.html', 'Covers & Art', path === 'covers.html'), // NEW LINK
-    makeLink('contact.html', 'Contact', path === 'contact.html')
+    makeLink('/index.html#home', 'Home', isHome),
+    makeLink('/research.html', 'Research', path === 'research.html'),
+    makeLink('/publications.html', 'Publications', path === 'publications.html'),
+    makeLink('/people.html', 'People', ['people.html', 'profile.html', 'alumni.html'].includes(path)),
+    makeLink('/news.html', 'News', path === 'news.html'),
+    makeLink('/covers.html', 'Covers & Art', path === 'covers.html'),
+    makeLink('/contact.html', 'Contact', path === 'contact.html')
   ].join('');
 
   // Theme toggle control (desktop + mobile)
@@ -36,13 +28,13 @@
   const headerHTML = `
   <header>
     <div class="container nav-row">
-      <div class="brand">
+      <a class="brand" href="/" aria-label="Greenfield Group home">
         <div class="logo">GG</div>
         <div>
           <div style="font-weight:700">Greenfield Group</div>
           <div class="muted" style="font-size:12px">School of Chemistry · University of St Andrews</div>
         </div>
-      </div>
+      </a>
 
       <!-- Desktop nav -->
       <nav class="desktop-nav" aria-label="Primary">
@@ -71,7 +63,24 @@
 
   // Inject header
   document.addEventListener('DOMContentLoaded', () => {
-    document.body.insertAdjacentHTML('afterbegin', headerHTML);
+    const mount = document.getElementById('site-header');
+    if(mount){
+      mount.insertAdjacentHTML('beforebegin', headerHTML);
+      mount.remove();
+    }else{
+      document.body.insertAdjacentHTML('afterbegin', headerHTML);
+    }
+
+    document.querySelectorAll('#year').forEach(node => {
+      node.textContent = new Date().getFullYear();
+    });
+
+    if(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches){
+      document.querySelectorAll('video[autoplay]').forEach(video => {
+        video.removeAttribute('autoplay');
+        video.pause();
+      });
+    }
 
     const menu = document.getElementById('menu');
     const toggle = document.querySelector('.mobile-toggle');
@@ -87,8 +96,6 @@
         menu.hidden = true;
       }
     }
-    window.toggleMenu = setMenu;
-
     toggle.addEventListener('click', () => {
       const open = toggle.getAttribute('aria-expanded') !== 'true';
       setMenu(open);
@@ -99,7 +106,10 @@
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') setMenu(false);
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setMenu(false);
+        toggle.focus();
+      }
     });
 
     menu.addEventListener('click', (e) => {

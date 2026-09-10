@@ -8,6 +8,8 @@ html{scroll-behavior:smooth}
 body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial,'Noto Sans',sans-serif;color:var(--text);background:var(--bg);line-height:1.6}
 img{max-width:100%;display:block;height:auto}
 a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:where(a,button,input,select,[tabindex]):focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 .container{max-width:1100px;margin:0 auto;padding:0 16px}
 .btn{display:inline-block;padding:10px 16px;border-radius:12px;font-weight:600}
 .btn-primary{background:#fff;color:var(--blue)}
@@ -47,28 +49,22 @@ a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
 .chip-link img,.chip-disabled img{width:16px;height:16px;display:inline-block}
 
 /* Group photo */
-.group-photo{width:100%;max-height:400px;overflow:hidden;border-radius:16px;border:1px solid #e5e7eb}
-.group-photo img{width:100%;height:100%;object-fit:cover;object-position:center}
+.group-photo{position:relative;z-index:2;width:100%;overflow:hidden;border-radius:16px;border:1px solid var(--border)}
+.group-photo img{width:100%;max-width:600px;margin:20px auto;object-fit:cover;object-position:center;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,.15)}
 
-/* Publications (unchanged from your file) */
-.pubitem{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--border)}
-.pubitem figure{margin:0;overflow:hidden;border-radius:10px}
-.pubitem img{width:110px;height:110px;object-fit:cover;object-position:center;border-radius:10px;border:1px solid var(--border);background:#f2f2f2;transition:transform .25s ease}
-.pubitem figure:hover img,.pubitem figure:focus-within img{transform:scale(1.04)}
-.pubitem h3{font-size:18px;margin:0 0 6px 0}
-.pubitem .meta{font-size:14px;color:var(--muted)}
 .pubnum{font-weight:700;color:var(--red);margin-right:8px}
 .badges{display:inline-flex;gap:8px;align-items:center;margin-left:8px}
 .badge{font-size:12px;background:#f1f5f9;border:1px solid #e2e8f0;color:#334155;border-radius:999px;padding:2px 8px}
 .controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 6px}
 select,input[type="search"]{padding:8px 10px;border-radius:10px;border:1px solid #d1d5db}
-@media (max-width:720px){ .pubitem{grid-template-columns:1fr} .pubitem img{width:110px;height:110px} }
 
 /* Footer & misc */
 .notice{background:var(--blue);color:#fff;font-size:14px}
 .notice a{color:#fff;text-decoration:underline;text-underline-offset:2px}
 header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(6px);border-bottom:1px solid #eee}
-.brand{display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:12px;color:inherit;text-decoration:none}
+.brand:hover{text-decoration:none}
+.nav-link-active{font-weight:700}
 .logo{height:36px;width:36px;border-radius:8px;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:700}
 nav a{margin-left:18px;color:#444} nav a:hover{color:var(--blue)}
 .nav-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
@@ -82,6 +78,8 @@ nav a{margin-left:18px;color:#444} nav a:hover{color:var(--blue)}
 h2{position:relative;padding-bottom:6px;margin-top:0}
 h2::after{content:"";position:absolute;left:0;bottom:0;width:64px;height:3px;background:var(--red);border-radius:2px}
 footer{border-top:1px solid #eee;padding:20px 0;color:#666;font-size:14px}
+.not-found{max-width:680px;margin:40px auto;text-align:center}
+.not-found h1{margin-top:0}
 .dots{display:inline-flex;gap:12px;align-items:center}
 .dot{width:12px;height:12px;border-radius:999px;display:inline-block}
 @media (max-width:760px){
@@ -95,16 +93,13 @@ footer{border-top:1px solid #eee;padding:20px 0;color:#666;font-size:14px}
 
 /* Keep each education entry on a single line */
 .edu-list{list-style:disc;margin:0 0 0 18px;padding:0;text-align:left;display:inline-block}
-.edu-list li{white-space:nowrap}
+.edu-list li{white-space:normal}
 
 /* Ensure flags with left-side symbols remain visible in round badges */
 .flag-left{object-position:15% center}
 
 
 /* --- Homepage media split (group photo + animation) --- */
-/* Keep the left (group photo) above any overlap */
-.group-photo{ position:relative; z-index:2; }
-
 /* Keep overlap, allow spillover, no masking */
 .gif-frame{
   position:relative;
@@ -116,44 +111,18 @@ footer{border-top:1px solid #eee;padding:20px 0;color:#666;font-size:14px}
   height:clamp(360px, 50vw, 600px);
   margin-top:-130px;        /* overlap the hero */
 }
-#news-animations{ padding-bottom:0px; }
-#news-animations { margin-bottom: -16px; }
+#news-animations{padding-bottom:0;margin-bottom:-16px}
 
-/* Make the surface larger than the frame and center it */
+/* Size the transparent animation without downloading a large GIF. */
 .gif-surface{
   position:absolute;
-  left:50%;
-  top:50%;
-  /* Bigger than the frame in BOTH directions */
-  width:260%;
-  height:140%;
-  transform:translate(-50%, -60%);
-
-  background-repeat:no-repeat;
-  /* Fit by height of the (larger) surface, no vertical crop */
-  background-size:auto 70%;
-  background-position:center;
-
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
   -webkit-user-drag:none;
   user-select:none;
   pointer-events:none;
-}
-
-/* Mobile: dial it back so it doesn't overwhelm */
-@media (max-width:900px){
-  .gif-frame{
-    height:auto;
-    margin-top:0;
-  }
-  .gif-surface{
-    position:relative;
-    left:50%;
-    top:auto;
-    transform:translateX(-50%);
-    width:100%;
-    height:260px;           /* pick a sensible mobile height */
-    background-size:contain;/* keep full GIF visible on small screens */
-  }
 }
 
 /* Transparent overlay to intercept right-click and drags */
@@ -164,15 +133,16 @@ footer{border-top:1px solid #eee;padding:20px 0;color:#666;font-size:14px}
 /* Mobile: no overlap for tighter stacks */
 @media (max-width:900px){
   .gif-frame{
-    height:auto;          /* let it shrink on small screens */
-    margin-top:0;         /* remove overlap on mobile */
+    height:auto;
+    margin-top:0;
     margin-left:0;
   }
-  .gif-surface{ width:100%; }
+  .gif-surface{position:relative;width:100%;height:260px}
 }
-/* The GIF is set as a CSS background so it's harder to "Save image as" */
-
-/* Transparent overlay to intercept right-click and drags */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *, *::before, *::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
+}
 
 
 
@@ -189,9 +159,12 @@ footer{border-top:1px solid #eee;padding:20px 0;color:#666;font-size:14px}
   border:1px solid var(--border);
   border-radius:12px;
   background:#fff;
-  cursor:pointer;
+  cursor:default;
 }
 .news-card:hover{background:#f8fafc}
+a.news-card{color:inherit;cursor:pointer;text-decoration:none}
+a.news-card:hover{text-decoration:none}
+.news-toggle{margin-top:10px;padding:7px 10px;border:1px solid var(--border);border-radius:8px;background:var(--soft);color:var(--text);cursor:pointer;font:inherit;font-weight:600}
 
 /* Ensure the right-hand content can shrink and wrap properly */
 .news-card > :nth-child(2){min-width:0}
@@ -238,18 +211,6 @@ footer{border-top:1px solid #eee;padding:20px 0;color:#666;font-size:14px}
 .news-card.expanded .news-body{display:block}
 .news-card.expanded .news-thumb{height:100px}
 
-/* Home section container with header box */
-#home-news{}
-#home-news .news-hero{
-  border:1px solid var(--border);
-  background:#fff;
-  border-radius:14px;
-  padding:14px 16px;
-  margin:0 0 12px 0;
-}
-#home-news .news-hero h2{margin:0 0 4px 0}
-#home-news .news-hero p{margin:0;color:var(--muted)}
-
 #home-news .news-list{gap:12px}
 #home-news .news-card{
   grid-template-columns:72px 1fr;
@@ -275,156 +236,61 @@ footer{border-top:1px solid #eee;padding:20px 0;color:#666;font-size:14px}
 .publist{display:block}
 .pubcard{
   display:grid;
-  grid-template-columns:140px 1fr;
+  grid-template-columns:auto 1fr;
   gap:16px;
   padding:16px 0;
   border-bottom:1px solid var(--border);
-  cursor:pointer;
+  cursor:default;
 }
-.pubcard figure{margin:0;overflow:hidden;border-radius:10px}
+.pubcard figure{width:240px;margin:0;overflow:hidden;border-radius:10px}
 .pubcard img{
-  width:140px;height:140px;object-fit:cover;object-position:center;
-  border-radius:10px;border:1px solid var(--border);background:#f2f2f2;
-  transition:transform .25s ease, width .25s ease, height .25s ease;
+  width:100%;height:130px;object-fit:contain;object-position:center;padding:5%;
+  border-radius:10px;border:1px solid var(--border);background:#fff;
+  transition:transform .25s ease;
 }
 .pubcard:hover img{transform:scale(1.03)}
 .pubcard h3{font-size:18px;margin:0 0 6px 0}
 .pubcard .meta{font-size:14px;color:var(--muted)}
 .pubcard .links-row{margin-top:6px}
-.pubcard .abstract{margin-top:10px;line-height:1.6}
-.pubcard.expanded{
-  grid-template-columns:220px 1fr;
-}
-.pubcard.expanded img{
-  width:220px;height:220px;
-}
+.pubcard .abstract{display:none;margin-top:10px;line-height:1.6}
+.pubcard .abstract:not([hidden]){display:block}
+.pubcard[aria-expanded="true"] figure{width:360px}
+.pubcard[aria-expanded="true"] img{height:194px;padding:0}
+.pubcard[aria-expanded="true"]:hover img{transform:none}
+
 @media (max-width:720px){
-  .pubcard{grid-template-columns:1fr}
-  .pubcard img{width:120px;height:120px}
-  .pubcard.expanded{grid-template-columns:1fr}
-  .pubcard.expanded img{width:100%;height:auto}
+  .pubcard{grid-template-columns:1fr;padding-left:0;padding-right:0}
+  .pubcard figure,.pubcard[aria-expanded="true"] figure{width:100%}
+  .pubcard img{width:100%;height:auto;aspect-ratio:1.85 / 1}
+  .pubcard[aria-expanded="true"] img{height:auto;aspect-ratio:1.85 / 1}
+  .pubcard .links-row{overflow-wrap:anywhere}
 }
 
 
-/* --- Publications: wide thumbs (~8.25cm x 4.45cm ≈ 1.85:1) --- */
-
-/* Let the first column size to the figure's width */
-.pubcard{
-  display:grid;
-  grid-template-columns:auto 1fr; /* was 140px 1fr */
-  gap:16px;
-  padding:16px 0;
-  border-bottom:1px solid var(--border);
-  cursor:pointer;
-}
-
-/* Fixed figure width; image fills it */
-.pubcard figure{margin:0; overflow:hidden; border-radius:10px; width:240px;}
-.pubcard img{
-  width:100%;
-  height:130px;              /* 240 / 1.85 ≈ 130 */
-  object-fit:contain;
-  object-position:center;
-  padding:5%;
-  border-radius:10px;
-  border:1px solid var(--border);
-  background:#fff;
-  transition:transform .25s ease;
-}
-.pubcard:hover img{ transform:scale(1.03) }
-.pubcard.expanded:hover img{ transform:none }
-
-/* Expanded state: wider image, same aspect ratio */
-.pubcard.expanded{ grid-template-columns:auto 1fr; }
-.pubcard.expanded figure{ width:360px; }
-.pubcard.expanded img{
-  width:100%;
-  height:194px;              /* 360 / 1.85 ≈ 194 */
-  object-fit:contain;
-  object-position:center;
-  padding:0;
-  background:#fff;
-}
-
-/* Mobile: single column, keep ratio via aspect-ratio */
-@media (max-width:720px){
-  .pubcard{ grid-template-columns:1fr; }
-  .pubcard figure{ width:100%; }
-  .pubcard img{
-    width:100%;
-    height:auto;
-    aspect-ratio:1.85 / 1;
-  }
-  .pubcard.expanded img{
-    width:100%;
-    height:auto;
-    aspect-ratio:1.85 / 1;
-  }
-}
-
-
-/* === Research cards adjustments === */
-
-/* Remove borders around images */
-.res-figure{margin:0;border-radius:12px;overflow:hidden}
-.res-figure img{display:block;width:100%;height:auto}
-
-/* Justify text globally */
-body, p {text-align: justify;}
-
-/* Red underline under each card title */
-.res-title{
-  position:relative;
-  padding-bottom:6px;
-}
+/* === Research cards === */
+:root{--res-title-lines:2;--res-title-lh:1.25;--res-title-bottom-gap:12px}
+.res-title{position:relative;padding-bottom:6px;font-size:22px;line-height:var(--res-title-lh);margin:0;text-align:center}
 .res-title::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:0;
-  width:60px;
-  height:3px;
-  background:var(--red);
-  border-radius:2px;
+  content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+  width:60px;height:3px;background:var(--red);border-radius:2px;
 }
-
-/* Research cards: collapsed by default */
-.res-card { cursor: pointer; }
-.res-card .res-long { display: none; }
-.res-card[aria-expanded="true"] .res-long,
-.res-card.expanded .res-long { display: block; }
-
-/* Research preview cards on the home page (anchor-based cards) */
-a.card{
-  display:flex;
-  flex-direction:column;
-  align-items:center;   /* center image + title horizontally */
-  text-align:center;    /* center the text */
+.res-card{display:block}
+.res-card .res-long[hidden]{display:none}
+.res-toggle,.toggle-abs{margin-top:12px;padding:7px 10px;border:1px solid var(--border);border-radius:8px;background:var(--soft);color:var(--text);cursor:pointer;font:inherit;font-weight:600}
+a.card{display:flex;flex-direction:column;align-items:center;text-align:center}
+a.card .res-figure,.res-card .res-figure{
+  width:100%;aspect-ratio:16 / 9;display:flex;align-items:center;justify-content:center;
+  margin:0;padding:12px;overflow:hidden;border-radius:8px;background:#fff;
 }
-
-/* Give every research image the same visual box and center its content */
-a.card .res-figure{
-  width:100%;
-  aspect-ratio:16 / 9;  /* consistent height so titles start at same Y */
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#fff;      /* optional: clean letterbox */
+a.card .res-figure img,.res-card .res-figure img{
+  display:block;width:100%;height:100%;object-fit:contain;object-position:center;
 }
-
-a.card .res-figure img{
-  width:100%;
-  height:100%;
-  object-fit:contain;   /* no cropping; center inside the box */
-  object-position:center;
+.res-card .res-header{
+  display:flex;align-items:center;justify-content:center;
+  min-height:calc(var(--res-title-lines) * 1em * var(--res-title-lh) + var(--res-title-bottom-gap));
+  margin-bottom:16px;
 }
-
-/* Since titles are centered now, center the red underline too */
-.res-title{ text-align:center; }
-.res-title::after{
-  left:50%;
-  transform:translateX(-50%);
-}
+.res-card .res-short{margin:12px 0 0}
 
 /* Center role labels and emails inside people cards */
 .card.text-center .muted,
@@ -434,105 +300,9 @@ a.card .res-figure img{
   margin: 6px auto;
 }
 
-/* === Research cards: uniform figure sizing === */
-.res-card .res-figure {
-  width: 100%;
-  aspect-ratio: 16 / 9;   /* consistent desktop ratio */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-}
-
-.res-card .res-figure img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;   /* scale without cropping */
-  object-position: center;
-}
-
-/* Mobile: use a slightly taller ratio */
-@media (max-width: 720px) {
-  .res-card .res-figure {
-    aspect-ratio: 4 / 3;   /* taller images on phones */
-  }
-}
-/* === Research card titles: align underlines across cards === */
-
-/* Tune these if you change title size/line-height */
-:root{
-  --res-title-lines: 2;   /* reserve space for up to 2 lines on desktop */
-  --res-title-lh: 1.25;   /* line-height multiplier for the title */
-  --res-title-bottom-gap: 12px; /* space for the underline area */
-}
-
-/* Ensure consistent title sizing */
-.res-title{
-  font-size: 22px;
-  line-height: var(--res-title-lh);
-  margin: 0;
-  text-align: center;      /* keep your centered look */
-  position: relative;
-  padding-bottom: 6px;     /* existing underline gap */
-}
-
-/* Title container: fixed min-height, bottom-aligned content */
-.res-card .res-header{
-  display: flex;
-  align-items: flex-end;   /* push title to the bottom of the header box */
-  justify-content: center;
-  min-height: calc(var(--res-title-lines) * 1em * var(--res-title-lh) + var(--res-title-bottom-gap));
-}
-
-/* Make sure the cards don't force equal-height rows */
-.res-card{
-  display: block;          /* override any previous grid layout */
-}
-
-/* Figure stays horizontally centered and uniform (from earlier step) */
-.res-card .res-figure{
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-}
-.res-card .res-figure img{
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-}
-
-/* Short text always starts at the top under the figure */
-.res-card .res-short{ margin: 0; }
-
-/* Mobile: allow up to 3 title lines so it doesn't feel cramped */
 @media (max-width: 720px){
-  :root{ --res-title-lines: 3; }
-  .res-card .res-figure{ aspect-ratio: 4 / 3; }
-}
-/* Space between research title underline and figure */
-.res-card .res-header {
-  margin-bottom: 16px;  /* adjust as needed (12–20px usually looks good) */
-}
-
-/* === Research card refinements === */
-
-/* Title block: consistent height, center-align vertically */
-.res-card .res-header {
-  display: flex;
-  align-items: center;   /* center vertically within header box */
-  justify-content: center;
-  min-height: calc(var(--res-title-lines) * 1em * var(--res-title-lh) + var(--res-title-bottom-gap));
-  margin-bottom: 16px;   /* spacing below the underline */
-}
-
-/* Add spacing between figure and short description */
-.res-card .res-short {
-  margin-top: 12px;   /* gap above short text */
-  margin-bottom: 0;
+  :root{--res-title-lines:3}
+  .res-card .res-figure{aspect-ratio:4 / 3}
 }
 
 /* === Mobile fixes: prevent overlap and enforce vertical stack === */
@@ -553,13 +323,6 @@ html, body { max-width: 100%; overflow-x: hidden; }
 /* Make mobile menu layer above page content on all pages */
 #menu.container.mobile-menu { z-index: 1000; position: relative; }
 
-/* Tweak publications expanded layout on phones so text never goes off-screen */
-@media (max-width: 720px){
-  .pubcard { padding-left: 0; padding-right: 0; }
-  .pubcard .links-row { overflow-wrap: anywhere; }
-}
-
-
 /* --- Explicit desktop nav reset to avoid accidental hiding --- */
 @media (min-width: 761px){
   header nav{display:flex !important; align-items:center; gap:0;}
@@ -568,12 +331,6 @@ html, body { max-width: 100%; overflow-x: hidden; }
 }
 
 /* ===== THEME TOKENS ===== */
-/* Light (default) uses your existing :root variables */
-:root{
-  /* existing palette assumed present…
-     --blue, --blue-dark, --red, --gold, --text, --muted, --bg, --gray, --soft, --border */
-}
-
 /* Dark theme overrides */
 :root[data-theme="dark"]{
   --bg:#1b2430;
@@ -588,11 +345,8 @@ html, body { max-width: 100%; overflow-x: hidden; }
   --gold:#d9bf6c;
 }
 
-/* Apply tokens */
-body{ background:var(--bg); color:var(--text); }
-a{ color:var(--blue); }
+/* Apply tokens to generic borders not covered by component rules. */
 hr, .card, .bordered{ border-color:var(--border); }
-.muted{ color:var(--muted); }
 
 /* ===== THEME TOGGLE BUTTON ===== */
 .nav-actions{ display:flex; align-items:center; gap:10px; }
@@ -608,29 +362,6 @@ hr, .card, .bordered{ border-color:var(--border); }
 
 /* Keep the toggle aligned in the mobile menu too */
 .mobile-theme{ padding:10px 0; }
-
-/* Prefer system scheme when no user choice saved (progressive enhancement) */
-/*@media (prefers-color-scheme: dark){
-  :root:not([data-theme]){ 
-    /* only applies if attribute is missing; our JS sets it early anyway */
-    /*--bg:#0e1116; --text:#e5e7eb; --muted:#9aa4b2; --gray:#121721; --soft:#0f141b; --border:#263041;
-    --blue:#8ab4ff; --blue-dark:#5a84d6; --red:#ff6b6b; --gold:#f6d97a;
-  }
-}
-
-/* ===== RESPONSIVE NAV (your existing rules, keep these) ===== */
-@media (max-width:760px){
-  nav{display:none}
-  .mobile-toggle{display:inline-flex}
-  .mobile-menu{flex-direction:column;padding:8px 0}
-  .mobile-menu a{padding:8px 0;border-top:1px dashed #eee;color:#444}
-  .show{display:flex !important}
-}
-@media (min-width:761px){
-  header nav{display:flex !important; align-items:center; gap:0;}
-  .mobile-toggle{display:none !important;}
-  #menu.mobile-menu{display:none !important;}
-}
 
 /* ===== DARK MODE HARDENING (paste at end) ===== */
 
@@ -651,25 +382,13 @@ hr, .card, .bordered{ border-color:var(--border); }
 :root[data-theme="dark"] .news-meta,
 :root[data-theme="dark"] .news-body{ color:var(--muted); }
 
-/* Home news header box */
-:root[data-theme="dark"] #home-news .news-hero{
-  background:var(--soft);
-  border-color:var(--border);
-  color:var(--text);
-}
-
 /* News thumbnail container (was white) */
 :root[data-theme="dark"] .news-thumb{ background:var(--soft); border-color:var(--border); }
 
 /* 3) Research cards + figure boxes (were white) */
-:root[data-theme="dark"] a.card .res-figure,
-:root[data-theme="dark"] .res-card .res-figure{
-  background:var(--soft);
-}
 :root[data-theme="dark"] .res-title{ color:var(--text); }
 
 /* 4) Publications blocks */
-:root[data-theme="dark"] .pubitem img,
 :root[data-theme="dark"] .pubcard img{
   background:var(--soft);               /* was #f2f2f2/#fff */
   border-color:var(--border);
@@ -735,39 +454,15 @@ hr, .card, .bordered{ border-color:var(--border); }
 :root[data-theme="dark"] .avatar{ background:#2d3a49; }      /* replaces #e5e7eb */
 :root[data-theme="dark"] .flag-badge{ box-shadow:0 0 0 2px var(--bg); } /* replaces #fff rim */
 
-/* 11) Group photo frame */
-:root[data-theme="dark"] .group-photo{ border-color:var(--border); }
-
-/* 12) Publication list row borders */
-:root[data-theme="dark"] .pubitem,
-:root[data-theme="dark"] .pubcard{ border-bottom-color:var(--border); }
-
-/* 13) Generic hovers that used light tints */
+/* 11) Generic hovers that used light tints */
 :root[data-theme="dark"] .chip-link:hover{ background:#2b3848; border-color:var(--border); }
 
-/* 14) Body copy colors inside cards */
+/* 12) Body copy colors inside cards */
 :root[data-theme="dark"] .news-card p,
 :root[data-theme="dark"] .card .muted{ color:var(--muted); }
 
-/* 15) Footer & separators */
+/* 13) Footer & separators */
 :root[data-theme="dark"] footer{ border-top-color:var(--border); color:var(--muted); }
-
-/* 16) Any explicit white backgrounds left in file */
-:root[data-theme="dark"] .bg-gray{ background:var(--gray); }
-:root[data-theme="dark"] .bg-soft{ background:var(--soft); }
-
-/* ==== Research Card Figure Background ==== */
-
-/* Light mode: keep image area white "paper" */
-.res-card .res-figure,
-a.card .res-figure {
-  background:#fff;               /* white sheet under transparent PNGs */
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:12px;                  /* small buffer so image isn't glued to edge */
-  border-radius:8px;             /* optional: soften corners */
-}
 
 /* Dark mode: darker sheet behind image */
 :root[data-theme="dark"] .res-card .res-figure,
@@ -796,6 +491,11 @@ a.card .res-figure {
 
 .gallery-card{
   margin:0;
+  width:100%;
+  padding:0;
+  color:inherit;
+  font:inherit;
+  text-align:left;
   background:#fff;
   border:1px solid var(--border);
   border-radius:14px;
@@ -853,61 +553,9 @@ a.card .res-figure {
 /* ensure dialog shows in fallback */
 dialog[open] { display: block; }
 
-/* === Alumni directory tweaks === */
+/* === Alumni directory === */
 .alumni-list{display:grid;grid-template-columns:1fr;gap:12px}
-.alumni-card{align-items:center}
-.alumni-icon{width:96px;height:72px;border:1px dashed var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;background:transparent}
+.alumni-card{display:block;grid-template-columns:1fr!important;align-items:center}
 .alumni-row-1{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .alumni-name{font-size:18px}
 .alumni-now{margin:6px 0 0 0;color:var(--muted)}
-
-
-/* Alumni: text-only cards (no thumbnail column) */
-.alumni-card { 
-  grid-template-columns: 1fr !important; /* if .news-card uses grid */
-  display: block;                         /* if .news-card uses flex, this is harmless */
-}
-.alumni-card .alumni-icon { display: none !important; } /* just in case any remain */
-
-
-/* 1) Abstract visibility controlled by [hidden] */
-.abstract[hidden] { display: none; }
-
-/* 2) Expanded state driven by aria-expanded (not a .expanded class) */
-.pubcard[aria-expanded="true"] .abstract { display: block; }
-
-/* Map your old .pubcard.expanded layout to the aria state */
-.pubcard[aria-expanded="true"] { grid-template-columns: auto 1fr; }
-.pubcard[aria-expanded="true"] figure { width: 360px; }
-.pubcard[aria-expanded="true"] img {
-  width: 100%;
-  height: 194px;         /* 360 / 1.85 ≈ 194 */
-  object-fit: contain;
-  object-position: center;
-  padding: 0;
-  background: #fff;
-}
-
-/* Mobile keeps the single-column behavior */
-@media (max-width: 720px){
-  .pubcard[aria-expanded="true"] { grid-template-columns: 1fr; }
-  .pubcard[aria-expanded="true"] img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1.85 / 1;
-  }
-}
-
-/* Publications: force abstract show/hide by the [hidden] attribute */
-.pubcard .abstract { display: none !important; }
-.pubcard .abstract:not([hidden]) { display: block !important; }
-
-
-.group-photo img {
-  max-width: 600px;       /* cap size */
-  width: 100%;            /* responsive */
-  margin: 20px auto;      /* center + spacing */
-  display: block;         /* ensure centering works */
-  border-radius: 16px;    /* round the corners */
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15); /* soft shadow */
-}

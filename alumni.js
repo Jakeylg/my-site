@@ -11,7 +11,6 @@
     const n = document.createElement(tag);
     Object.entries(attrs).forEach(([k,v])=>{
       if(k==='class') n.className=v;
-      else if(k==='html') n.innerHTML=v;
       else if(k.startsWith('on') && typeof v==='function') n[k]=v;
       else n.setAttribute(k, v);
     });
@@ -20,7 +19,6 @@
     });
     return n;
   };
-  const escapeHTML = s => (s||'').replace(/[&<>\"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const normalize = s => (s||'').toString().toLowerCase();
 
   // DOM
@@ -48,7 +46,7 @@
           a.role ? el('span', {class:'badge'}, a.role) : null,
           a.period ? el('span', {class:'badge'}, a.period) : null
         ]),
-        a.project ? el('p', {class:'news-excerpt', html: escapeHTML(a.project)}) : null,
+        a.project ? el('p', {class:'news-excerpt'}, a.project) : null,
         a.now ? el('p', {class:'alumni-now'}, 'Now: ' + a.now) : null,
         a.slug ? el('div', {class:'links-row'}, [
           el('a', {class:'btn btn-gray', href:`profile.html?person=${encodeURIComponent(a.slug)}`}, 'View bio')
@@ -104,7 +102,7 @@
     }
 
     // Fetch JSON from file
-    fetch(JSON_SRC, { cache: 'no-store' })
+    fetch(JSON_SRC)
       .then(async r=>{
         if(!r.ok) throw new Error(`Failed to load ${JSON_SRC} (HTTP ${r.status})`);
         const text = await r.text();

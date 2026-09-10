@@ -4,7 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Alumni — Greenfield Group</title>
-<link rel="stylesheet" href="styles.css">
+<meta name="description" content="Former Greenfield Group members, their projects, and where they are now.">
+<link rel="canonical" href="https://imineswitch.com/alumni.html">
+<link rel="icon" type="image/png" href="favicon.png?v=2">
+<script src="theme.js"></script>
+<link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
 <div id="site-header"></div>
@@ -17,6 +21,7 @@
 <!-- Controls -->
 <div class="controls" id="alumni-controls" style="margin:16px 0 10px">
 <input type="search" id="alumni-search" placeholder="Search names, projects, destinations…" aria-label="Search alumni">
+<label class="sr-only" for="alumni-role">Filter alumni by role</label>
 <select id="alumni-role">
 <option value="">All roles</option>
 <option>Intern</option>
@@ -26,6 +31,7 @@
 <option>Postdoc</option>
 <option>Visitor</option>
 </select>
+<label class="sr-only" for="alumni-year">Filter alumni by year</label>
 <select id="alumni-year">
 <option value="">All years</option>
 <!-- filled by JS from data -->
@@ -45,10 +51,7 @@
 </div>
 </footer>
 
-<script>
-document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-<script src="nav.js"></script>
+<script src="nav.js?v=2"></script>
 <script src="banner.js"></script>
 <script src="alumni.js"></script>
 </body>

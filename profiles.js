@@ -3,7 +3,6 @@
     const node = document.createElement(tag);
     Object.entries(attrs).forEach(([k,v])=>{
       if(k === 'class') node.className = v;
-      else if(k === 'html') node.innerHTML = v;
       else if(k.startsWith('on') && typeof v === 'function') node[k] = v;
       else node.setAttribute(k, v);
     });
@@ -18,34 +17,51 @@
   const slug = (params.get('person') || '').trim();
   const container = document.getElementById('profile-container');
 
+  const safeHref = value => {
+    if(!value) return '';
+    try {
+      const url = new URL(String(value), location.href);
+      return ['http:', 'https:', 'mailto:'].includes(url.protocol) ? String(value) : '';
+    } catch (error) {
+      return '';
+    }
+  };
+
   if(!container){
     console.error('#profile-container not found');
     return;
   }
 
-  if(!slug){
-    container.innerHTML = `
-      <h1>Profile not found</h1>
-      <p>We couldn't find that team member.</p>
-      <p><a class="btn btn-gray" href="people.html">Return to team overview</a></p>`;
+  if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)){
+    showNotFound();
     return;
   }
 
   const jsonUrl = `data/people/${slug}.json`;
 
-  fetch(jsonUrl, {cache:'no-store'})
+  fetch(jsonUrl)
     .then(r => {
       if(!r.ok) throw new Error(`HTTP ${r.status}`);
       return r.json();
     })
-    .then(data => renderProfile(data))
+    .then(data => {
+      document.title = `${data.name || 'Profile'} — Greenfield Group`;
+      const canonical = document.getElementById('canonical');
+      if(canonical) canonical.href = `https://imineswitch.com/profile.html?person=${encodeURIComponent(slug)}`;
+      renderProfile(data);
+    })
     .catch(err => {
       console.error(err);
-      container.innerHTML = `
-        <h1>Profile not found</h1>
-        <p>We couldn't load <code>${slug}</code>. Make sure <code>${jsonUrl}</code> exists (case-sensitive on GitHub Pages).</p>
-        <p><a class="btn btn-gray" href="people.html">Return to team overview</a></p>`;
+      showNotFound();
     });
+
+  function showNotFound(){
+    container.replaceChildren(
+      el('h1', {}, 'Profile not found'),
+      el('p', {}, "We couldn't find that team member."),
+      el('p', {}, el('a', {class:'btn btn-gray', href:'people.html'}, 'Return to team overview'))
+    );
+  }
 
   function renderProfile(p){
     // Header
@@ -59,7 +75,7 @@
         el('div', {}, [
           el('h1', {}, p.name || '—'),
           el('p', {class:'muted'}, p.role || ''),
-          p.email ? el('p', {}, el('a', {href:`mailto:${p.email}`}, p.email)) : null,
+          p.email ? el('p', {}, el('a', {href:safeHref(`mailto:${p.email}`)}, p.email)) : null,
           linksRow(p)
         ])
       ])
@@ -112,9 +128,10 @@
     const row = el('div', {class:'chip-row'});
     if(p.links && Array.isArray(p.links)){
       p.links.forEach(link=>{
-        if(!link || !link.url) return;
+        const href = safeHref(link && link.url);
+        if(!href) return;
         row.appendChild(
-          el('a', {class:'chip-link', href:link.url, target:'_blank', rel:'noopener'}, [
+          el('a', {class:'chip-link', href, target:'_blank', rel:'noopener'}, [
             link.icon ? el('img', {src:link.icon, alt:''}) : null,
             ` ${link.label || link.url}`
           ])
@@ -128,28 +145,37 @@
 function renderPubList(pubs){
   if(!pubs || !pubs.length) return el('p', {class:'muted'}, '—');
 
-  // Use an ordered list that counts down from the total
   const list = el('ol', {
     class: 'pub-list',
-    reversed: '',               // boolean attribute => descending numbers
-    start: pubs.length,         // top number is the total count
-    style: 'list-style: decimal; padding-left:1.25rem; margin-left:0;' // ensure numbers visible even if global CSS resets lists
+    reversed: '',
+    start: pubs.length
   });
 
-  // Keep the array order exactly as provided in the JSON
   pubs.forEach(pub=>{
-    const bits = [];
-    if(pub.title) bits.push(`<strong>${pub.title}</strong>`);
-    const meta = [pub.authors, pub.journal ? `<em>${pub.journal}</em>` : null, pub.year]
-      .filter(Boolean).join(', ');
-    if(meta) bits.push(meta);
-    if (pub.doi){
-      const doiUrl = pub.doi.startsWith('http') ? pub.doi : `https://doi.org/${pub.doi}`;
-      bits.push(`<a href="${doiUrl}" target="_blank" rel="noopener">DOI</a>`);
-    } else if (pub.url){
-      bits.push(`<a href="${pub.url}" target="_blank" rel="noopener">Link</a>`);
+    const item = el('li');
+    if(pub.title) item.appendChild(el('strong', {}, pub.title));
+
+    const volumeIssue = [pub.volume, pub.issue ? `(${pub.issue})` : ''].filter(Boolean).join('');
+    const meta = [pub.authors, pub.journal, volumeIssue, pub.pages, pub.year].filter(Boolean).join(', ');
+    if(meta) item.append(document.createTextNode(`${pub.title ? '. ' : ''}${meta}`));
+
+    let links = Array.isArray(pub.links) ? pub.links : [];
+    if(!links.length && pub.doi) links = [{label:'DOI', url:pub.doi.startsWith('http') ? pub.doi : `https://doi.org/${pub.doi}`}];
+    if(!links.length && pub.url) links = [{label:'Link', url:pub.url}];
+
+    links.forEach(link=>{
+      const href = safeHref(link && link.url);
+      if(!href) return;
+      item.append(
+        document.createTextNode(' · '),
+        el('a', {href, target:'_blank', rel:'noopener'}, link.label || 'Link')
+      );
+    });
+
+    if(!item.childNodes.length){
+      item.textContent = 'Publication details unavailable';
     }
-    list.appendChild(el('li', { html: bits.join('. ') }));
+    list.appendChild(item);
   });
 
   return list;

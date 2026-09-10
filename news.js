@@ -1,12 +1,10 @@
 
 /**
  * News system with image placeholder fallback.
- * - Uses window.NEWS_ITEMS if present (works from file://)
- * - Otherwise fetches news.json (works on a server)
+ * - Uses window.NEWS_ITEMS from the canonical news_data.js file.
  * - Thumbnails always render an <img>; if missing/broken, a placeholder is used.
  */
 (function(){
-  const JSON_SRC = 'news.json';
   const PLACEHOLDER_SRC = 'img/news/placeholder.png';
 
   const FALLBACK_DATAURI = 'data:image/svg+xml;utf8,' + encodeURIComponent(`
@@ -19,9 +17,6 @@
     </svg>
   `);
 
-  const HOME_TITLE   = 'Latest News';
-  const HOME_TAGLINE = 'Highlights and updates from the Greenfield Group';
-
   const slugify = s => (s||'').toLowerCase()
     .replace(/[^a-z0-9]+/g,'-')
     .replace(/(^-|-$)/g,'');
@@ -30,7 +25,6 @@
     const node = document.createElement(tag);
     Object.entries(attrs).forEach(([k,v])=>{
       if(k==='class') node.className=v;
-      else if(k==='html') node.innerHTML=v;
       else node.setAttribute(k,v);
     });
     (Array.isArray(children)?children:[children]).filter(Boolean).forEach(c=>{
@@ -43,40 +37,84 @@
   function imgWithFallback(src, alt){
     const img = document.createElement('img');
     img.loading = 'lazy';
+    img.decoding = 'async';
     img.alt = alt || '';
     img.src = src || PLACEHOLDER_SRC;
-    img.addEventListener('error', ()=>{
-      // First fallback: placeholder file
+    img.addEventListener('error', function useFallback(){
       if(img.src.indexOf(PLACEHOLDER_SRC) === -1){
         img.src = PLACEHOLDER_SRC;
       }else{
-        // Final fallback: inline data URI
+        img.removeEventListener('error', useFallback);
         img.src = FALLBACK_DATAURI;
       }
-    }, { once:true });
+    });
     return img;
+  }
+
+  function safeUrl(value){
+    try{
+      const url = new URL(String(value || ''), location.href);
+      return ['http:', 'https:'].includes(url.protocol) ? url.href : '';
+    }catch(error){
+      return '';
+    }
+  }
+
+  function newsBody(value){
+    const body = el('div', {class:'news-body'});
+    const template = document.createElement('template');
+    template.innerHTML = String(value || '');
+    template.content.childNodes.forEach(node => {
+      if(node.nodeType === Node.TEXT_NODE){
+        node.textContent.split('\n').forEach((part, index) => {
+          if(index) body.appendChild(document.createElement('br'));
+          body.appendChild(document.createTextNode(part));
+        });
+        return;
+      }
+      if(node.nodeType === Node.ELEMENT_NODE && node.tagName === 'A'){
+        const href = safeUrl(node.getAttribute('href'));
+        if(href) body.appendChild(el('a', {href, target:'_blank', rel:'noopener'}, node.textContent));
+        else body.appendChild(document.createTextNode(node.textContent));
+        return;
+      }
+      if(node.nodeType === Node.ELEMENT_NODE && node.tagName === 'BR'){
+        body.appendChild(document.createElement('br'));
+        return;
+      }
+      body.appendChild(document.createTextNode(node.textContent || ''));
+    });
+    return body;
   }
 
   function renderCard(item, mode='news'){
     const thumb = el('div', {class:'news-thumb'}, imgWithFallback(item.image, item.title));
     const meta = el('p', {class:'news-meta'}, item.date);
-    const title = el('div', {class:'news-title'}, item.title);
+    const title = el(mode === 'home' ? 'h3' : 'h2', {class:'news-title'}, item.title);
     const excerpt = el('p', {class:'news-excerpt'}, item.excerpt || '');
-    const body = el('div', {class:'news-body', html: (item.body||'').replace(/\n/g,'<br>') });
-
-    const right = el('div', {class:'news-right'}, [meta, title, excerpt, body]);
-    const card = el('article', {class:'news-card', id: slugify(item.title)}, [thumb, right]);
-
-    if(mode === 'home'){
-      card.addEventListener('click', ()=>{
-        window.location.href = 'news.html#' + slugify(item.title);
-      });
-    } else {
-      card.addEventListener('click', ()=>{
-        card.classList.toggle('expanded');
-      });
+    const children = [meta, title, excerpt];
+    if(mode === 'news'){
+      const body = newsBody(item.body);
+      const toggle = el('button', {class:'news-toggle', type:'button', 'aria-expanded':'false'}, 'Read more');
+      toggle.addEventListener('click', ()=> setExpanded(card, !card.classList.contains('expanded')));
+      children.push(body, toggle);
     }
+
+    const right = el('div', {class:'news-right'}, children);
+    const card = mode === 'home'
+      ? el('a', {class:'news-card', href:'news.html#' + slugify(item.title)}, [thumb, right])
+      : el('article', {class:'news-card', id:slugify(item.title)}, [thumb, right]);
+
     return card;
+  }
+
+  function setExpanded(card, expanded){
+    card.classList.toggle('expanded', expanded);
+    const button = card.querySelector('.news-toggle');
+    if(button){
+      button.setAttribute('aria-expanded', String(expanded));
+      button.textContent = expanded ? 'Show less' : 'Read more';
+    }
   }
 
   function renderList(container, items, mode='news'){
@@ -89,29 +127,22 @@
       const id = window.location.hash.slice(1);
       const target = document.getElementById(id);
       if(target){
-        target.classList.add('expanded');
+        setExpanded(target, true);
         target.scrollIntoView({behavior:'smooth', block:'start'});
       }
     }
   }
 
   function mountHome(container, items){
-    const header = el('div', {class:'news-header-box'},
-      [
-        el('div', {class:'news-header-title'}, HOME_TITLE),
-        el('div', {class:'news-header-tag'}, HOME_TAGLINE)
-      ]
-    );
-    container.appendChild(header);
     renderList(container, items.slice(0,3), 'home');
   }
 
   function start(items){
     // Normalize and sort
-    items = (items||[]).map(it => ({
-      ...it,
-      date: new Date(it.date).toISOString().slice(0,10)
-    })).sort((a,b)=> (a.date < b.date ? 1 : -1));
+    items = (items||[]).map(it => {
+      const date = new Date(it.date);
+      return Number.isNaN(date.getTime()) ? null : {...it, date:date.toISOString().slice(0,10)};
+    }).filter(Boolean).sort((a,b)=> (a.date < b.date ? 1 : -1));
 
     const homeMount = document.getElementById('home-news');
     if(homeMount) mountHome(homeMount, items);
@@ -120,13 +151,9 @@
     if(newsMount) renderList(newsMount, items, 'news');
   }
 
-  // Prefer embedded data for file:// use
   if(Array.isArray(window.NEWS_ITEMS)){
     start(window.NEWS_ITEMS);
   } else {
-    fetch(JSON_SRC).then(r=>r.json()).then(start).catch(()=>{
-      // As a last resort, show nothing but keep console clean
-      console.warn('News: no data source found (NEWS_ITEMS or news.json).');
-    });
+    console.error('News data could not be loaded.');
   }
 })();

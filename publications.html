@@ -4,7 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Publications — Greenfield Group</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Research publications from the Greenfield Group and collaborators.">
+  <link rel="canonical" href="https://imineswitch.com/publications.html">
+  <link rel="icon" type="image/png" href="favicon.png?v=2">
+  <script src="theme.js"></script>
+  <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
   <div id="top"></div>
@@ -13,14 +17,15 @@
   <main class="section">
     <div class="container">
       <h1>Publications</h1>
-    <!-- NEW: top jump-link sentence -->
     <p class="muted" style="margin-top:-6px">
       For other publications and biographical sketches, <a href="#other-pubs">click here</a>.
     </p>
 
       <div class="controls">
-        <input type="search" id="pubSearch" placeholder="Filter by title or author…" oninput="filterPubs()">
-        <select id="yearFilter" onchange="filterPubs()">
+        <label class="sr-only" for="pubSearch">Filter publications</label>
+        <input type="search" id="pubSearch" placeholder="Filter by title or author…">
+        <label class="sr-only" for="yearFilter">Filter publications by year</label>
+        <select id="yearFilter">
           <option value="">All years</option>
         </select>
       </div>
@@ -34,7 +39,6 @@
     </div>
   </main>
 
-<!-- NEW: OTHER PUBLICATIONS SECTION AT PAGE BOTTOM -->
 <section id="other-pubs" class="section bg-soft">
   <div class="container">
     <h2>Other publications &amp; biographical sketches</h2>
@@ -43,12 +47,10 @@
   </div>
 </section>
 
-<div class="container" style="text-align:center; margin: 24px 0;">
+<div class="container" style="text-align:center; margin:24px auto;">
   <a href="#top" class="btn btn-gray">Back to top</a>
 </div>
-<script src="publications.js?v=4" defer
-        onerror="document.getElementById('pubList').innerHTML='<p style=&quot;color:#b91c1c&quot;>Failed to load publications.js</p>'">
-</script>
+<script src="publications.js?v=5" defer></script>
 
   <footer>
     <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
@@ -56,8 +58,7 @@
     </div>
   </footer>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-  <script src="nav.js"></script>
+  <script src="nav.js?v=2"></script>
   <script src="banner.js"></script>
 </body>
 </html>
