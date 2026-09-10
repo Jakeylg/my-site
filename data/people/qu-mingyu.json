@@ -22,5 +22,36 @@
     "City University of Hong Kong (MSc, 2026)"
   ],
   "awards": [],
-  "publications": []
+  "publications": [
+    {
+      "title": "Architecting a Bismacrocycle through a Single C–C Bond Connection",
+      "authors": "Yunlong Li, Haokun Li, Qiyuan Zhou, Mingyu Qu, Pengzhong Chen, Jian Xu, Yuwen Wang, Guangyu Zhu, Zhenpin Lu",
+      "journal": "JACS Au",
+      "year": "2026",
+      "volume": "6",
+      "issue": "7",
+      "pages": "4344–4352",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1021/jacsau.6c00910"
+        }
+      ]
+    },
+    {
+      "title": "Flash Communication: Synthesis and Reactivity of a Zinc-Bpin Species",
+      "authors": "Gan Xu, Mingyu Qu, Zhenpin Lu",
+      "journal": "Organometallics",
+      "year": "2025",
+      "volume": "44",
+      "issue": "24",
+      "pages": "2838–2841",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1021/acs.organomet.5c00384"
+        }
+      ]
+    }
+  ]
 }
