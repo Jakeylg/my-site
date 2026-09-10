@@ -1,0 +1,26 @@
+{
+  "slug": "qu-mingyu",
+  "name": "Qu Mingyu (曲铭宇)",
+  "role": "PhD Student",
+  "email": "mq31@st-andrews.ac.uk",
+  "photo": "img/people/headshots/qu-mingyu.jpg",
+  "bio": "Mingyu received his MSc in Chemistry with Distinction from City University of Hong Kong in June 2026, after completing his BSc in Chemistry at Xiamen University in December 2023.",
+  "links": [
+    {
+      "label": "ORCID",
+      "url": "https://orcid.org/0009-0006-6926-8840",
+      "icon": "img/icons/orcid.png"
+    },
+    {
+      "label": "Google Scholar",
+      "url": "https://scholar.google.com/citations?user=CB1cp7kAAAAJ",
+      "icon": "img/icons/scholar.png"
+    }
+  ],
+  "education": [
+    "Xiamen University (BSc, 2023)",
+    "City University of Hong Kong (MSc, 2026)"
+  ],
+  "awards": [],
+  "publications": []
+}
