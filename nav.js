@@ -80,6 +80,9 @@
         video.removeAttribute('autoplay');
         video.pause();
       });
+      document.querySelectorAll('img[data-reduced-motion-src]').forEach(image => {
+        image.src = image.dataset.reducedMotionSrc;
+      });
     }
 
     const menu = document.getElementById('menu');
