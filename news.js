@@ -103,7 +103,14 @@
     const right = el('div', {class:'news-right'}, children);
     const card = mode === 'home'
       ? el('a', {class:'news-card', href:'news.html#' + slugify(item.title)}, [thumb, right])
-      : el('article', {class:'news-card', id:slugify(item.title)}, [thumb, right]);
+      : el('article', {class:'news-card expandable-card', id:slugify(item.title)}, [thumb, right]);
+
+    if(mode === 'news'){
+      card.addEventListener('click', event => {
+        if(event.target.closest('a, button, input, select, textarea') || window.getSelection()?.toString().trim()) return;
+        setExpanded(card, !card.classList.contains('expanded'));
+      });
+    }
 
     return card;
   }

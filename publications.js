@@ -57,7 +57,7 @@
     const authors = Array.isArray(p.authors) ? p.authors.join(', ') : String(p.authors || '');
     const abstractId = `${idPrefix}-abstract-${idx}`;
     return `
-      <article class="pubcard" aria-expanded="false">
+      <article class="pubcard${hasAbs ? ' expandable-card' : ''}" aria-expanded="false">
         <figure>
           <img src="${escapeHTML(p.tocImage || FALLBACK_IMG)}" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${FALLBACK_IMG}'">
         </figure>
@@ -94,13 +94,15 @@ function wireCards(container){
     });
   }
 
-  // Use the native button as the single accessible toggle target.
+  // Let either the native button or the non-interactive card surface toggle the abstract.
   container.addEventListener('click', e=>{
-    const btn = e.target.closest('.toggle-abs');
-    if(!btn) return;
-    const card = btn.closest('.pubcard');
+    const card = e.target.closest('.pubcard');
+    if(!card) return;
+    const clickedButton = e.target.closest('.toggle-abs');
+    if(!clickedButton && (e.target.closest('a, button, input, select, textarea') || window.getSelection()?.toString().trim())) return;
+    const btn = clickedButton || card.querySelector('.toggle-abs');
     const abs = card.querySelector('.abstract');
-    if(!abs) return;
+    if(!btn || !abs) return;
 
     const isOpen = card.getAttribute('aria-expanded') === 'true';
     if(isOpen){
