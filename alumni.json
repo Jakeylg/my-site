@@ -1,5 +1,27 @@
 [
 {
+"name": "Francesco Ranieri",
+"role": "Visiting PhD Student",
+"period": "2026",
+"years": [2026],
+"project": "Working on imine-based photoswitches.",
+"now": "PhD student, Sapienza University of Rome",
+"destination": "Sapienza University of Rome",
+"slug": "francesco-ranieri",
+"photo": "img/people/headshots/francesco-ranieri.jpg"
+},
+{
+"name": "Kavisha Sarma",
+"role": "Visiting PhD Student",
+"period": "2026",
+"years": [2026],
+"project": "Working on imine-based photoswitches.",
+"now": "PhD student, UNSW Sydney",
+"destination": "UNSW Sydney",
+"slug": "kavisha-sarma",
+"photo": "img/people/headshots/kavisha-sarma.jpg"
+},
+{
 "name": "Simon Schuster",
 "role": "Bachelor",
 "period": "2025",

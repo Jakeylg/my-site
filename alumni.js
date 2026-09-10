@@ -4,7 +4,7 @@
   const currentScript =
     document.currentScript ||
     (function(){ const s=document.getElementsByTagName('script'); return s[s.length-1]; })();
-  const JSON_SRC = (currentScript && currentScript.dataset.jsonSrc) || 'alumni.json?v=2';
+  const JSON_SRC = (currentScript && currentScript.dataset.jsonSrc) || 'alumni.json?v=3';
 
   // Helpers
   const el = (tag, attrs={}, children=[])=>{
@@ -40,20 +40,39 @@
     emptyEl.style.display='none';
 
     filtered.forEach(a=>{
+      const profileHref = /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(a.slug)
+        ? `profile.html?person=${encodeURIComponent(a.slug)}`
+        : '';
+      const name = profileHref
+        ? el('a', {class:'alumni-name alumni-name-link', href:profileHref}, a.name || 'Unknown')
+        : el('strong', {class:'alumni-name'}, a.name || 'Unknown');
       const head = el('div', {}, [
         el('div', {class:'alumni-row-1'}, [
-          el('strong', {class:'alumni-name'}, a.name || 'Unknown'),
+          name,
           a.role ? el('span', {class:'badge'}, a.role) : null,
           a.period ? el('span', {class:'badge'}, a.period) : null
         ]),
         a.project ? el('p', {class:'news-excerpt'}, a.project) : null,
         a.now ? el('p', {class:'alumni-now'}, 'Now: ' + a.now) : null,
-        a.slug ? el('div', {class:'links-row'}, [
-          el('a', {class:'btn btn-gray', href:`profile.html?person=${encodeURIComponent(a.slug)}`}, 'View bio')
+        profileHref ? el('div', {class:'links-row'}, [
+          el('a', {class:'btn btn-gray', href:profileHref}, 'View profile')
         ]) : null
       ]);
 
-      const card = el('article', {class:'news-card alumni-card'}, [ head ]);
+      const photo = a.photo ? el(profileHref ? 'a' : 'div', {
+        class:'alumni-photo',
+        ...(profileHref ? {href:profileHref, 'aria-label':`View ${a.name || 'former member'} profile`} : {})
+      }, [
+        el('img', {
+          src:a.photo,
+          alt:`Headshot of ${a.name || 'former group member'}`,
+          loading:'lazy',
+          decoding:'async',
+          onerror:function(){ this.onerror=null; this.src='img/people/headshots/placeholder.svg'; }
+        })
+      ]) : null;
+
+      const card = el('article', {class:`news-card alumni-card${photo ? ' has-photo' : ''}`}, [photo, head]);
 
       listEl.appendChild(card);
     });
@@ -133,7 +152,8 @@
       project:a.project||'',
       now:a.now||'',
       destination:a.destination||'',
-      slug:a.slug||''
+      slug:a.slug||'',
+      photo:a.photo||''
     }));
     populateYearFilter();
     wire();

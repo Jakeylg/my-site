@@ -64,6 +64,12 @@
   }
 
   function renderProfile(p){
+    const backHref = p.former ? 'alumni.html' : 'people.html';
+    const backLabel = p.former ? 'Return to former members' : 'Return to team overview';
+    const makeBackLink = () => el('p', {}, [
+      el('a', {class:'btn btn-gray', href:backHref}, backLabel)
+    ]);
+
     // Header
     const header = el('div', {class:'card'}, [
       el('div', {style:'display:flex;gap:20px;align-items:center;flex-wrap:wrap'}, [
@@ -74,6 +80,7 @@
         ]),
         el('div', {}, [
           el('h1', {}, p.name || '—'),
+          p.former ? el('span', {class:'badge'}, 'Former group member') : null,
           el('p', {class:'muted'}, p.role || ''),
           p.email ? el('p', {}, el('a', {href:safeHref(`mailto:${p.email}`)}, p.email)) : null,
           linksRow(p)
@@ -109,19 +116,14 @@
       renderPubList(p.publications)
     ]);
 
-    // Back link
-    const back = el('p', {}, [
-      el('a', {class:'btn btn-gray', href:'people.html'}, 'Return to team overview')
-    ]);
-
     container.innerHTML = '';
-    container.appendChild(back);
+    container.appendChild(makeBackLink());
     container.appendChild(header);
     container.appendChild(bio);
     container.appendChild(awards);
     container.appendChild(edu);
     container.appendChild(pubs);
-    container.appendChild(back);
+    container.appendChild(makeBackLink());
   }
 
   function linksRow(p){
