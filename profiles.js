@@ -102,6 +102,14 @@
         : el('p', {class:'muted'}, '—')
     ]);
 
+    // Optional professional roles card
+    const professionalRoles = (p.professionalRoles && p.professionalRoles.length)
+      ? el('article', {class:'card'}, [
+          el('h2', {}, 'Professional Roles'),
+          el('ul', {}, p.professionalRoles.map(role => el('li', {}, role)))
+        ])
+      : null;
+
     // Education card
     const edu = el('article', {class:'card'}, [
       el('h2', {}, 'Education'),
@@ -121,6 +129,7 @@
     container.appendChild(header);
     container.appendChild(bio);
     container.appendChild(awards);
+    if(professionalRoles) container.appendChild(professionalRoles);
     container.appendChild(edu);
     container.appendChild(pubs);
     container.appendChild(makeBackLink());

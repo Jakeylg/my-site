@@ -4,18 +4,24 @@
   "role": "Group Leader",
   "email": "JLG28@St-Andrews.ac.uk",
   "photo": "img/people/headshots/jake-greenfield.jpg",
-  "bio": "Jake grew up in Bristol (UK) and completed his MSci in Chemistry at Imperial College London. He earned his PhD at the University of Cambridge under the supervision of Prof. Jonathan Nitschke, where he worked on the self-assembly of helical metallopolymers. Jake then joined Prof. Matthew Fuchter’s group at Imperial College London as a postdoctoral researcher, working on molecular photoswitches. In 2022, he moved to Würzburg, Germany as a Humboldt Fellow with Prof. Frank Würthner. Since 2023, he has led the Greenfield Group as a Liebig Fellow, focusing on photoswitchable imines and light-driven out-of-equilibrium chemistry. In 2024 he was made an Emil-Fischer Fellow at the Faculty. Beyond the science, Jake is passionate about mentoring researchers, collaborative teamwork, and enjoys drinking too much coffee...",
+  "bio": "Jake grew up in Bristol (UK) and completed his MSci in Chemistry at Imperial College London. He earned his PhD at the University of Cambridge under the supervision of Prof. Jonathan Nitschke, where he worked on the self-assembly of helical metallopolymers. Jake then joined Prof. Matthew Fuchter’s group at Imperial College London as a postdoctoral researcher, working on molecular photoswitches. In 2022, he moved to Würzburg, Germany as a Humboldt Fellow with Prof. Frank Würthner. From 2023 to 2025, he led the Greenfield Group in Würzburg as a Liebig Fellow and was appointed an Emil-Fischer Fellow in 2024. In October 2025, he joined the University of St Andrews as a Lecturer in Organic Chemistry. His group studies photoswitchable imines and light-driven out-of-equilibrium chemistry, supported by an ERC Starting Grant for Project HeliOS. Beyond the science, Jake is passionate about mentoring researchers, collaborative teamwork, and enjoys drinking too much coffee...",
   "education": [
     "Imperial College London (MSci, 2015, 1st Class Hons.)",
     "University of Cambridge (PhD, 2020)"
   ],
   "awards": [
+    "Nature Index feature on the independent group, 2026",
+    "Thieme Chemistry Journals Awardee, 2026",
+    "ERC Starting Grant for Project HeliOS, 2025",
     "Chemiedozententagung Presentation Prize (Session A), 2025",
     "Emil-Fischer Fellowship (Junior Professor status), 2024",
     "Liebig Fellowship, Fonds der Chemischen Industrie, 2023",
     "Alexander von Humboldt Fellowship, 2022",
     "Evans Medal in Inorganic Chemistry (Imperial College London), 2015",
     "DOW® Award for Best Final Year Presentation, 2015"
+  ],
+  "professionalRoles": [
+    "Member of the Royal Society of Chemistry’s Chemical Science Advisory Board, since August 2026"
   ],
   "links": [
     {"label": "ORCID", "url": "https://orcid.org/0000-0002-7650-5414", "icon": "img/icons/orcid.png"},
