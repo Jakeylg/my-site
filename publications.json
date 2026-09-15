@@ -87,6 +87,23 @@
     "doi": "10.1016/j.chempr.2025.102579",
     "publisherUrl": "https://doi.org/10.1016/j.chempr.2025.102579",
     "tocImage": "img/pubs/pub38-toc.webp",
+    "relatedArticles": [
+      {
+        "label": "Independent Preview on this work",
+        "type": "Preview",
+        "title": "Lighting up dark reactions: An imine network ratchets a coupled equilibrium",
+        "authors": [
+          "Merve Temel",
+          "Stefano Crespi"
+        ],
+        "journal": "Chem",
+        "year": 2025,
+        "volume": "11",
+        "issue": "10",
+        "pages": "102783",
+        "doi": "10.1016/j.chempr.2025.102783"
+      }
+    ],
     "abstract": "Driving non-photoresponsive transformations out of equilibrium with light requires transducing light energy into a different stimulus. Here, we demonstrate this using a dynamic-covalent network of four interconverting imines. In this system, photoirradiation drives a transimination reaction involving photoswitchable imines into a non-equilibrium steady state, altering the composition of both the photochromic imines and free amines. This shift in amine composition subsequently perturbs a coupled transimination reaction that does not directly absorb this wavelength of light. Notably, coupling these two reactions enhances the system’s response; the amines generated in each transimination facilitate the other, amplifying the overall departure from equilibrium beyond what is observed for the reactions in isolation. Operating entirely in solution, this light-fueled cascade provides a blueprint for designing dynamic-covalent systems that harness light energy to control non-photoresponsive transformations, expanding the scope and complexity of light-driven processes in systems chemistry."
   },
   {

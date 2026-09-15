@@ -263,6 +263,13 @@ a.news-card:hover{text-decoration:none}
 .pubcard h3{font-size:18px;margin:0 0 6px 0}
 .pubcard .meta{font-size:14px;color:var(--muted)}
 .pubcard .links-row{margin-top:6px}
+.publication-related{
+  margin-top:12px;padding:9px 11px;border:1px solid var(--border);border-left:4px solid var(--red);
+  border-radius:8px;background:var(--soft);font-size:14px;line-height:1.45
+}
+.publication-related-label{margin-bottom:2px;color:var(--muted);font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.publication-related-title{display:block;font-weight:650}
+.publication-related-meta{margin-top:2px;color:var(--muted);font-size:13px}
 .pubcard .abstract{display:none;margin-top:10px;line-height:1.6}
 .pubcard .abstract:not([hidden]){display:block}
 .pubcard[aria-expanded="true"] figure{width:360px}

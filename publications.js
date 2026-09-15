@@ -48,6 +48,31 @@
     return [where, volIssue, p.pages].filter(Boolean).join(', ');
   }
 
+  function relatedArticlesHTML(p){
+    if(!Array.isArray(p.relatedArticles)) return '';
+
+    return p.relatedArticles.map(article=>{
+      const url = safeUrl(article.publisherUrl || doiUrl(article.doi));
+      const title = String(article.title || '').trim();
+      if(!url || !title) return '';
+
+      const authors = Array.isArray(article.authors)
+        ? article.authors.join(', ')
+        : String(article.authors || '');
+      const publication = [metaLine(article), article.year].filter(Boolean).join(', ');
+      const meta = [authors, publication].filter(Boolean).join(' — ');
+      const label = article.label || article.type || 'Related article';
+
+      return `
+        <aside class="publication-related" aria-label="${escapeHTML(label)}">
+          <div class="publication-related-label">${escapeHTML(label)}</div>
+          <a class="publication-related-title" href="${escapeHTML(url)}" target="_blank" rel="noopener">${escapeHTML(title)}</a>
+          ${meta ? `<div class="publication-related-meta">${escapeHTML(meta)}</div>` : ''}
+        </aside>
+      `;
+    }).join('');
+  }
+
   function cardHTML(p, idx, idPrefix){
     const link = safeUrl(p.publisherUrl || doiUrl(p.doi) || p.pdfUrl || '');
     const pdfUrl = safeUrl(p.pdfUrl);
@@ -72,6 +97,7 @@
             ${doiLink && doiLink!==link ? ` • <a href="${escapeHTML(doiLink)}" target="_blank" rel="noopener">DOI</a>` : ''}
             ${pdfUrl && pdfUrl!==link ? ` • <a href="${escapeHTML(pdfUrl)}" target="_blank" rel="noopener">PDF</a>` : ''}
           </div>
+          ${relatedArticlesHTML(p)}
           ${hasAbs ? `
             <button class="toggle-abs" type="button" aria-expanded="false" aria-controls="${abstractId}">Show abstract</button>
             <div id="${abstractId}" class="abstract" hidden>${escapeHTML(p.abstract)}</div>
