@@ -156,11 +156,18 @@ function wireCards(container){
       return;
     }
     const sorted = [...list].sort((a,b)=>{
+      const na = Number(a.number), nb = Number(b.number);
+      const aIsNumbered = Number.isFinite(na);
+      const bIsNumbered = Number.isFinite(nb);
+
+      // Publication numbers define the canonical order. Dates are only a
+      // fallback for unnumbered items so a metadata typo cannot split the list.
+      if(aIsNumbered && bIsNumbered && nb !== na) return nb - na;
+      if(aIsNumbered !== bIsNumbered) return aIsNumbered ? -1 : 1;
+
       const da = a.date ? Date.parse(a.date) : (a.year? Date.parse(`${a.year}-01-01`):0);
       const db = b.date ? Date.parse(b.date) : (b.year? Date.parse(`${b.year}-01-01`):0);
-      if(db !== da) return db - da;
-      const na = Number(a.number)||0, nb = Number(b.number)||0;
-      return nb - na;
+      return db - da;
     });
     container.innerHTML = sorted.map((p,i)=>cardHTML(p,i,container.id || 'publications')).join('');
   }
