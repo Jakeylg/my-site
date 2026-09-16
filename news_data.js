@@ -1,5 +1,12 @@
 window.NEWS_ITEMS = [
 {
+  "date": "2026-08-22",
+  "title": "Lasse Kreimendahl Visits St Andrews",
+  "excerpt": "Lasse visited St Andrews for a week of collaborative discussions, new ideas, and plenty of Scottish food and culture.",
+  "body": "From 16–22 August 2026, Lasse Kreimendahl, a PhD student in the Mitrić and Röhr groups in theoretical chemistry at the University of Würzburg, visited St Andrews for a collaborative research meeting. During the week, we discussed ongoing projects, explored new directions, and began putting new workflows into practice. Lasse also presented his current PhD research in Würzburg to members of the School of Chemistry.\n\nThe programme continued beyond the lab with a Sunday roast, an Indian curry, a trip to the Wee Chippy in Anstruther, Lasse’s first Nando’s experience, and a brief taste of the Edinburgh Festival Fringe to round off the visit.\n\nThe visit was highly productive, enabling rapid feedback on ideas and the implementation of new ways of working. We look forward to continuing and strengthening this collaboration.",
+  "image": "img/news/placeholder.png"
+},
+{
   "date": "2026-05-01",
   "title": "Jake Named a 2026 Thieme Chemistry Journals Award Winner",
   "excerpt": "Jake has been named a 2026 Thieme Chemistry Journals Award winner.",
@@ -308,4 +315,3 @@ window.NEWS_ITEMS = [
     "image": ""
   }
 ]
-
