@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40">
+  <defs>
+    <clipPath id="rounded"><rect width="60" height="40" rx="4"/></clipPath>
+    <clipPath id="canton"><rect width="30" height="20"/></clipPath>
+    <path id="star" d="M0-4 .94-1.29 3.8-1.24 1.52.49 2.35 3.24 0 1.6-2.35 3.24-1.52.49-3.8-1.24-.94-1.29Z"/>
+  </defs>
+  <g clip-path="url(#rounded)">
+    <rect width="60" height="40" fill="#00247d"/>
+    <g clip-path="url(#canton)">
+      <rect width="30" height="20" fill="#012169"/>
+      <path d="M0 0 30 20M30 0 0 20" stroke="#fff" stroke-width="4"/>
+      <path d="M0 0 30 20M30 0 0 20" stroke="#c8102e" stroke-width="2"/>
+      <path d="M15 0V20M0 10H30" stroke="#fff" stroke-width="5"/>
+      <path d="M15 0V20M0 10H30" stroke="#c8102e" stroke-width="3"/>
+    </g>
+    <g fill="#cc142b" stroke="#fff" stroke-width="1.2" stroke-linejoin="round">
+      <use href="#star" transform="translate(44 8) scale(.85)"/>
+      <use href="#star" transform="translate(38 19) scale(.8)"/>
+      <use href="#star" transform="translate(49 23) scale(.85)"/>
+      <use href="#star" transform="translate(43 33) scale(.9)"/>
+    </g>
+  </g>
+</svg>
