@@ -1,0 +1,55 @@
+{
+  "slug": "maria-carmen-temian",
+  "name": "Maria-Carmen Temian",
+  "role": "Postdoctoral Researcher",
+  "email": "mct27@st-andrews.ac.uk",
+  "photo": "img/people/headshots/maria-carmen-temian.jpg",
+  "bio": "Maria grew up in Baia Mare, Romania, before moving to the UK in 2018 to study for an MChem degree at the University of Oxford. There, she completed her final-year research project under the supervision of Prof. Matthew Langton, focusing on coupling photoresponsive transmembrane ion transport with transition-metal catalysis. After graduating in 2022, she began her PhD in the group of Prof. David Leigh FRS at the University of Manchester, where she worked on information ratchets and out-of-equilibrium sensing. Following the completion of her degree in 2026, she joined Dr Jake L. Greenfield in St Andrews as a postdoctoral researcher. Outside the lab, Maria enjoys painting, ballet, skiing, and secretly being a vampire.",
+  "links": [
+    {
+      "label": "ORCID",
+      "url": "https://orcid.org/0000-0001-5653-5619",
+      "icon": "img/icons/orcid.png"
+    }
+  ],
+  "education": [
+    "University of Oxford (MChem, 2022)",
+    "University of Manchester (PhD, 2026)",
+    "University of St Andrews (Postdoc, 2026–present)"
+  ],
+  "awards": [
+    "Part II Project Prize, University of Oxford (2022)"
+  ],
+  "publications": [
+    {
+      "title": "Out-of-equilibrium sensing with a chemically fueled molecular machine",
+      "authors": "Maria-Carmen Temian, Benjamin M. W. Roberts, Stefan Borsley, Flavio della Sala, Zoe Ashbridge, David A. Leigh",
+      "journal": "Chem",
+      "year": "2026",
+      "volume": "12",
+      "issue": "8",
+      "pages": "102960",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1016/j.chempr.2026.102960"
+        }
+      ]
+    },
+    {
+      "title": "Coupling Photoresponsive Transmembrane Ion Transport with Transition Metal Catalysis",
+      "authors": "Xiangyu Chao, Toby G. Johnson, Maria-Carmen Temian, Andrew Docker, Antoine L. D. Wallabregue, Aaron Scott, Stuart J. Conway, Matthew J. Langton",
+      "journal": "J. Am. Chem. Soc.",
+      "year": "2024",
+      "volume": "146",
+      "issue": "7",
+      "pages": "4351–4356",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1021/jacs.3c13801"
+        }
+      ]
+    }
+  ]
+}
