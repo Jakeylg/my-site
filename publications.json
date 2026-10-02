@@ -1,5 +1,26 @@
 [
   {
+    "number": 42,
+    "title": "Crossing the Threshold: Using Photostationary States to Control Supramolecular Polymerisation",
+    "authors": [
+      "Deepu George",
+      "Jiarong Wu",
+      "Leo Greb",
+      "Vladimir Stepanenko",
+      "Aidan Izuagbe",
+      "Lutz Nuhn",
+      "Frank Würthner",
+      "Jake L. Greenfield*"
+    ],
+    "journal": "Angew. Chem. Int. Ed.",
+    "year": 2026,
+    "pages": "e5794634",
+    "doi": "10.1002/anie.5794634",
+    "publisherUrl": "https://doi.org/10.1002/anie.5794634",
+    "tocImage": "img/pubs/pub42-toc.png",
+    "abstract": "The completeness of photoswitching is a key figure of merit for molecular photoswitches. In azo-based switches, quantitative conversion between the E and Z isomers is typically sought to maximise change in properties, while intermediate photostationary states (PSSs) receive less attention. Here, we show that intermediate PSSs can be functionally useful when coupled to threshold-regulated processes. We demonstrate this by using a photoswitchable monomer that undergoes cooperative supramolecular polymerisation. The irradiation wavelength controls the concentration of polymerisation-active monomer; once this concentration crosses the nucleation threshold, small wavelength-dependent changes in PSS composition produce large changes in aggregation state. The resulting supramolecular polymer assembles in aqueous media and undergoes light-induced disassembly in the condensed phase. In the broader context, coupling photoswitching to threshold-dependent assembly provides a novel route to convert subtle changes in PSS composition into an amplified, non-linear supramolecular response."
+  },
+  {
     "number": 41,
     "title": "Subcomponent Self-Assembly of Anion-Coordinated Quadruple Helicates With Light-Induced Guest Release",
     "authors": [
